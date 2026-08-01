@@ -55,7 +55,10 @@ test.describe('createInertiaApp', () => {
   })
 
   test('it wraps the app in StrictMode when enabled', async ({ page }) => {
-    test.skip(process.env.PACKAGE !== 'react', 'React-only tests')
+    test.skip(
+      process.env.PACKAGE !== 'react' && process.env.PACKAGE !== 'hono-jsx',
+      'React-only tests',
+    )
 
     await page.goto('/unified/strict-mode?strictMode')
 
@@ -64,7 +67,10 @@ test.describe('createInertiaApp', () => {
   })
 
   test('it does not wrap the app in StrictMode by default', async ({ page }) => {
-    test.skip(process.env.PACKAGE !== 'react', 'React-only tests')
+    test.skip(
+      process.env.PACKAGE !== 'react' && process.env.PACKAGE !== 'hono-jsx',
+      'React-only tests',
+    )
 
     await page.goto('/unified/strict-mode')
 

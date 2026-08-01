@@ -2,9 +2,10 @@ const http = require('http')
 
 const SSR_PORT = 13714
 const SSR_AUTO_PORTS = {
-  vue3: 13718,
-  react: 13719,
-  svelte: 13720,
+  vue3: 13719,
+  react: 13720,
+  svelte: 13721,
+  'hono-jsx': 13722,
 }
 const SSR_AUTO_PORT = SSR_AUTO_PORTS[process.env.PACKAGE || 'vue3']
 

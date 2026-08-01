@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 import { consoleMessages, pageLoads } from './support'
 
 const SSR_SERVER_PORT = 13714
-const SSR_AUTO_PORTS: Record<string, number> = { vue3: 13718, react: 13719, svelte: 13720 }
+const SSR_AUTO_PORTS: Record<string, number> = { vue3: 13719, react: 13720, svelte: 13721, 'hono-jsx': 13722 }
 const SSR_AUTO_SERVER_PORT = SSR_AUTO_PORTS[process.env.PACKAGE || 'vue3']
 
 test.describe('SSR', () => {

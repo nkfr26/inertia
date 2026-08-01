@@ -1525,7 +1525,7 @@ test.describe('Form Component', () => {
   })
 
   test.describe('React', () => {
-    test.skip(process.env.PACKAGE !== 'react', 'Skipping React-specific tests')
+    test.skip(process.env.PACKAGE !== 'react' && process.env.PACKAGE !== 'hono-jsx', 'Skipping React-specific tests')
 
     test('it preserves the internal state of child components', async ({ page }) => {
       await page.goto('/form-component/child-component')
