@@ -1,20 +1,21 @@
-import { router } from '@inertiajs/react'
-import { useId } from 'react'
+import type { MouseEvent } from 'hono/jsx'
+import { router } from '@inertiajs/hono-jsx'
+import { useId } from 'hono/jsx'
 
 export default ({ foo = 'default' }) => {
   window._inertia_page_key = useId()
 
-  const preserve = (e: React.MouseEvent) => {
+  const preserve = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/visits/preserve-state-page-two', { data: { foo: 'bar' }, preserveState: true })
   }
 
-  const preserveFalse = (e: React.MouseEvent) => {
+  const preserveFalse = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/visits/preserve-state-page-two', { data: { foo: 'baz' }, preserveState: false })
   }
 
-  const preserveCallback = (e: React.MouseEvent) => {
+  const preserveCallback = (e: MouseEvent) => {
     e.preventDefault()
     router.get(
       '/visits/preserve-state-page-two',
@@ -28,7 +29,7 @@ export default ({ foo = 'default' }) => {
     )
   }
 
-  const preserveCallbackFalse = (e: React.MouseEvent) => {
+  const preserveCallbackFalse = (e: MouseEvent) => {
     e.preventDefault()
     router.get(
       '/visits/preserve-state-page-two',
@@ -42,12 +43,12 @@ export default ({ foo = 'default' }) => {
     )
   }
 
-  const preserveGet = (e: React.MouseEvent) => {
+  const preserveGet = (e: MouseEvent) => {
     e.preventDefault()
     router.get('/visits/preserve-state-page-two', { foo: 'get-bar' }, { preserveState: true })
   }
 
-  const preserveGetFalse = (e: React.MouseEvent) => {
+  const preserveGetFalse = (e: MouseEvent) => {
     e.preventDefault()
     router.get('/visits/preserve-state-page-two', { foo: 'get-baz' }, { preserveState: false })
   }

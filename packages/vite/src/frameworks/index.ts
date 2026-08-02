@@ -10,6 +10,7 @@
  */
 
 import type { FrameworkConfig } from '../types'
+import { config as honoJsx } from './honoJsx'
 import { config as react } from './react'
 import { config as svelte } from './svelte'
 import { config as vue } from './vue'
@@ -18,7 +19,7 @@ import { config as vue } from './vue'
  * Array of all built-in framework configurations.
  * Order doesn't matter - detection is based on import statements.
  */
-const frameworks: FrameworkConfig[] = [vue, react, svelte]
+const frameworks: FrameworkConfig[] = [vue, react, svelte, honoJsx]
 
 /**
  * Framework configs keyed by package name for efficient lookup.

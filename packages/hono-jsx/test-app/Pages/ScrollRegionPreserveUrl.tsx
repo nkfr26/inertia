@@ -1,5 +1,5 @@
-import { router } from '@inertiajs/react'
-import { useRef } from 'react'
+import { router } from '@inertiajs/hono-jsx'
+import { useRef } from 'hono/jsx'
 
 export default ({ page }: { page: number }) => {
   const scrollIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null)

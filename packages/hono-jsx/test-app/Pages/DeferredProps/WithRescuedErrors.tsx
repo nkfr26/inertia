@@ -1,4 +1,4 @@
-import { Deferred, router, usePage } from '@inertiajs/react'
+import { Deferred, router, usePage } from '@inertiajs/hono-jsx'
 
 const Foo = () => {
   const { foo } = usePage<{ foo?: { text: string } | null }>().props

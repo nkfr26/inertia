@@ -1,6 +1,6 @@
-import { InfiniteScroll, useForm } from '@inertiajs/react'
+import { InfiniteScroll, useForm } from '@inertiajs/hono-jsx'
 import { debounce } from 'es-toolkit'
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo } from 'hono/jsx'
 import UserCard, { User } from './UserCard'
 
 interface Props {
@@ -32,8 +32,8 @@ export default ({ users, search }: Props) => {
     }
   }, [data.search, search, debouncedSearch])
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setData('search', e.target.value)
+  const handleSearchChange = (e: Event) => {
+    setData('search', (e.target as HTMLInputElement).value)
   }
 
   return (

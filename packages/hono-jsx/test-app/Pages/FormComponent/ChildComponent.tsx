@@ -1,5 +1,5 @@
-import { Form } from '@inertiajs/react'
-import { useMemo, useState } from 'react'
+import { Form } from '@inertiajs/hono-jsx'
+import { useMemo, useState } from 'hono/jsx'
 
 const ChildElement = ({ name }: { name: string }) => {
   const [internalState, setInternalState] = useState('')
@@ -8,7 +8,7 @@ const ChildElement = ({ name }: { name: string }) => {
   return (
     <div>
       <label htmlFor={name}>Child Input</label>
-      <input id={name} name={name} value={transformedState} onChange={(e) => setInternalState(e.target.value)} />
+      <input id={name} name={name} value={transformedState} onChange={(e) => setInternalState((e.target as HTMLInputElement).value)} />
     </div>
   )
 }

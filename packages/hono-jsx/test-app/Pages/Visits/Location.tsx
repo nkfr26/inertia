@@ -1,7 +1,8 @@
-import { router } from '@inertiajs/react'
+import type { MouseEvent } from 'hono/jsx'
+import { router } from '@inertiajs/hono-jsx'
 
 export default () => {
-  const locationVisit = (e: React.MouseEvent) => {
+  const locationVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/location')
   }

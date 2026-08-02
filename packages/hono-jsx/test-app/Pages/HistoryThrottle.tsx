@@ -1,5 +1,5 @@
-import { Link, router } from '@inertiajs/react'
-import { useState } from 'react'
+import { Link, router } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 export default function HistoryThrottle() {
   const [callCount, setCallCount] = useState(0)

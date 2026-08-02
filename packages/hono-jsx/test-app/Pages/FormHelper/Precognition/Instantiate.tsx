@@ -1,6 +1,6 @@
 import { Method, UrlMethodPair } from '@inertiajs/core'
-import { useForm } from '@inertiajs/react'
-import { useState } from 'react'
+import { useForm } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 export default () => {
   const wayfinderUrl = (): UrlMethodPair => ({
@@ -55,7 +55,7 @@ export default () => {
 
   return (
     <div>
-      <select value={form} onChange={(e) => setForm(e.target.value as keyof typeof forms)}>
+      <select value={form} onChange={(e) => setForm((e.target as HTMLSelectElement).value as keyof typeof forms)}>
         <option value="default">withPrecognition()</option>
         <option value="dynamic">withPrecognition() dynamic</option>
         <option value="wayfinder">withPrecognition() Wayfinder</option>

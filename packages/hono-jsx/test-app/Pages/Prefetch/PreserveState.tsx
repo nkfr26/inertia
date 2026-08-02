@@ -1,4 +1,4 @@
-import { router } from '@inertiajs/react'
+import { router } from '@inertiajs/hono-jsx'
 
 export default ({ page, timestamp }: { page: number; timestamp: number }) => {
   const prefetchPage2 = () => {

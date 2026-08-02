@@ -1,5 +1,5 @@
-import { Form } from '@inertiajs/react'
-import { useState } from 'react'
+import { Form } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 export default () => {
   const [headers, setHeaders] = useState<Record<string, string>>({

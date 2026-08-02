@@ -1,4 +1,5 @@
-import { Link, router, usePage } from '@inertiajs/react'
+import type { MouseEvent } from 'hono/jsx'
+import { Link, router, usePage } from '@inertiajs/hono-jsx'
 
 declare global {
   interface Window {
@@ -19,12 +20,12 @@ export default () => {
     args.forEach((arg) => window.messages.push(arg))
   }
 
-  const withoutEventListeners = (e: React.MouseEvent) => {
+  const withoutEventListeners = (e: MouseEvent) => {
     e.preventDefault()
     router.post(page.url, {})
   }
 
-  const removeInertiaListener = (e: React.MouseEvent) => {
+  const removeInertiaListener = (e: MouseEvent) => {
     e.preventDefault()
     const removeEventListener = router.on('before', () => internalAlert('Inertia.on(before)'))
 
@@ -41,7 +42,7 @@ export default () => {
     )
   }
 
-  const onceInertiaListener = (e: React.MouseEvent) => {
+  const onceInertiaListener = (e: MouseEvent) => {
     e.preventDefault()
     router.once('before', () => internalAlert('Inertia.once(before)'))
 
@@ -49,7 +50,7 @@ export default () => {
     router.post(page.url, {}, { onBefore: () => internalAlert('onBefore-2') })
   }
 
-  const removeOnceInertiaListener = (e: React.MouseEvent) => {
+  const removeOnceInertiaListener = (e: MouseEvent) => {
     e.preventDefault()
     const removeEventListener = router.once('before', () => internalAlert('Inertia.once(before)'))
 
@@ -59,7 +60,7 @@ export default () => {
     router.post(page.url, {}, { onBefore: () => internalAlert('onBefore') })
   }
 
-  const beforeVisit = (e: React.MouseEvent) => {
+  const beforeVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.on('before', (event) => {
       internalAlert('Inertia.on(before)')
@@ -84,7 +85,7 @@ export default () => {
     )
   }
 
-  const beforeVisitPreventLocal = (e: React.MouseEvent) => {
+  const beforeVisitPreventLocal = (e: MouseEvent) => {
     e.preventDefault()
     document.addEventListener('inertia:before', () => internalAlert('addEventListener(inertia:before)'))
     router.on('before', () => internalAlert('Inertia.on(before)'))
@@ -102,7 +103,7 @@ export default () => {
     )
   }
 
-  const beforeVisitPreventGlobalInertia = (e: React.MouseEvent) => {
+  const beforeVisitPreventGlobalInertia = (e: MouseEvent) => {
     e.preventDefault()
     document.addEventListener('inertia:before', () => internalAlert('addEventListener(inertia:before)'))
     router.on('before', () => {
@@ -120,7 +121,7 @@ export default () => {
     )
   }
 
-  const beforeVisitPreventGlobalNative = (e: React.MouseEvent) => {
+  const beforeVisitPreventGlobalNative = (e: MouseEvent) => {
     e.preventDefault()
     router.on('before', () => internalAlert('Inertia.on(before)'))
     document.addEventListener('inertia:before', (event) => {
@@ -138,7 +139,7 @@ export default () => {
     )
   }
 
-  const cancelTokenVisit = (e: React.MouseEvent) => {
+  const cancelTokenVisit = (e: MouseEvent) => {
     e.preventDefault()
     // @ts-expect-error - We're testing that the router doesn't have an onCancelToken listener
     router.on('cancelToken', () => internalAlert('This listener should not have been called.'))
@@ -156,7 +157,7 @@ export default () => {
     )
   }
 
-  const startVisit = (e: React.MouseEvent) => {
+  const startVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.on('start', (event) => {
       internalAlert('Inertia.on(start)')
@@ -180,7 +181,7 @@ export default () => {
     )
   }
 
-  const progressVisit = (e: React.MouseEvent) => {
+  const progressVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.on('progress', (event) => {
       internalAlert('Inertia.on(progress)')
@@ -200,7 +201,7 @@ export default () => {
     })
   }
 
-  const progressNoFilesVisit = (e: React.MouseEvent) => {
+  const progressNoFilesVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.on('progress', (event) => {
       internalAlert('Inertia.on(progress)')
@@ -225,7 +226,7 @@ export default () => {
     )
   }
 
-  const cancelVisit = (e: React.MouseEvent) => {
+  const cancelVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.on('cancel', (event) => {
       internalAlert('Inertia.on(cancel)')
@@ -251,7 +252,7 @@ export default () => {
     )
   }
 
-  const errorVisit = (e: React.MouseEvent) => {
+  const errorVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.on('error', (event) => {
       internalAlert('Inertia.on(error)')
@@ -275,7 +276,7 @@ export default () => {
     )
   }
 
-  const errorPromiseVisit = (e: React.MouseEvent) => {
+  const errorPromiseVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.post(
       '/events/errors',
@@ -288,7 +289,7 @@ export default () => {
     )
   }
 
-  const successVisit = (e: React.MouseEvent) => {
+  const successVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.on('success', (event) => {
       internalAlert('Inertia.on(success)')
@@ -313,7 +314,7 @@ export default () => {
     )
   }
 
-  const successPromiseVisit = (e: React.MouseEvent) => {
+  const successPromiseVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.post(
       page.url,
@@ -326,7 +327,7 @@ export default () => {
     )
   }
 
-  const finishVisit = (e: React.MouseEvent) => {
+  const finishVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.on('finish', (event) => {
       internalAlert('Inertia.on(finish)')
@@ -350,7 +351,7 @@ export default () => {
     )
   }
 
-  const httpExceptionVisit = (e: React.MouseEvent) => {
+  const httpExceptionVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.on('httpException', (event) => {
       internalAlert('Inertia.on(httpException)')
@@ -371,7 +372,7 @@ export default () => {
     )
   }
 
-  const httpExceptionPreventVisit = (e: React.MouseEvent) => {
+  const httpExceptionPreventVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.on('httpException', (event) => {
       internalAlert('Inertia.on(httpException)')
@@ -396,7 +397,7 @@ export default () => {
     )
   }
 
-  const httpExceptionInertiaResponseVisit = (e: React.MouseEvent) => {
+  const httpExceptionInertiaResponseVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.on('httpException', (event) => {
       internalAlert('Inertia.on(httpException)')
@@ -417,7 +418,7 @@ export default () => {
     )
   }
 
-  const httpExceptionInertiaResponsePreventVisit = (e: React.MouseEvent) => {
+  const httpExceptionInertiaResponsePreventVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.on('httpException', (event) => {
       internalAlert('Inertia.on(httpException)')
@@ -442,7 +443,7 @@ export default () => {
     )
   }
 
-  const networkErrorVisit = (e: React.MouseEvent) => {
+  const networkErrorVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.on('networkError', (event) => {
       internalAlert('Inertia.on(networkError)')
@@ -463,7 +464,7 @@ export default () => {
     )
   }
 
-  const networkErrorPreventVisit = (e: React.MouseEvent) => {
+  const networkErrorPreventVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.on('networkError', (event) => {
       internalAlert('Inertia.on(networkError)')
@@ -488,7 +489,7 @@ export default () => {
     )
   }
 
-  const navigateVisit = (e: React.MouseEvent) => {
+  const navigateVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.on('navigate', (event) => {
       internalAlert('Inertia.on(navigate)')
@@ -550,17 +551,17 @@ export default () => {
     }
   }
 
-  const lifecycleSuccess = (e: React.MouseEvent) => {
+  const lifecycleSuccess = (e: MouseEvent) => {
     e.preventDefault()
     router.post(page.url, payloadWithFile, registerAllListeners())
   }
 
-  const lifecycleError = (e: React.MouseEvent) => {
+  const lifecycleError = (e: MouseEvent) => {
     e.preventDefault()
     router.post('/events/errors', payloadWithFile, registerAllListeners())
   }
 
-  const lifecycleCancel = (e: React.MouseEvent) => {
+  const lifecycleCancel = (e: MouseEvent) => {
     e.preventDefault()
     router.post('/sleep', payloadWithFile, {
       ...registerAllListeners(),
@@ -575,7 +576,7 @@ export default () => {
     })
   }
 
-  const lifecycleCancelAfterFinish = (e: React.MouseEvent) => {
+  const lifecycleCancelAfterFinish = (e: MouseEvent) => {
     e.preventDefault()
     type CancelToken = {
       cancel: () => void

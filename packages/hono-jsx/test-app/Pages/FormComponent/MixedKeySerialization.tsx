@@ -1,4 +1,4 @@
-import { Form } from '@inertiajs/react'
+import { Form } from '@inertiajs/hono-jsx'
 
 export default () => {
   return (
@@ -7,7 +7,7 @@ export default () => {
 
       <Form action="/dump/post" method="post">
         <div>
-          <input type="text" name="fields[entries][100][name]" placeholder="Name for ID 100" defaultValue="John Doe" />
+          <input type="text" name="fields[entries][100][name]" placeholder="Name for ID 100" value="John Doe" />
         </div>
 
         <div>
@@ -15,7 +15,7 @@ export default () => {
             type="email"
             name="fields[entries][100][email]"
             placeholder="Email for ID 100"
-            defaultValue="john@example.com"
+            value="john@example.com"
           />
         </div>
 
@@ -24,7 +24,7 @@ export default () => {
             type="text"
             name="fields[entries][new:1][name]"
             placeholder="Name for new entry"
-            defaultValue="Jane Smith"
+            value="Jane Smith"
           />
         </div>
 
@@ -33,7 +33,7 @@ export default () => {
             type="email"
             name="fields[entries][new:1][email]"
             placeholder="Email for new entry"
-            defaultValue="jane@example.com"
+            value="jane@example.com"
           />
         </div>
 

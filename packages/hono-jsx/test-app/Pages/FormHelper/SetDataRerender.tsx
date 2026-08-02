@@ -1,5 +1,5 @@
-import { InertiaFormProps, useForm } from '@inertiajs/react'
-import { memo, useRef } from 'react'
+import { InertiaFormProps, useForm } from '@inertiajs/hono-jsx'
+import { memo, useRef } from 'hono/jsx'
 
 const MemoizedDisplay = memo(({ form }: { form: InertiaFormProps<{ position: string }> }) => {
   return <div id="memo-value">Memo value: {form.data.position}</div>
@@ -9,7 +9,7 @@ export default () => {
   const form = useForm({ position: 'initial' })
   const renderCount = useRef(0)
 
-  renderCount.current++
+  renderCount.current!++
 
   const options = ['initial', 'goalkeeper', 'defender', 'midfielder', 'forward']
 

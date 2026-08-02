@@ -1,4 +1,4 @@
-import { Link, useForm } from '@inertiajs/react'
+import { Link, useForm } from '@inertiajs/hono-jsx'
 
 export default () => {
   const form = useForm('password-form', {
@@ -14,7 +14,7 @@ export default () => {
           type="text"
           id="username"
           value={form.data.username}
-          onChange={(e) => form.setData('username', e.target.value)}
+          onChange={(e) => form.setData('username', (e.target as HTMLInputElement).value)}
         />
       </label>
       <label>
@@ -23,7 +23,7 @@ export default () => {
           type="password"
           id="password"
           value={form.data.password}
-          onChange={(e) => form.setData('password', e.target.value)}
+          onChange={(e) => form.setData('password', (e.target as HTMLInputElement).value)}
         />
       </label>
 

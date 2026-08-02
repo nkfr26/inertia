@@ -1,5 +1,5 @@
-import { Link, useRemember } from '@inertiajs/react'
-import { useState } from 'react'
+import { Link, useRemember } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 import ComponentA from './Components/ComponentA'
 import ComponentB from './Components/ComponentB'
 
@@ -17,7 +17,7 @@ export default () => {
           id="name"
           name="full_name"
           value={form.name}
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
+          onChange={(e) => setForm({ ...form, name: (e.target as HTMLInputElement).value })}
         />
       </label>
       <label>
@@ -27,7 +27,7 @@ export default () => {
           id="remember"
           name="remember"
           checked={form.remember}
-          onChange={(e) => setForm({ ...form, remember: e.target.checked })}
+          onChange={(e) => setForm({ ...form, remember: (e.target as HTMLInputElement).checked })}
         />
       </label>
       <label>
@@ -37,7 +37,7 @@ export default () => {
           id="untracked"
           name="untracked"
           value={untracked}
-          onChange={(e) => setUntracked(e.target.value)}
+          onChange={(e) => setUntracked((e.target as HTMLInputElement).value)}
         />
       </label>
 

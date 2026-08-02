@@ -1,5 +1,5 @@
-import { router, useForm } from '@inertiajs/react'
-import { useState } from 'react'
+import { router, useForm } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 interface Todo {
   id: number
@@ -160,7 +160,7 @@ export default ({
             id="new-todo"
             type="text"
             value={newTodoName}
-            onChange={(e) => setNewTodoName(e.target.value)}
+            onChange={(e) => setNewTodoName((e.target as HTMLInputElement).value)}
             placeholder="What needs to be done?"
             onKeyUp={(e) => e.key === 'Enter' && addTodo()}
           />

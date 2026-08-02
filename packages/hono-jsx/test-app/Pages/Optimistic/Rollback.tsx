@@ -1,4 +1,4 @@
-import { router } from '@inertiajs/react'
+import { router } from '@inertiajs/hono-jsx'
 
 interface Contact {
   id: number

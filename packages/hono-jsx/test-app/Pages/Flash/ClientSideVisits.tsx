@@ -1,4 +1,4 @@
-import { router, usePage } from '@inertiajs/react'
+import { router, usePage } from '@inertiajs/hono-jsx'
 
 declare global {
   interface Window {

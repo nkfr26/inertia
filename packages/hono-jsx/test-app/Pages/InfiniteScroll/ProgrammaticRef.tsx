@@ -1,6 +1,6 @@
 import { InfiniteScrollRef } from '@inertiajs/core'
-import { InfiniteScroll } from '@inertiajs/react'
-import { useCallback, useEffect, useState } from 'react'
+import { InfiniteScroll } from '@inertiajs/hono-jsx'
+import { useCallback, useEffect, useState } from 'hono/jsx'
 import UserCard, { User } from './UserCard'
 
 export default ({ users }: { users: { data: User[] } }) => {

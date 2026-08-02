@@ -1,4 +1,4 @@
-import { InfiniteScroll, usePage, WhenVisible } from '@inertiajs/react'
+import { InfiniteScroll, usePage, WhenVisible } from '@inertiajs/hono-jsx'
 import UserCard, { User } from './UserCard'
 
 const Users = () => {

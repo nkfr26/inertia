@@ -1,4 +1,4 @@
-import { Head, Link } from '@inertiajs/react'
+import { Head, Link } from '@inertiajs/hono-jsx'
 
 export default () => {
   return (

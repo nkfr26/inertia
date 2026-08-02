@@ -1,10 +1,10 @@
-import { InfiniteScroll } from '@inertiajs/react'
-import { useEffect, useState } from 'react'
-import { flushSync } from 'react-dom'
+import { InfiniteScroll } from '@inertiajs/hono-jsx'
+import { useLayoutEffect, useState } from 'hono/jsx'
+import { flushSync } from 'hono/jsx/dom'
 import UserCard, { User } from './UserCard'
 
 const LifecycleMarker = () => {
-  useEffect(() => {
+  useLayoutEffect(() => {
     console.log('marker mounted')
     return () => console.log('marker destroyed')
   }, [])

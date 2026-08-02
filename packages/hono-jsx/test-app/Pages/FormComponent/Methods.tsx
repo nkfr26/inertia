@@ -1,6 +1,6 @@
 import type { Method } from '@inertiajs/core'
-import { Form } from '@inertiajs/react'
-import { useState } from 'react'
+import { Form } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 export default () => {
   const [method, setMethod] = useState<Method>('get')
@@ -21,11 +21,11 @@ export default () => {
 
       <Form action={`/dump/${method}`} method={method}>
         <div>
-          <input type="text" name="name" placeholder="Name" defaultValue="John Doe" />
+          <input type="text" name="name" placeholder="Name" value="John Doe" />
         </div>
 
         <div>
-          <input type="checkbox" name="active" value="true" defaultChecked />
+          <input type="checkbox" name="active" value="true" checked />
           <label>Active</label>
         </div>
 

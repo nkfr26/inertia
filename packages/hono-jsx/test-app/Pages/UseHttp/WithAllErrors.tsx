@@ -1,4 +1,4 @@
-import { useHttp } from '@inertiajs/react'
+import { useHttp } from '@inertiajs/hono-jsx'
 
 interface ValidateResponse {
   success: boolean

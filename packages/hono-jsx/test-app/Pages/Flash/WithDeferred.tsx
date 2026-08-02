@@ -1,5 +1,5 @@
-import { Deferred, router, usePage } from '@inertiajs/react'
-import { useRef, useState } from 'react'
+import { Deferred, router, usePage } from '@inertiajs/hono-jsx'
+import { useRef, useState } from 'hono/jsx'
 
 export default ({ data }: { data?: string }) => {
   const page = usePage()

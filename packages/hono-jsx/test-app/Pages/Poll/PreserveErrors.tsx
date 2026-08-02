@@ -1,4 +1,4 @@
-import { useForm, usePage, usePoll } from '@inertiajs/react'
+import { useForm, usePage, usePoll } from '@inertiajs/hono-jsx'
 
 export default ({ time }: { time: number }) => {
   const { errors } = usePage().props as { errors?: { name?: string } }

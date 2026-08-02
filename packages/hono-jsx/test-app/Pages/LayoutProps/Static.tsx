@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react'
+import { Link } from '@inertiajs/hono-jsx'
 import AppLayout from '../../Layouts/AppLayout'
 
 const Static = () => {

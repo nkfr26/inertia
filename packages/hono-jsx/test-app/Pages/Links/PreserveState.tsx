@@ -1,6 +1,7 @@
+import type { Child } from 'hono/jsx'
 import type { Page } from '@inertiajs/core'
-import { Link } from '@inertiajs/react'
-import { useId } from 'react'
+import { Link } from '@inertiajs/hono-jsx'
+import { useId } from 'hono/jsx'
 import WithoutScrollRegion from '@/Layouts/WithoutScrollRegion.jsx'
 
 const PreserveState = ({ foo = 'default' }: { foo?: string }) => {
@@ -57,6 +58,6 @@ const PreserveState = ({ foo = 'default' }: { foo?: string }) => {
   )
 }
 
-PreserveState.layout = (page: React.ReactNode) => <WithoutScrollRegion children={page} />
+PreserveState.layout = (page: Child) => <WithoutScrollRegion children={page} />
 
 export default PreserveState

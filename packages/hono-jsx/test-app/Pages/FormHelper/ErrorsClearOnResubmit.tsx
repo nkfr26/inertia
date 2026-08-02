@@ -1,4 +1,4 @@
-import { useForm } from '@inertiajs/react'
+import { useForm } from '@inertiajs/hono-jsx'
 
 export default () => {
   const form = useForm({
@@ -15,7 +15,7 @@ export default () => {
           id="name"
           name="name"
           value={form.data.name}
-          onChange={(e) => form.setData('name', e.target.value)}
+          onChange={(e) => form.setData('name', (e.target as HTMLInputElement).value)}
         />
       </label>
       {form.errors.name && <span id="name-error">{form.errors.name}</span>}
@@ -27,7 +27,7 @@ export default () => {
           id="handle"
           name="handle"
           value={form.data.handle}
-          onChange={(e) => form.setData('handle', e.target.value)}
+          onChange={(e) => form.setData('handle', (e.target as HTMLInputElement).value)}
         />
       </label>
       {form.errors.handle && <span id="handle-error">{form.errors.handle}</span>}

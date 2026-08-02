@@ -1,4 +1,4 @@
-import { Link, usePoll } from '@inertiajs/react'
+import { Link, usePoll } from '@inertiajs/hono-jsx'
 
 export default () => {
   usePoll(500, {

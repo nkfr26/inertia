@@ -1,6 +1,7 @@
-import { Link } from '@inertiajs/react'
+import type { Child } from 'hono/jsx'
+import { Link } from '@inertiajs/hono-jsx'
 
-export default ({ children }: { children: React.ReactNode }) => {
+export default ({ children }: { children: Child }) => {
   return (
     <div>
       <Link href="/prefetch/1" prefetch>

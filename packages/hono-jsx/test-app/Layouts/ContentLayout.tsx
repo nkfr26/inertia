@@ -1,4 +1,4 @@
-import { ReactNode, useId } from 'react'
+import { ReactNode, useId } from 'hono/jsx'
 
 export default function ContentLayout({
   padding = 'md',

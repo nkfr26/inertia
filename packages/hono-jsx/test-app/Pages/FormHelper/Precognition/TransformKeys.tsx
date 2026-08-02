@@ -1,4 +1,4 @@
-import { useForm } from '@inertiajs/react'
+import { useForm } from '@inertiajs/hono-jsx'
 
 export default () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -20,7 +20,7 @@ export default () => {
           value={form.data.document.customer.email}
           name="customer.email"
           placeholder="Email"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => form.setData('document.customer.email', e.target.value)}
+          onChange={(e: Event) => form.setData('document.customer.email', (e.target as HTMLInputElement).value)}
           onBlur={() => form.validate('customer.email')}
         />
         {form.invalid('customer.email') && <p>{form.errors['customer.email']}</p>}

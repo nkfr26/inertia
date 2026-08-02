@@ -1,5 +1,5 @@
 import { getScrollableParent } from '@inertiajs/core'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'hono/jsx'
 
 export default () => {
   const overflowXHidden = useRef<HTMLDivElement>(null)

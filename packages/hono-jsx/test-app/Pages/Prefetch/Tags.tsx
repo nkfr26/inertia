@@ -1,4 +1,5 @@
-import { Link, router, useForm } from '@inertiajs/react'
+import type { MouseEvent } from 'hono/jsx'
+import { Link, router, useForm } from '@inertiajs/hono-jsx'
 
 export default ({ pageNumber, lastLoaded, propType }: { pageNumber: number; lastLoaded: number; propType: string }) => {
   const form = useForm({
@@ -27,7 +28,7 @@ export default ({ pageNumber, lastLoaded, propType }: { pageNumber: number; last
     )
   }
 
-  const submitWithUserInvalidation = (e: React.MouseEvent) => {
+  const submitWithUserInvalidation = (e: MouseEvent) => {
     e.preventDefault()
     form.post('/dump/post', {
       invalidateCacheTags: propType === 'string' ? 'user' : ['user'],
@@ -74,7 +75,7 @@ export default ({ pageNumber, lastLoaded, propType }: { pageNumber: number; last
           <input
             id="form-name"
             value={form.data.name}
-            onChange={(e) => form.setData('name', e.target.value)}
+            onChange={(e) => form.setData('name', (e.target as HTMLInputElement).value)}
             type="text"
             placeholder="Enter name"
           />

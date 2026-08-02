@@ -1,5 +1,5 @@
-import { Link } from '@inertiajs/react'
-import { useEffect, useState } from 'react'
+import { Link } from '@inertiajs/hono-jsx'
+import { useEffect, useState } from 'hono/jsx'
 
 export default ({ nestedA, nestedB }: { nestedA: { count: number }; nestedB: { date: number } }) => {
   const [effectACount, setEffectACount] = useState(0)

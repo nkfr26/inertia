@@ -1,5 +1,5 @@
-import { http, router } from '@inertiajs/react'
-import { useEffect } from 'react'
+import { http, router } from '@inertiajs/hono-jsx'
+import { useEffect } from 'hono/jsx'
 
 declare global {
   interface Window {

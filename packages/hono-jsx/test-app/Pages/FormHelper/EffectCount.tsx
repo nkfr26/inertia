@@ -1,5 +1,5 @@
-import { useForm } from '@inertiajs/react'
-import { useEffect, useState } from 'react'
+import { useForm } from '@inertiajs/hono-jsx'
+import { useEffect, useState } from 'hono/jsx'
 
 export default () => {
   const [count, setCount] = useState(0)

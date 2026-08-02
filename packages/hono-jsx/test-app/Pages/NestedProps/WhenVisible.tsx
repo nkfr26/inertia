@@ -1,4 +1,4 @@
-import { WhenVisible, usePage } from '@inertiajs/react'
+import { WhenVisible, usePage } from '@inertiajs/hono-jsx'
 
 const Visitors = () => {
   const { stats } = usePage<{ stats?: { visitors: number } }>().props

@@ -1,4 +1,4 @@
-import { Deferred, router, usePage } from '@inertiajs/react'
+import { Deferred, router, usePage } from '@inertiajs/hono-jsx'
 
 export default () => {
   const { auth, status } = usePage<{

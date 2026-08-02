@@ -1,4 +1,5 @@
-import { Link } from '@inertiajs/react'
+import type { Child } from 'hono/jsx'
+import { Link } from '@inertiajs/hono-jsx'
 import PageLayout from '@/Layouts/PageLayout'
 
 const WithOwnLayout = () => {
@@ -10,6 +11,6 @@ const WithOwnLayout = () => {
   )
 }
 
-WithOwnLayout.layout = (page: React.ReactNode) => <PageLayout children={page} />
+WithOwnLayout.layout = (page: Child) => <PageLayout children={page} />
 
 export default WithOwnLayout

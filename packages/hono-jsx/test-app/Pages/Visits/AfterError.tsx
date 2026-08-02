@@ -1,12 +1,13 @@
-import { router } from '@inertiajs/react'
+import type { MouseEvent } from 'hono/jsx'
+import { router } from '@inertiajs/hono-jsx'
 
 export default () => {
-  const visitDump = (e: React.MouseEvent) => {
+  const visitDump = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/dump/get')
   }
 
-  const throwErrorOnSuccess = (e: React.MouseEvent) => {
+  const throwErrorOnSuccess = (e: MouseEvent) => {
     e.preventDefault()
 
     router.visit('/visits/after-error/2', {

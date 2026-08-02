@@ -1,4 +1,4 @@
-import { Form } from '@inertiajs/react'
+import { Form } from '@inertiajs/hono-jsx'
 
 export default () => {
   const wayfinderUrl = (): {
@@ -15,11 +15,11 @@ export default () => {
 
       <Form action={wayfinderUrl()}>
         <div>
-          <input type="text" name="name" placeholder="Name" defaultValue="John Doe" />
+          <input type="text" name="name" placeholder="Name" value="John Doe" />
         </div>
 
         <div>
-          <input type="checkbox" name="active" value="true" defaultChecked />
+          <input type="checkbox" name="active" value="true" checked />
           <label>Active</label>
         </div>
 

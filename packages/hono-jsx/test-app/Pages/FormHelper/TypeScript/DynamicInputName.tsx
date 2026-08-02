@@ -1,5 +1,5 @@
 // This component is used for checking the TypeScript implementation; there is no Playwright test depending on it.
-import { useForm } from '@inertiajs/react'
+import { useForm } from '@inertiajs/hono-jsx'
 
 interface ClientForm {
   name: string
@@ -11,7 +11,7 @@ export default function DynamicInputName() {
     name: '',
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: Event) => {
     const { name, value } = e.target as HTMLInputElement
     setData(name, value)
   }

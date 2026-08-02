@@ -1,4 +1,4 @@
-import { Link, router } from '@inertiajs/react'
+import { Link, router } from '@inertiajs/hono-jsx'
 
 export default ({ items, bar }: { items: string[]; bar: string }) => {
   return (

@@ -1,5 +1,5 @@
-import { Link, router } from '@inertiajs/react'
-import { useEffect } from 'react'
+import { Link, router } from '@inertiajs/hono-jsx'
+import { useEffect } from 'hono/jsx'
 
 export default () => {
   useEffect(() => {

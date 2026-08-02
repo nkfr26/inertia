@@ -1,4 +1,4 @@
-import { useFormContext } from '@inertiajs/react'
+import { useFormContext } from '@inertiajs/hono-jsx'
 
 export default () => {
   const form = useFormContext()

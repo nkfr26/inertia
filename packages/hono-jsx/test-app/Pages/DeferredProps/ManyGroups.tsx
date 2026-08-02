@@ -1,4 +1,4 @@
-import { Deferred, Link, usePage } from '@inertiajs/react'
+import { Deferred, Link, usePage } from '@inertiajs/hono-jsx'
 
 export default () => {
   const { foo, bar, baz, qux, quux } = usePage<{

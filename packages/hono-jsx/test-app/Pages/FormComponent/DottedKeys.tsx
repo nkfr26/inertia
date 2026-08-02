@@ -1,4 +1,4 @@
-import { Form } from '@inertiajs/react'
+import { Form } from '@inertiajs/hono-jsx'
 
 export default function DottedKeys() {
   return (
@@ -27,8 +27,8 @@ export default function DottedKeys() {
       {/* Test mixed bracket and dotted notation */}
       <Form action="/dump/post" method="post">
         <h2>Mixed Notation</h2>
-        <input type="text" name="user[roles][]" defaultValue="admin" />
-        <input type="text" name="user[roles][]" defaultValue="editor" />
+        <input type="text" name="user[roles][]" value="admin" />
+        <input type="text" name="user[roles][]" value="editor" />
         <input type="text" name="settings.ui.theme" placeholder="UI Theme" />
         <button type="submit">Submit Mixed</button>
       </Form>

@@ -1,4 +1,4 @@
-import { router, WhenVisible } from '@inertiajs/react'
+import { router, WhenVisible } from '@inertiajs/hono-jsx'
 
 interface Props {
   firstData?: {

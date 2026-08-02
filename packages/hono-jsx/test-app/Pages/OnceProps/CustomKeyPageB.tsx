@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react'
+import { Link } from '@inertiajs/hono-jsx'
 
 export default ({ permissions, bar }: { permissions: string; bar: string }) => {
   return (

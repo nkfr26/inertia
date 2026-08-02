@@ -1,5 +1,5 @@
-import { useHttp } from '@inertiajs/react'
-import { useState } from 'react'
+import { useHttp } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 interface TransformResponse {
   success: boolean
@@ -45,7 +45,7 @@ export default () => {
             type="text"
             id="transform-name"
             value={transformTest.data.name}
-            onChange={(e) => transformTest.setData('name', e.target.value)}
+            onChange={(e) => transformTest.setData('name', (e.target as HTMLInputElement).value)}
           />
         </label>
         <label>
@@ -54,7 +54,7 @@ export default () => {
             type="email"
             id="transform-email"
             value={transformTest.data.email}
-            onChange={(e) => transformTest.setData('email', e.target.value)}
+            onChange={(e) => transformTest.setData('email', (e.target as HTMLInputElement).value)}
           />
         </label>
         <button onClick={performTransform} id="transform-button">

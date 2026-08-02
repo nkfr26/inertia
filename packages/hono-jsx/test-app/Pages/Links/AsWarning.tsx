@@ -1,5 +1,5 @@
 import type { Method } from '@inertiajs/core'
-import { Link } from '@inertiajs/react'
+import { Link } from '@inertiajs/hono-jsx'
 
 export default ({ method }: { method: Method }) => {
   return (

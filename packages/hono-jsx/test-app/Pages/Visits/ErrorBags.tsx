@@ -1,17 +1,18 @@
-import { router } from '@inertiajs/react'
+import type { MouseEvent } from 'hono/jsx'
+import { router } from '@inertiajs/hono-jsx'
 
 export default () => {
-  const defaultVisit = (e: React.MouseEvent) => {
+  const defaultVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.post('/dump/post')
   }
 
-  const basicVisit = (e: React.MouseEvent) => {
+  const basicVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/dump/post', { method: 'post', data: { foo: 'bar' }, errorBag: 'visitErrorBag' })
   }
 
-  const postVisit = (e: React.MouseEvent) => {
+  const postVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.post('/dump/post', { foo: 'baz' }, { errorBag: 'postErrorBag' })
   }

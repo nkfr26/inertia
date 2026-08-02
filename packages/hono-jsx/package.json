@@ -51,19 +51,15 @@
     "es2022-check": "pnpm build:with-deps && es-check es2022 \"dist/index.js\" --checkFeatures --module --noCache --verbose"
   },
   "devDependencies": {
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
     "axios": "^1.17.0",
     "es-check": "^9.6.1",
     "esbuild": "^0.28.1",
     "esbuild-node-externals": "^1.23.1",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
+    "hono": "^4.12.33",
     "typescript": "^6.0.3"
   },
   "peerDependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "hono": ">=4.12.33"
   },
   "dependencies": {
     "@inertiajs/core": "workspace:*",

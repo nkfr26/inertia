@@ -1,5 +1,6 @@
-import { router, usePage } from '@inertiajs/react'
-import { useEffect } from 'react'
+import type { MouseEvent } from 'hono/jsx'
+import { router, usePage } from '@inertiajs/hono-jsx'
+import { useEffect } from 'hono/jsx'
 
 export default ({
   foo = 0,
@@ -18,52 +19,52 @@ export default ({
     window._inertia_props = page.props
   }, [page.props])
 
-  const partialReloadVisit = (e: React.MouseEvent) => {
+  const partialReloadVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/visits/partial-reloads', { data: { foo: foo } })
   }
 
-  const partialReloadVisitFooBar = (e: React.MouseEvent) => {
+  const partialReloadVisitFooBar = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/visits/partial-reloads', { data: { foo: foo }, only: ['headers', 'foo', 'bar'] })
   }
 
-  const partialReloadVisitBaz = (e: React.MouseEvent) => {
+  const partialReloadVisitBaz = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/visits/partial-reloads', { data: { foo: foo }, only: ['headers', 'baz'] })
   }
 
-  const partialReloadVisitExceptFooBar = (e: React.MouseEvent) => {
+  const partialReloadVisitExceptFooBar = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/visits/partial-reloads', { data: { foo: foo }, except: ['foo', 'bar'] })
   }
 
-  const partialReloadVisitExceptBaz = (e: React.MouseEvent) => {
+  const partialReloadVisitExceptBaz = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/visits/partial-reloads', { data: { foo: foo }, except: ['baz'] })
   }
 
-  const partialReloadGet = (e: React.MouseEvent) => {
+  const partialReloadGet = (e: MouseEvent) => {
     e.preventDefault()
     router.get('/visits/partial-reloads', { foo: foo })
   }
 
-  const partialReloadGetFooBar = (e: React.MouseEvent) => {
+  const partialReloadGetFooBar = (e: MouseEvent) => {
     e.preventDefault()
     router.get('/visits/partial-reloads', { foo: foo }, { only: ['headers', 'foo', 'bar'] })
   }
 
-  const partialReloadGetBaz = (e: React.MouseEvent) => {
+  const partialReloadGetBaz = (e: MouseEvent) => {
     e.preventDefault()
     router.get('/visits/partial-reloads', { foo: foo }, { only: ['headers', 'baz'] })
   }
 
-  const partialReloadGetExceptFooBar = (e: React.MouseEvent) => {
+  const partialReloadGetExceptFooBar = (e: MouseEvent) => {
     e.preventDefault()
     router.get('/visits/partial-reloads', { foo: foo }, { except: ['foo', 'bar'] })
   }
 
-  const partialReloadGetExceptBaz = (e: React.MouseEvent) => {
+  const partialReloadGetExceptBaz = (e: MouseEvent) => {
     e.preventDefault()
     router.get(
       '/visits/partial-reloads',

@@ -1,5 +1,5 @@
-import { useHttp } from '@inertiajs/react'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useHttp } from '@inertiajs/hono-jsx'
+import { useCallback, useEffect, useRef, useState } from 'hono/jsx'
 
 interface SearchResponse {
   items: string[]
@@ -12,7 +12,7 @@ export default () => {
   const renderCount = useRef(0)
   const [result, setResult] = useState<SearchResponse | null>(null)
 
-  renderCount.current++
+  renderCount.current!++
 
   const { get } = http
 

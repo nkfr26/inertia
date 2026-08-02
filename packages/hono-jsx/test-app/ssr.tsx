@@ -1,6 +1,6 @@
-import { createInertiaApp, type ResolvedComponent } from '@inertiajs/react'
-import createServer from '@inertiajs/react/server'
-import ReactDOMServer from 'react-dom/server'
+import { createInertiaApp, type ResolvedComponent } from '@inertiajs/hono-jsx'
+import createServer from '@inertiajs/hono-jsx/server'
+import ReactDOMServer from 'hono/jsx/dom/server'
 
 createServer((page) =>
   createInertiaApp({

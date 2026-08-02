@@ -1,4 +1,4 @@
-import { Deferred, useForm, usePage } from '@inertiajs/react'
+import { Deferred, useForm, usePage } from '@inertiajs/hono-jsx'
 
 const Foo = () => {
   const { foo } = usePage<{ foo?: { text: string } }>().props

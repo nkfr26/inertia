@@ -1,42 +1,43 @@
-import { router } from '@inertiajs/react'
+import type { MouseEvent } from 'hono/jsx'
+import { router } from '@inertiajs/hono-jsx'
 
 export default () => {
-  const defaultHeadersMethod = (e: React.MouseEvent) => {
+  const defaultHeadersMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/dump/get')
   }
 
-  const visitWithCustomHeaders = (e: React.MouseEvent) => {
+  const visitWithCustomHeaders = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/dump/get', { headers: { foo: 'bar' } })
   }
 
-  const getMethod = (e: React.MouseEvent) => {
+  const getMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.get('/dump/get', {}, { headers: { bar: 'baz' } })
   }
 
-  const postMethod = (e: React.MouseEvent) => {
+  const postMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.post('/dump/post', {}, { headers: { baz: 'foo' } })
   }
 
-  const putMethod = (e: React.MouseEvent) => {
+  const putMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.put('/dump/put', {}, { headers: { foo: 'bar' } })
   }
 
-  const patchMethod = (e: React.MouseEvent) => {
+  const patchMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.patch('/dump/patch', {}, { headers: { bar: 'baz' } })
   }
 
-  const deleteMethod = (e: React.MouseEvent) => {
+  const deleteMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.delete('/dump/delete', { headers: { baz: 'foo' } })
   }
 
-  const overridden = (e: React.MouseEvent) => {
+  const overridden = (e: MouseEvent) => {
     e.preventDefault()
     router.post('/dump/post', {}, { headers: { bar: 'baz', 'X-Requested-With': 'custom' } })
   }

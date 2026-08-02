@@ -1,5 +1,5 @@
-import { Link } from '@inertiajs/react'
-import { useState } from 'react'
+import { Link } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 export default () => {
   const [href, setHref] = useState('/sleep')

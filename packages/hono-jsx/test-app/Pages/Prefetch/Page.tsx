@@ -1,3 +1,4 @@
+import type { Child } from 'hono/jsx'
 import Prefetch from '@/Layouts/Prefetch'
 
 const Page = ({ pageNumber, lastLoaded }: { pageNumber: string; lastLoaded: number }) => {
@@ -11,6 +12,6 @@ const Page = ({ pageNumber, lastLoaded }: { pageNumber: string; lastLoaded: numb
   )
 }
 
-Page.layout = (page: React.ReactNode) => <Prefetch children={page} />
+Page.layout = (page: Child) => <Prefetch children={page} />
 
 export default Page

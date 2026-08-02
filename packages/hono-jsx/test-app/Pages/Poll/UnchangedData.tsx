@@ -1,5 +1,5 @@
-import { usePoll } from '@inertiajs/react'
-import { useLayoutEffect, useState } from 'react'
+import { usePoll } from '@inertiajs/hono-jsx'
+import { useLayoutEffect, useState } from 'hono/jsx'
 
 export default () => {
   const [replaceStateCalls, setReplaceStateCalls] = useState(0)

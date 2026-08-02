@@ -1,5 +1,5 @@
-import { Form } from '@inertiajs/react'
-import { useState } from 'react'
+import { Form } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 export default function UnmountRace() {
   const [show, setShow] = useState(true)
@@ -10,7 +10,7 @@ export default function UnmountRace() {
 
       {show && (
         <Form action="/dump/post" method="post">
-          <input type="text" name="name" id="name" defaultValue="John" />
+          <input type="text" name="name" id="name" value="John" />
         </Form>
       )}
 

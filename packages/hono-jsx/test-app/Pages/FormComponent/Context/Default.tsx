@@ -1,4 +1,4 @@
-import { Form } from '@inertiajs/react'
+import { Form } from '@inertiajs/hono-jsx'
 import ChildComponent from './ChildComponent'
 import NestedComponent from './NestedComponent'
 import OutsideFormComponent from './OutsideFormComponent'
@@ -14,8 +14,8 @@ export default () => (
             {errors.name && <span> | {errors.name}</span>}
           </div>
 
-          <input type="text" name="name" defaultValue="John Doe" />
-          <input type="email" name="email" defaultValue="john@example.com" />
+          <input type="text" name="name" value="John Doe" />
+          <input type="email" name="email" value="john@example.com" />
 
           <ChildComponent />
           <NestedComponent />

@@ -1,5 +1,5 @@
-import { WhenVisible } from '@inertiajs/react'
-import { useState } from 'react'
+import { WhenVisible } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 export default ({ lazyData }: { lazyData?: { text: string } }) => {
   const [paramValue, setParamValue] = useState('initial')

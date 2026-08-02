@@ -1,4 +1,4 @@
-import { useForm } from '@inertiajs/react'
+import { useForm } from '@inertiajs/hono-jsx'
 
 export default () => {
   const form = useForm({
@@ -29,7 +29,7 @@ export default () => {
           type="text"
           id="name"
           name="name"
-          onChange={(e) => form.setData('name', e.target.value)}
+          onChange={(e) => form.setData('name', (e.target as HTMLInputElement).value)}
           value={form.data.name}
         />
       </label>
@@ -39,7 +39,7 @@ export default () => {
           type="text"
           id="street"
           name="address.street"
-          onChange={(e) => form.setData('address.street', e.target.value)}
+          onChange={(e) => form.setData('address.street', (e.target as HTMLInputElement).value)}
           value={form.data.address.street}
         />
       </label>
@@ -49,7 +49,7 @@ export default () => {
           type="text"
           id="city"
           name="address.city"
-          onChange={(e) => form.setData('address.city', e.target.value)}
+          onChange={(e) => form.setData('address.city', (e.target as HTMLInputElement).value)}
           value={form.data.address.city}
         />
       </label>
@@ -63,9 +63,9 @@ export default () => {
           onChange={(e) =>
             form.setData(
               'checked',
-              e.target.checked
-                ? [...form.data.checked, e.target.value]
-                : form.data.checked.filter((item) => item !== e.target.value),
+              (e.target as HTMLInputElement).checked
+                ? [...form.data.checked, (e.target as HTMLInputElement).value]
+                : form.data.checked.filter((item) => item !== (e.target as HTMLInputElement).value),
             )
           }
           checked={form.data.checked.includes('foo')}
@@ -81,9 +81,9 @@ export default () => {
           onChange={(e) =>
             form.setData(
               'checked',
-              e.target.checked
-                ? [...form.data.checked, e.target.value]
-                : form.data.checked.filter((item) => item !== e.target.value),
+              (e.target as HTMLInputElement).checked
+                ? [...form.data.checked, (e.target as HTMLInputElement).value]
+                : form.data.checked.filter((item) => item !== (e.target as HTMLInputElement).value),
             )
           }
           checked={form.data.checked.includes('bar')}
@@ -99,9 +99,9 @@ export default () => {
           onChange={(e) =>
             form.setData(
               'checked',
-              e.target.checked
-                ? [...form.data.checked, e.target.value]
-                : form.data.checked.filter((item) => item !== e.target.value),
+              (e.target as HTMLInputElement).checked
+                ? [...form.data.checked, (e.target as HTMLInputElement).value]
+                : form.data.checked.filter((item) => item !== (e.target as HTMLInputElement).value),
             )
           }
           checked={form.data.checked.includes('baz')}
@@ -113,7 +113,7 @@ export default () => {
           type="text"
           id="organization-name"
           name="organization.name"
-          onChange={(e) => form.setData('organization.name', e.target.value)}
+          onChange={(e) => form.setData('organization.name', (e.target as HTMLInputElement).value)}
           value={form.data.organization.name}
         />
       </label>
@@ -123,7 +123,7 @@ export default () => {
           type="text"
           id="repo-name"
           name="organization.repo.name"
-          onChange={(e) => form.setData('organization.repo.name', e.target.value)}
+          onChange={(e) => form.setData('organization.repo.name', (e.target as HTMLInputElement).value)}
           value={form.data.organization.repo.name}
         />
       </label>
@@ -138,9 +138,9 @@ export default () => {
           onChange={(e) =>
             form.setData(
               'organization.repo.tags',
-              e.target.checked
-                ? [...form.data.organization.repo.tags, e.target.value]
-                : form.data.organization.repo.tags.filter((item) => item !== e.target.value),
+              (e.target as HTMLInputElement).checked
+                ? [...form.data.organization.repo.tags, (e.target as HTMLInputElement).value]
+                : form.data.organization.repo.tags.filter((item) => item !== (e.target as HTMLInputElement).value),
             )
           }
           checked={form.data.organization.repo.tags.includes('v0.1')}
@@ -156,9 +156,9 @@ export default () => {
           onChange={(e) =>
             form.setData(
               'organization.repo.tags',
-              e.target.checked
-                ? [...form.data.organization.repo.tags, e.target.value]
-                : form.data.organization.repo.tags.filter((item) => item !== e.target.value),
+              (e.target as HTMLInputElement).checked
+                ? [...form.data.organization.repo.tags, (e.target as HTMLInputElement).value]
+                : form.data.organization.repo.tags.filter((item) => item !== (e.target as HTMLInputElement).value),
             )
           }
           checked={form.data.organization.repo.tags.includes('v0.2')}
@@ -174,9 +174,9 @@ export default () => {
           onChange={(e) =>
             form.setData(
               'organization.repo.tags',
-              e.target.checked
-                ? [...form.data.organization.repo.tags, e.target.value]
-                : form.data.organization.repo.tags.filter((item) => item !== e.target.value),
+              (e.target as HTMLInputElement).checked
+                ? [...form.data.organization.repo.tags, (e.target as HTMLInputElement).value]
+                : form.data.organization.repo.tags.filter((item) => item !== (e.target as HTMLInputElement).value),
             )
           }
           checked={form.data.organization.repo.tags.includes('v0.3')}

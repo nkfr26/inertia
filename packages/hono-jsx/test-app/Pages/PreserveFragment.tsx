@@ -1,9 +1,10 @@
-import { Link, router, usePage } from '@inertiajs/react'
+import type { MouseEvent } from 'hono/jsx'
+import { Link, router, usePage } from '@inertiajs/hono-jsx'
 
 export default () => {
   const page = usePage()
 
-  const visitWithFragment = (e: React.MouseEvent) => {
+  const visitWithFragment = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/preserve-fragment/redirect#my-fragment')
   }

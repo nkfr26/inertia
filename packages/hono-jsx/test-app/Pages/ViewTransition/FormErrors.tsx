@@ -1,4 +1,4 @@
-import { useForm } from '@inertiajs/react'
+import { useForm } from '@inertiajs/hono-jsx'
 
 export default () => {
   const form = useForm({ name: '' })
@@ -23,7 +23,7 @@ export default () => {
           type="text"
           id="name"
           name="name"
-          onChange={(e) => form.setData('name', e.target.value)}
+          onChange={(e) => form.setData('name', (e.target as HTMLInputElement).value)}
           value={form.data.name}
         />
       </label>

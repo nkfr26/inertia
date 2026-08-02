@@ -1,4 +1,4 @@
-import { config, useForm } from '@inertiajs/react'
+import { config, useForm } from '@inertiajs/hono-jsx'
 
 export default () => {
   // Set global config for withAllErrors (no .withAllErrors() call on the form)
@@ -18,7 +18,7 @@ export default () => {
           value={form.data.name}
           name="name"
           placeholder="Name"
-          onChange={(e) => form.setData('name', e.target.value)}
+          onChange={(e) => form.setData('name', (e.target as HTMLInputElement).value)}
           onBlur={() => form.validate('name')}
         />
         {form.invalid('name') && (
@@ -42,7 +42,7 @@ export default () => {
           value={form.data.email}
           name="email"
           placeholder="Email"
-          onChange={(e) => form.setData('email', e.target.value)}
+          onChange={(e) => form.setData('email', (e.target as HTMLInputElement).value)}
           onBlur={() => form.validate('email')}
         />
         {form.invalid('email') && (

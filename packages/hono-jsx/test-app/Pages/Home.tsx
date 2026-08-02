@@ -1,32 +1,33 @@
-import { Head, Link, router } from '@inertiajs/react'
+import type { MouseEvent } from 'hono/jsx'
+import { Head, Link, router } from '@inertiajs/hono-jsx'
 
 export default (props: { example: string }) => {
-  const visitsMethod = (e: React.MouseEvent) => {
+  const visitsMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/visits/method')
   }
 
-  const visitsReplace = (e: React.MouseEvent) => {
+  const visitsReplace = (e: MouseEvent) => {
     e.preventDefault()
     router.get('/visits/replace')
   }
 
-  const redirect = (e: React.MouseEvent) => {
+  const redirect = (e: MouseEvent) => {
     e.preventDefault()
     router.post('/redirect')
   }
 
-  const redirectExternal = (e: React.MouseEvent) => {
+  const redirectExternal = (e: MouseEvent) => {
     e.preventDefault()
     router.post('/redirect-external')
   }
 
-  const redirectHash = (e: React.MouseEvent) => {
+  const redirectHash = (e: MouseEvent) => {
     e.preventDefault()
     router.get('/redirect-hash')
   }
 
-  const redirectHashPost = (e: React.MouseEvent) => {
+  const redirectHashPost = (e: MouseEvent) => {
     e.preventDefault()
     router.post('/redirect-hash')
   }

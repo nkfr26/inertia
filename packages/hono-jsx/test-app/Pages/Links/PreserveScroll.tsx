@@ -1,5 +1,6 @@
+import type { Child } from 'hono/jsx'
 import type { Page } from '@inertiajs/core'
-import { Link } from '@inertiajs/react'
+import { Link } from '@inertiajs/hono-jsx'
 import WithScrollRegion from '@/Layouts/WithScrollRegion.jsx'
 
 const PreserveScroll = ({ foo = 'default' }: { foo?: string }) => {
@@ -60,6 +61,6 @@ const PreserveScroll = ({ foo = 'default' }: { foo?: string }) => {
   )
 }
 
-PreserveScroll.layout = (page: React.ReactNode) => <WithScrollRegion children={page} />
+PreserveScroll.layout = (page: Child) => <WithScrollRegion children={page} />
 
 export default PreserveScroll

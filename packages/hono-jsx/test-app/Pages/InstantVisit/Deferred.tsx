@@ -1,4 +1,4 @@
-import { Deferred } from '@inertiajs/react'
+import { Deferred } from '@inertiajs/hono-jsx'
 
 export default ({ title, heavyData }: { title?: string; heavyData?: string }) => {
   return (

@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import type { Child } from 'hono/jsx'
+import { useEffect, useState } from 'hono/jsx'
 
-export default ({ children }: { children: React.ReactNode }) => {
+export default ({ children }: { children: Child }) => {
   const [documentScrollTop, setDocumentScrollTop] = useState(0)
   const [documentScrollLeft, setDocumentScrollLeft] = useState(0)
   const [slotScrollTop, setSlotScrollTop] = useState(0)

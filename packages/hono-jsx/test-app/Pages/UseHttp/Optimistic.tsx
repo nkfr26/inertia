@@ -1,4 +1,4 @@
-import { useHttp } from '@inertiajs/react'
+import { useHttp } from '@inertiajs/hono-jsx'
 
 export default () => {
   const optimisticForm = useHttp<{ name: string }, { success: boolean; id: number; name: string }>({
@@ -40,7 +40,7 @@ export default () => {
           type="text"
           id="optimistic-name"
           value={optimisticForm.data.name}
-          onChange={(e) => optimisticForm.setData('name', e.target.value)}
+          onChange={(e) => optimisticForm.setData('name', (e.target as HTMLInputElement).value)}
         />
         <button onClick={performOptimistic} id="optimistic-button">
           Submit
@@ -58,7 +58,7 @@ export default () => {
           type="text"
           id="optimistic-inline-name"
           value={optimisticInlineForm.data.name}
-          onChange={(e) => optimisticInlineForm.setData('name', e.target.value)}
+          onChange={(e) => optimisticInlineForm.setData('name', (e.target as HTMLInputElement).value)}
         />
         <button onClick={performOptimisticInline} id="optimistic-inline-button">
           Submit

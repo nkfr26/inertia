@@ -1,4 +1,4 @@
-import { Form } from '@inertiajs/react'
+import { Form } from '@inertiajs/hono-jsx'
 
 export default () => {
   return (
@@ -12,13 +12,13 @@ export default () => {
 
             <div>
               <label htmlFor="name">Name</label>
-              <input type="text" name="name" id="name" defaultValue="John Doe" />
+              <input type="text" name="name" id="name" value="John Doe" />
               {errors.name && <p id="error_name">{errors.name}</p>}
             </div>
 
             <div>
               <label htmlFor="email">Email</label>
-              <input type="email" name="email" id="email" defaultValue="john@doe.biz" />
+              <input type="email" name="email" id="email" value="john@doe.biz" />
               {errors.email && <p id="error_email">{errors.email}</p>}
             </div>
 

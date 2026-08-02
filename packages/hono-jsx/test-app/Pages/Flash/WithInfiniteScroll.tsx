@@ -1,5 +1,5 @@
-import { InfiniteScroll, router, usePage } from '@inertiajs/react'
-import { useRef, useState } from 'react'
+import { InfiniteScroll, router, usePage } from '@inertiajs/hono-jsx'
+import { useRef, useState } from 'hono/jsx'
 
 export default ({ users }: { users: { data: { id: number; name: string }[] } }) => {
   const page = usePage()

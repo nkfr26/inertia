@@ -1,5 +1,5 @@
-import { Head } from '@inertiajs/react'
-import { useState } from 'react'
+import { Head } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 export default () => {
   const [title, setTitle] = useState('Initial Title')
