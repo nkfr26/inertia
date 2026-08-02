@@ -15,7 +15,7 @@ export default defineConfig({
   plugins: [
     inertia({
       ssr: {
-        port: 13719,
+        port: 13720,
       },
     }),
     react(),
