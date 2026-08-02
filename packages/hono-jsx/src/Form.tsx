@@ -24,7 +24,7 @@ import {
   startTransition,
   useContext,
   useEffect,
-  useImperativeHandle,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -293,7 +293,13 @@ const Form = ({
     }
 
     if (ref) {
-      useImperativeHandle(ref, () => exposed, [form, isDirty, submit])
+      useLayoutEffect(() => {
+        ref.current = exposed
+
+        return () => {
+          ref.current = null
+        }
+      }, [form, isDirty, submit])
     }
 
     const formNode = (

@@ -1,6 +1,6 @@
 import { ReloadOptions, router } from '@inertiajs/core'
 import { get } from 'es-toolkit/compat'
-import { Child, createElement, useCallback, useEffect, useMemo, useRef, useState } from 'hono/jsx'
+import { Child, createElement, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'hono/jsx'
 import usePage from './usePage'
 
 interface WhenVisibleSlotProps {
@@ -32,7 +32,7 @@ const WhenVisible = ({ children, data, params, buffer, as, always, fallback }: W
   const observer = useRef<IntersectionObserver | null>(null)
   const getReloadParamsRef = useRef<() => Partial<ReloadOptions>>(() => ({}))
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (keys.length > 0) {
       setLoaded(keys.every((key) => get(pageProps, key) !== undefined))
     }

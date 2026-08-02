@@ -1,5 +1,5 @@
 import { escape } from 'es-toolkit/compat'
-import { Child, Children, cloneElement, JSXNode, useContext, useEffect, useMemo } from 'hono/jsx'
+import { Child, Children, cloneElement, JSXNode, useContext, useLayoutEffect, useMemo } from 'hono/jsx'
 import HeadContext from './HeadContext'
 
 function flattenChildren(nodes: Child[]): Child[] {
@@ -16,7 +16,7 @@ const Head = ({ children, title }: InertiaHeadProps) => {
   const provider = useMemo(() => headManager!.createProvider(), [headManager])
   const isServer = typeof window === 'undefined'
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     provider.reconnect()
     provider.update(renderNodes(children))
     return () => {
@@ -31,7 +31,17 @@ const Head = ({ children, title }: InertiaHeadProps) => {
   }
 
   function renderNode(node: JSXNode) {
-    const nodeWithInertia = ensureNodeHasInertiaProp(node)
+    const props = { ...node.props }
+
+    for (const key of Object.keys(props)) {
+      if (props[key] === null || props[key] === undefined) {
+        props[key] = String(props[key])
+      }
+    }
+
+    const nodeWithInertia = ensureNodeHasInertiaProp(
+      Object.assign(Object.create(Object.getPrototypeOf(node)), node, { props }),
+    )
     delete nodeWithInertia.props['head-key']
     return String(nodeWithInertia.toString())
   }

@@ -208,7 +208,7 @@ export default async function createInertiaApp<SharedProps extends PageProps = P
     }
 
     const el = document.getElementById(id)!
-    // el.style.overflowAnchor = 'none'
+    el.style.overflowAnchor = 'none'
 
     if (setup) {
       return (setup as (options: SetupOptions<HTMLElement, SharedProps>) => void)({

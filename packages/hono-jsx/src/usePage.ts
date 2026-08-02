@@ -3,11 +3,11 @@ import { useContext } from 'hono/jsx'
 import PageContext from './PageContext'
 
 export default function usePage<TPageProps extends PageProps = PageProps>(): Page<TPageProps & SharedPageProps> {
-  const page = useContext(PageContext)
+  const pageRef = useContext(PageContext)
 
-  if (!page) {
+  if (!pageRef) {
     throw new Error('usePage must be used within the Inertia component')
   }
 
-  return page as Page<TPageProps & SharedPageProps>
+  return pageRef.current! as Page<TPageProps & SharedPageProps>
 }

@@ -14,6 +14,7 @@ import {
   RefObject,
   useCallback,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -181,7 +182,7 @@ const InfiniteScroll = ({
   }, [scrollableParent])
 
   // Main setup effect - only recreate when structural dependencies change
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!resolvedItemsElement) {
       return
     }

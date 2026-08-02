@@ -12,10 +12,12 @@ import {
   router,
   type ServerHeadOption,
 } from '@inertiajs/core'
+import { isEqual } from 'es-toolkit'
 import {
   Child,
   FC,
   isValidElement,
+  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -80,11 +82,6 @@ export interface InertiaAppProps<SharedProps extends PageProps = PageProps> {
 
 export type InertiaApp = FC<InertiaAppProps>
 
-const emptySnapshot = {
-  shared: {} as Record<string, unknown>,
-  named: {} as Record<string, Record<string, unknown>>,
-}
-
 export default function App<SharedProps extends PageProps = PageProps>({
   children,
   initialPage,
@@ -113,7 +110,20 @@ export default function App<SharedProps extends PageProps = PageProps>({
     )
   }, [])
 
-  const dynamicLayoutProps = useSyncExternalStore(store.subscribe, store.get, () => emptySnapshot)
+  const storeSubscribe = useCallback((listener: () => void) => {
+    let last = store.get()
+
+    return store.subscribe(() => {
+      const next = store.get()
+
+      if (!isEqual(last, next)) {
+        last = next
+        listener()
+      }
+    })
+  }, [])
+
+  const dynamicLayoutProps = useSyncExternalStore(storeSubscribe, store.get, store.get)
 
   if (!routerIsInitialized) {
     router.init<HonoJsxComponent>({
@@ -175,7 +185,7 @@ export default function App<SharedProps extends PageProps = PageProps>({
   if (!current.component) {
     return (
       <HeadContext.Provider value={headManager}>
-        <PageContext.Provider value={current.page} />
+        <PageContext.Provider value={pageRef} />
       </HeadContext.Provider>
     )
   }
@@ -240,7 +250,7 @@ export default function App<SharedProps extends PageProps = PageProps>({
 
   return (
     <HeadContext.Provider value={headManager}>
-      <PageContext.Provider value={current.page}>
+      <PageContext.Provider value={pageRef}>
         {renderChildren({
           Component: current.component,
           key: current.key,
