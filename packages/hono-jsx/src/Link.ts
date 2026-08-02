@@ -12,61 +12,72 @@ import {
   shouldNavigate,
   VisitOptions,
 } from '@inertiajs/core'
-import { createElement, ElementType, forwardRef, useEffect, useMemo, useRef, useState } from 'react'
+import {
+  createElement,
+  FC,
+  KeyboardEvent,
+  MouseEvent,
+  RefObject,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'hono/jsx'
+import type { JSX as HonoJSX } from 'hono/jsx'
 import { config } from '.'
+
+type ElementType = keyof HonoJSX.IntrinsicElements | FC<any>
 
 const noop = () => undefined
 
 interface BaseInertiaLinkProps extends LinkComponentBaseProps {
   as?: ElementType
-  onClick?: (event: React.MouseEvent) => void
+  onClick?: (event: MouseEvent) => void
 }
 
 export type InertiaLinkProps = BaseInertiaLinkProps &
-  Omit<React.HTMLAttributes<HTMLElement>, keyof BaseInertiaLinkProps> &
-  Omit<React.AllHTMLAttributes<HTMLElement>, keyof BaseInertiaLinkProps>
+  Omit<HonoJSX.HTMLAttributes, keyof BaseInertiaLinkProps> & {
+    ref?: RefObject<unknown>
+  }
 
-const Link = forwardRef<unknown, InertiaLinkProps>(
-  (
-    {
-      children,
-      as = 'a',
-      data = {},
-      href = '',
-      method = 'get',
-      preserveScroll = false,
-      preserveState = null,
-      preserveUrl = false,
-      replace = false,
-      only = [],
-      except = [],
-      headers = {},
-      queryStringArrayFormat = 'brackets',
-      async = false,
-      onClick = noop,
-      onCancelToken = noop,
-      onBefore = noop,
-      onStart = noop,
-      onProgress = noop,
-      onFinish = noop,
-      onCancel = noop,
-      onSuccess = noop,
-      onError = noop,
-      onPrefetching = noop,
-      onPrefetched = noop,
-      prefetch = false,
-      cacheFor = 0,
-      cacheTags = [],
-      viewTransition = false,
-      component = null,
-      instant = false,
-      pageProps = null,
-      ...props
-    },
-    ref,
-  ) => {
+const Link = ({
+  children,
+  as = 'a',
+  data = {},
+  href = '',
+  method = 'get',
+  preserveScroll = false,
+  preserveState = undefined,
+  preserveUrl = false,
+  replace = false,
+  only = [],
+  except = [],
+  headers = {},
+  queryStringArrayFormat = 'brackets',
+  async = false,
+  onClick = noop,
+  onCancelToken = noop,
+  onBefore = noop,
+  onStart = noop,
+  onProgress = noop,
+  onFinish = noop,
+  onCancel = noop,
+  onSuccess = noop,
+  onError = noop,
+  onPrefetching = noop,
+  onPrefetched = noop,
+  prefetch = false,
+  cacheFor = 0,
+  cacheTags = [],
+  viewTransition = false,
+  component = undefined,
+  instant = false,
+  pageProps = null,
+  ref,
+  ...props
+}: InertiaLinkProps) => {
     const [inFlightCount, setInFlightCount] = useState(0)
-    const hoverTimeout = useRef<number>(undefined)
+    const hoverTimeout = useRef<number>(null)
 
     const _method = useMemo(() => {
       return isUrlMethodPair(href) ? href.method : (method.toLowerCase() as Method)
@@ -216,7 +227,7 @@ const Link = forwardRef<unknown, InertiaLinkProps>(
 
     useEffect(() => {
       return () => {
-        clearTimeout(hoverTimeout.current)
+        clearTimeout(hoverTimeout.current!)
       }
     }, [])
 
@@ -227,7 +238,7 @@ const Link = forwardRef<unknown, InertiaLinkProps>(
     }, prefetchModes)
 
     const regularEvents = {
-      onClick: (event: React.MouseEvent) => {
+      onClick: (event: MouseEvent) => {
         onClick(event)
 
         if (shouldIntercept(event)) {
@@ -245,37 +256,37 @@ const Link = forwardRef<unknown, InertiaLinkProps>(
         }, config.get('prefetch.hoverDelay'))
       },
       onMouseLeave: () => {
-        clearTimeout(hoverTimeout.current)
+        clearTimeout(hoverTimeout.current!)
       },
       onClick: regularEvents.onClick,
     }
 
     const prefetchClickEvents = {
-      onMouseDown: (event: React.MouseEvent) => {
+      onMouseDown: (event: MouseEvent) => {
         if (shouldIntercept(event)) {
           event.preventDefault()
           doPrefetch()
         }
       },
-      onKeyDown: (event: React.KeyboardEvent) => {
+      onKeyDown: (event: KeyboardEvent) => {
         if (shouldNavigate(event)) {
           event.preventDefault()
           doPrefetch()
         }
       },
-      onMouseUp: (event: React.MouseEvent) => {
+      onMouseUp: (event: MouseEvent) => {
         if (shouldIntercept(event)) {
           event.preventDefault()
           router.visit(url, visitParams)
         }
       },
-      onKeyUp: (event: React.KeyboardEvent) => {
+      onKeyUp: (event: KeyboardEvent) => {
         if (shouldNavigate(event)) {
           event.preventDefault()
           router.visit(url, visitParams)
         }
       },
-      onClick: (event: React.MouseEvent) => {
+      onClick: (event: MouseEvent) => {
         onClick(event)
 
         if (shouldIntercept(event)) {
@@ -318,8 +329,7 @@ const Link = forwardRef<unknown, InertiaLinkProps>(
       },
       children,
     )
-  },
-)
+}
 Link.displayName = 'InertiaLink'
 
 export default Link

@@ -1,5 +1,5 @@
 import { Page } from '@inertiajs/core'
-import { createContext } from 'react'
+import { createContext } from 'hono/jsx'
 
 const pageContext = createContext<Page | null>(null)
 pageContext.displayName = 'InertiaPageContext'

@@ -1,5 +1,5 @@
 import { PollOptions, ReloadOptions, router } from '@inertiajs/core'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'hono/jsx'
 
 export default function usePoll(
   interval: number,

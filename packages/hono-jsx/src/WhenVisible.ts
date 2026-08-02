@@ -1,6 +1,6 @@
 import { ReloadOptions, router } from '@inertiajs/core'
 import { get } from 'es-toolkit/compat'
-import { createElement, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Child, createElement, useCallback, useEffect, useMemo, useRef, useState } from 'hono/jsx'
 import usePage from './usePage'
 
 interface WhenVisibleSlotProps {
@@ -8,8 +8,8 @@ interface WhenVisibleSlotProps {
 }
 
 interface WhenVisibleProps {
-  children: ReactNode | ((props: WhenVisibleSlotProps) => ReactNode)
-  fallback: ReactNode | (() => ReactNode)
+  children: Child | ((props: WhenVisibleSlotProps) => Child)
+  fallback: Child | (() => Child)
   data?: string | string[]
   params?: ReloadOptions
   buffer?: number
@@ -70,7 +70,7 @@ const WhenVisible = ({ children, data, params, buffer, as, always, fallback }: W
         fetching.current = true
         setIsFetching(true)
 
-        const reloadParams = getReloadParamsRef.current()
+        const reloadParams = getReloadParamsRef.current!()
 
         router.reload({
           ...reloadParams,

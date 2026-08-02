@@ -14,12 +14,12 @@ import {
   setupProgress,
   SharedPageProps,
 } from '@inertiajs/core'
-import { createElement, ReactElement, StrictMode } from 'react'
-import { createRoot, hydrateRoot } from 'react-dom/client'
-import { renderToString } from 'react-dom/server'
+import { Child, createElement, StrictMode } from 'hono/jsx'
+import { createRoot, hydrateRoot } from 'hono/jsx/dom/client'
+import { renderToString } from 'hono/jsx/dom/server'
 import App, { InertiaAppProps, type InertiaApp } from './App'
 import { config } from './index'
-import { ReactComponent, ReactInertiaAppConfig } from './types'
+import { HonoJsxComponent, HonoJsxInertiaAppConfig } from './types'
 
 export type SetupOptions<ElementType, SharedProps extends PageProps> = {
   el: ElementType
@@ -30,19 +30,19 @@ export type SetupOptions<ElementType, SharedProps extends PageProps> = {
 type ComponentResolver = (
   name: string,
   page?: Page<SharedPageProps>,
-) => ReactComponent | Promise<ReactComponent> | { default: ReactComponent }
+) => HonoJsxComponent | Promise<HonoJsxComponent> | { default: HonoJsxComponent }
 
-type ReactWithApp<SharedProps extends PageProps> = (
-  app: ReactElement,
+type HonoJsxWithApp<SharedProps extends PageProps> = (
+  app: Child,
   options: { ssr: boolean; page: Page<SharedProps> },
-) => ReactElement
+) => Child
 
 type InertiaAppOptionsForCSR<SharedProps extends PageProps> = CreateInertiaAppOptionsForCSR<
   SharedProps,
   ComponentResolver,
   SetupOptions<HTMLElement, SharedProps>,
   void,
-  ReactInertiaAppConfig
+  HonoJsxInertiaAppConfig
 > & {
   strictMode?: undefined
   withApp?: never
@@ -52,8 +52,8 @@ type InertiaAppOptionsForSSR<SharedProps extends PageProps> = CreateInertiaAppOp
   SharedProps,
   ComponentResolver,
   SetupOptions<null, SharedProps>,
-  ReactElement,
-  ReactInertiaAppConfig
+  Child,
+  HonoJsxInertiaAppConfig
 > & {
   render: typeof renderToString
   strictMode?: undefined
@@ -64,8 +64,8 @@ type InertiaAppOptionsAuto<SharedProps extends PageProps> = Omit<
   CreateInertiaAppOptions<
     ComponentResolver,
     SetupOptions<HTMLElement | null, SharedProps>,
-    ReactElement | void,
-    ReactInertiaAppConfig
+    Child | void,
+    HonoJsxInertiaAppConfig
   >,
   'setup'
 > & {
@@ -73,11 +73,11 @@ type InertiaAppOptionsAuto<SharedProps extends PageProps> = Omit<
   render?: undefined
   strictMode?: boolean
 } & (
-    | { setup?: undefined; withApp?: ReactWithApp<SharedProps> }
-    | { setup: (options: SetupOptions<HTMLElement | null, SharedProps>) => ReactElement | void; withApp?: never }
+    | { setup?: undefined; withApp?: HonoJsxWithApp<SharedProps> }
+    | { setup: (options: SetupOptions<HTMLElement | null, SharedProps>) => Child | void; withApp?: never }
   )
 
-type RenderToString = (element: ReactElement) => string
+type RenderToString = (element: Child) => string
 
 type RenderFunction<SharedProps extends PageProps> = (
   page: Page<SharedProps>,
@@ -131,13 +131,13 @@ export default async function createInertiaApp<SharedProps extends PageProps = P
 
   const isServer = typeof window === 'undefined'
 
-  const wrapWithStrictMode = (element: ReactElement): ReactElement => {
+  const wrapWithStrictMode = (element: Child): Child => {
     return strictMode ? createElement(StrictMode, null, element) : element
   }
 
   const resolveComponent = (name: string, page?: Page) =>
     Promise.resolve(resolve!(name, page)).then((module) => {
-      return ((module as { default?: ReactComponent }).default || module) as ReactComponent
+      return ((module as { default?: HonoJsxComponent }).default || module) as HonoJsxComponent
     })
 
   // SSR render function factory - when on server without page/render, return a render function
@@ -158,23 +158,23 @@ export default async function createInertiaApp<SharedProps extends PageProps = P
         serverHead,
       }
 
-      let reactApp: ReactElement
+      let honoJsxApp: Child
 
       if (setup) {
-        reactApp = (setup as (options: SetupOptions<null, SharedProps>) => ReactElement)({
+        honoJsxApp = (setup as (options: SetupOptions<null, SharedProps>) => Child)({
           el: null,
           App,
           props,
         })
       } else {
-        reactApp = wrapWithStrictMode(createElement(App, props))
+        honoJsxApp = wrapWithStrictMode(createElement(App, props))
 
         if (withApp) {
-          reactApp = withApp(reactApp, { ssr: true, page })
+          honoJsxApp = withApp(honoJsxApp, { ssr: true, page })
         }
       }
 
-      const html = renderToString(reactApp)
+      const html = renderToString(honoJsxApp)
       const body = buildSSRBody(id, page, html)
 
       return { head, body }
@@ -185,7 +185,7 @@ export default async function createInertiaApp<SharedProps extends PageProps = P
 
   let head: string[] = []
 
-  const reactApp = await Promise.all([
+  const honoJsxApp = await Promise.all([
     resolveComponent(initialPage.component, initialPage),
     router.decryptHistory().catch(() => {}),
   ]).then(([initialComponent]) => {
@@ -200,7 +200,7 @@ export default async function createInertiaApp<SharedProps extends PageProps = P
     }
 
     if (isServer) {
-      return (setup as (options: SetupOptions<null, SharedProps>) => ReactElement)({
+      return (setup as (options: SetupOptions<null, SharedProps>) => Child)({
         el: null,
         App,
         props,
@@ -208,6 +208,7 @@ export default async function createInertiaApp<SharedProps extends PageProps = P
     }
 
     const el = document.getElementById(id)!
+    // el.style.overflowAnchor = 'none'
 
     if (setup) {
       return (setup as (options: SetupOptions<HTMLElement, SharedProps>) => void)({
@@ -234,8 +235,8 @@ export default async function createInertiaApp<SharedProps extends PageProps = P
     setupProgress(progress)
   }
 
-  if (isServer && render && reactApp) {
-    const html = render(reactApp)
+  if (isServer && render && honoJsxApp) {
+    const html = render(honoJsxApp)
     const body = buildSSRBody(id, initialPage, html)
 
     return { head, body }

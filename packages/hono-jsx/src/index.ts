@@ -1,5 +1,5 @@
 import { config as coreConfig } from '@inertiajs/core'
-import type { ReactInertiaAppConfig } from './types'
+import type { HonoJsxInertiaAppConfig } from './types'
 
 export { http, progress, router } from '@inertiajs/core'
 export { default as App } from './App'
@@ -10,7 +10,7 @@ export { default as Head } from './Head'
 export { default as InfiniteScroll } from './InfiniteScroll'
 export { resetLayoutProps, setLayoutProps } from './layoutProps'
 export { InertiaLinkProps, default as Link } from './Link'
-export { LayoutCallback, ReactComponent as ResolvedComponent } from './types'
+export { LayoutCallback, HonoJsxComponent as ResolvedComponent } from './types'
 export {
   InertiaForm,
   InertiaFormProps,
@@ -28,4 +28,4 @@ export { default as usePrefetch } from './usePrefetch'
 export { default as useRemember } from './useRemember'
 export { default as WhenVisible } from './WhenVisible'
 
-export const config = coreConfig.extend<ReactInertiaAppConfig>()
+export const config = coreConfig.extend<HonoJsxInertiaAppConfig>()

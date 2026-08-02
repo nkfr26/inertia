@@ -1,10 +1,11 @@
 import { router } from '@inertiajs/core'
-import { Dispatch, MutableRefObject, SetStateAction, useEffect, useState } from 'react'
+import { RefObject, useEffect, useState } from 'hono/jsx'
+import { Dispatch, SetStateAction } from './types'
 
 export default function useRemember<State>(
   initialState: State,
   key?: string,
-  excludeKeysRef?: MutableRefObject<string[]>,
+  excludeKeysRef?: RefObject<string[]>,
 ): [State, Dispatch<SetStateAction<State>>] {
   const [state, setState] = useState(() => {
     const restored = router.restore(key) as State

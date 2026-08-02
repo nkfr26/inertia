@@ -16,30 +16,26 @@ import {
 } from '@inertiajs/core'
 import { isEqual } from 'es-toolkit'
 import { NamedInputEvent, ValidationConfig } from 'laravel-precognition'
-import React, {
+import {
+  Child,
   createContext,
   createElement,
-  FormEvent,
-  forwardRef,
-  ReactNode,
-  use,
+  RefObject,
+  startTransition,
+  useContext,
   useEffect,
   useImperativeHandle,
   useMemo,
   useRef,
   useState,
-} from 'react'
+} from 'hono/jsx'
+import type { JSX as HonoJSX } from 'hono/jsx'
 import useForm from './useForm'
 
-// Polyfill for startTransition to support React 16.9+
-const deferStateUpdate = (callback: () => void) => {
-  typeof React.startTransition === 'function' ? React.startTransition(callback) : setTimeout(callback, 0)
-}
-
 type FormProps<TForm extends object = Record<string, any>> = FormComponentProps<TForm> &
-  Omit<React.FormHTMLAttributes<HTMLFormElement>, keyof FormComponentProps | 'children'> &
-  Omit<React.AllHTMLAttributes<HTMLFormElement>, keyof FormComponentProps | 'children'> & {
-    children: ReactNode | ((props: FormComponentSlotProps<TForm>) => ReactNode)
+  Omit<HonoJSX.HTMLAttributes, keyof FormComponentProps | 'children'> & {
+    children: Child | ((props: FormComponentSlotProps<TForm>) => Child)
+    ref?: RefObject<FormComponentRef<TForm>>
   }
 
 type FormSubmitOptions = Omit<VisitOptions, 'data' | 'onPrefetched' | 'onPrefetching'>
@@ -49,42 +45,39 @@ const noop = () => undefined
 
 const FormContext = createContext<FormComponentRef | undefined>(undefined)
 
-const Form = forwardRef<FormComponentRef, FormProps>(
-  (
-    {
-      action = '',
-      method = 'get',
-      headers = {},
-      queryStringArrayFormat = 'brackets',
-      errorBag = null,
-      showProgress = true,
-      transform = (data) => data,
-      optimistic,
-      options = {},
-      onStart = noop,
-      onProgress = noop,
-      onFinish = noop,
-      onBefore = noop,
-      onCancel = noop,
-      onSuccess = noop,
-      onError = noop,
-      onCancelToken = noop,
-      onSubmitComplete = noop,
-      disableWhileProcessing = false,
-      resetOnError = false,
-      resetOnSuccess = false,
-      setDefaultsOnSuccess = false,
-      invalidateCacheTags = [],
-      validateFiles = false,
-      validationTimeout = 1500,
-      withAllErrors = null,
-      component = null,
-      instant = false,
-      children,
-      ...props
-    },
-    ref,
-  ) => {
+const Form = ({
+  action = '',
+  method = 'get',
+  headers = {},
+  queryStringArrayFormat = 'brackets',
+  errorBag = null,
+  showProgress = true,
+  transform = (data) => data,
+  optimistic,
+  options = {},
+  onStart = noop,
+  onProgress = noop,
+  onFinish = noop,
+  onBefore = noop,
+  onCancel = noop,
+  onSuccess = noop,
+  onError = noop,
+  onCancelToken = noop,
+  onSubmitComplete = noop,
+  disableWhileProcessing = false,
+  resetOnError = false,
+  resetOnSuccess = false,
+  setDefaultsOnSuccess = false,
+  invalidateCacheTags = [],
+  validateFiles = false,
+  validationTimeout = 1500,
+  withAllErrors = null,
+  component = undefined,
+  instant = false,
+  children,
+  ref,
+  ...props
+}: FormProps) => {
     const getTransformedData = (): Record<string, FormDataConvertible> => {
       const [_url, data] = getUrlAndData()
       return transform(data)
@@ -107,7 +100,7 @@ const Form = forwardRef<FormComponentRef, FormProps>(
 
     form.transform(getTransformedData)
 
-    const formElement = useRef<HTMLFormElement>(undefined)
+    const formElement = useRef<HTMLFormElement>(null)
 
     const resolvedMethod = useMemo(() => {
       return isUrlMethodPair(action) ? action.method : (method.toLowerCase() as Method)
@@ -152,8 +145,8 @@ const Form = forwardRef<FormComponentRef, FormProps>(
         event.preventDefault()
       }
 
-      deferStateUpdate(() =>
-        setIsDirty(event.type === 'reset' ? false : !isEqual(getData(), formDataToObject(defaultData.current))),
+      startTransition(() =>
+        setIsDirty(event.type === 'reset' ? false : !isEqual(getData(), formDataToObject(defaultData.current!))),
       )
     }
 
@@ -191,7 +184,7 @@ const Form = forwardRef<FormComponentRef, FormProps>(
 
     const reset = (...fields: string[]) => {
       if (formElement.current) {
-        resetFormFields(formElement.current, defaultData.current, fields)
+        resetFormFields(formElement.current, defaultData.current!, fields)
       }
 
       form.reset(...fields)
@@ -299,7 +292,9 @@ const Form = forwardRef<FormComponentRef, FormProps>(
       touched: form.touched,
     }
 
-    useImperativeHandle(ref, () => exposed, [form, isDirty, submit])
+    if (ref) {
+      useImperativeHandle(ref, () => exposed, [form, isDirty, submit])
+    }
 
     const formNode = createElement(
       'form',
@@ -308,9 +303,9 @@ const Form = forwardRef<FormComponentRef, FormProps>(
         ref: formElement,
         action: isUrlMethodPair(action) ? action.url : action,
         method: resolvedMethod,
-        onSubmit: (event: FormEvent<HTMLFormElement>) => {
+        onSubmit: (event: SubmitEvent) => {
           event.preventDefault()
-          submit((event.nativeEvent as SubmitEvent).submitter)
+          submit(event.submitter)
         },
         inert: disableWhileProcessing && form.processing,
       },
@@ -318,18 +313,17 @@ const Form = forwardRef<FormComponentRef, FormProps>(
     )
 
     return createElement(FormContext.Provider, { value: exposed }, formNode)
-  },
-)
+}
 
 Form.displayName = 'InertiaForm'
 
 export function useFormContext<TForm extends object = Record<string, any>>(): FormComponentRef<TForm> | undefined {
-  return use(FormContext) as FormComponentRef<TForm> | undefined
+  return useContext(FormContext) as FormComponentRef<TForm> | undefined
 }
 
 export default Form as {
   <TForm extends object = Record<string, any>>(
-    props: FormProps<TForm> & React.RefAttributes<FormComponentRef<TForm>>,
-  ): React.ReactElement
+    props: FormProps<TForm>
+  ): Child
   displayName: string
 }

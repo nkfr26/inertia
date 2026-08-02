@@ -21,7 +21,7 @@ import {
 } from '@inertiajs/core'
 import { cloneDeep } from 'es-toolkit'
 import type { NamedInputEvent, PrecognitionPath, ValidationConfig, Validator } from 'laravel-precognition'
-import { useCallback, useMemo, useRef } from 'react'
+import { useCallback, useMemo, useRef } from 'hono/jsx'
 import useFormState, { SetDataAction, SetDataByKeyValuePair, SetDataByMethod, SetDataByObject } from './useFormState'
 import useRemember from './useRemember'
 
@@ -221,7 +221,7 @@ export default function useForm<TForm extends FormDataType<TForm>>(
       _options.optimistic = _options.optimistic ?? pendingOptimisticRef.current ?? undefined
       pendingOptimisticRef.current = null
 
-      const transformedData = transformRef.current(dataRef.current) as RequestPayload
+      const transformedData = transformRef.current!(dataRef.current!) as RequestPayload
 
       if (method === 'delete') {
         router.delete(url, { ..._options, data: transformedData })

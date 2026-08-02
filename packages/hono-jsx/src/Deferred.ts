@@ -1,6 +1,6 @@
 import { isSameUrlWithoutQueryOrHash, partialReloadRequestsSomeProps } from '@inertiajs/core'
 import { get } from 'es-toolkit/compat'
-import { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
+import { Child, useEffect, useMemo, useRef, useState } from 'hono/jsx'
 import { router } from '.'
 import usePage from './usePage'
 
@@ -9,9 +9,9 @@ interface DeferredSlotProps {
 }
 
 interface DeferredProps {
-  children: ReactNode | ((props: DeferredSlotProps) => ReactNode)
-  rescue?: ReactNode | ((props: DeferredSlotProps) => ReactNode)
-  fallback: ReactNode | (() => ReactNode)
+  children: Child | ((props: DeferredSlotProps) => Child)
+  rescue?: Child | ((props: DeferredSlotProps) => Child)
+  fallback: Child | (() => Child)
   data: string | string[]
 }
 
@@ -40,7 +40,7 @@ const Deferred = ({ children, data, rescue, fallback }: DeferredProps) => {
         isSameUrlWithoutQueryOrHash(visit.url, window.location) &&
         partialReloadRequestsSomeProps(visit, keys)
       ) {
-        activeReloads.current.add(visit)
+        activeReloads.current!.add(visit)
         setReloading(true)
       }
     })
@@ -48,16 +48,16 @@ const Deferred = ({ children, data, rescue, fallback }: DeferredProps) => {
     const removeFinishListener = router.on('finish', (e) => {
       const visit = e.detail.visit
 
-      if (activeReloads.current.has(visit)) {
-        activeReloads.current.delete(visit)
-        setReloading(activeReloads.current.size > 0)
+      if (activeReloads.current!.has(visit)) {
+        activeReloads.current!.delete(visit)
+        setReloading(activeReloads.current!.size > 0)
       }
     })
 
     return () => {
       removeStartListener()
       removeFinishListener()
-      activeReloads.current.clear()
+      activeReloads.current!.clear()
     }
   }, [keys])
 

@@ -14,23 +14,22 @@ import {
 } from '@inertiajs/core'
 import {
   createElement,
-  FunctionComponent,
+  Child,
   isValidElement,
-  ReactNode,
   useEffect,
   useMemo,
   useRef,
   useState,
   useSyncExternalStore,
-} from 'react'
-import { flushSync } from 'react-dom'
+} from 'hono/jsx'
+import { flushSync } from 'hono/jsx/dom'
 import HeadContext from './HeadContext'
 import { resetLayoutProps, store } from './layoutProps'
 import PageContext from './PageContext'
-import { LayoutFunction, ReactComponent, ReactPageHandlerArgs } from './types'
+import { HonoJsxComponent, HonoJsxPageHandlerArgs, LayoutFunction } from './types'
 
-function isComponent(value: unknown): value is ReactComponent {
-  return typeof value === 'function' || (typeof value === 'object' && value !== null && '$$typeof' in value)
+function isComponent(value: unknown): value is HonoJsxComponent {
+  return typeof value === 'function' || isValidElement(value)
 }
 
 function isRenderFunction(value: unknown): boolean {
@@ -50,9 +49,9 @@ function isLayoutResolver(value: unknown): boolean {
   )
 }
 
-let pendingInitialSwap: ReactPageHandlerArgs | null = null
+let pendingInitialSwap: HonoJsxPageHandlerArgs | null = null
 let routerIsInitialized = false
-let swapComponent: PageHandler<ReactComponent> = async (args) => {
+let swapComponent: PageHandler<HonoJsxComponent> = async (args) => {
   // Dummy function so we can init the router outside of the useEffect hook. This is
   // needed so `router.reload()` works right away (on mount) in any of the user's
   // components. We swap in the real function in the useEffect hook below.
@@ -63,23 +62,24 @@ let swapComponent: PageHandler<ReactComponent> = async (args) => {
 }
 
 type CurrentPage = {
-  component: ReactComponent | null
+  component: HonoJsxComponent | null
   page: Page
   key: number | null
 }
 
 export interface InertiaAppProps<SharedProps extends PageProps = PageProps> {
-  children?: (options: { Component: ReactComponent; props: PageProps; key: number | null }) => ReactNode
+  children?: (options: { Component: HonoJsxComponent; props: PageProps; key: number | null }) => Child
   initialPage: Page<SharedProps>
-  initialComponent?: ReactComponent
-  resolveComponent?: (name: string, page?: Page) => ReactComponent | Promise<ReactComponent>
+  initialComponent?: HonoJsxComponent
+  resolveComponent?: (name: string, page?: Page) => HonoJsxComponent | Promise<HonoJsxComponent>
   titleCallback?: HeadManagerTitleCallback
   onHeadUpdate?: HeadManagerOnUpdateCallback
   defaultLayout?: (name: string, page: Page) => unknown
   serverHead?: ServerHeadOption
 }
 
-export type InertiaApp = FunctionComponent<InertiaAppProps>
+// TODO: Child -> JSXNode ?
+export type InertiaApp = (props: InertiaAppProps) => Child
 
 const emptySnapshot = {
   shared: {} as Record<string, unknown>,
@@ -108,7 +108,7 @@ export default function App<SharedProps extends PageProps = PageProps>({
   const headManager = useMemo(() => {
     return createHeadManager(
       typeof window === 'undefined',
-      (title: string) => (titleCallback ? titleCallback(title, pageRef.current) : title),
+      (title: string) => (titleCallback ? titleCallback(title, pageRef.current!) : title),
       onHeadUpdate || (() => {}),
       resolveServerHead(initialPage, serverHead),
     )
@@ -117,7 +117,7 @@ export default function App<SharedProps extends PageProps = PageProps>({
   const dynamicLayoutProps = useSyncExternalStore(store.subscribe, store.get, () => emptySnapshot)
 
   if (!routerIsInitialized) {
-    router.init<ReactComponent>({
+    router.init<HonoJsxComponent>({
       initialPage,
       resolveComponent: resolveComponent!,
       swapComponent: async (args) => swapComponent(args),
@@ -133,7 +133,7 @@ export default function App<SharedProps extends PageProps = PageProps>({
   }
 
   useEffect(() => {
-    swapComponent = async ({ component, page, preserveState, initialRender }: ReactPageHandlerArgs) => {
+    swapComponent = async ({ component, page, preserveState, initialRender }: HonoJsxPageHandlerArgs) => {
       if (initialRender) {
         // We block setting the current page on the initial page to
         // prevent the initial page from being re-rendered again.

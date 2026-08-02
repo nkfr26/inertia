@@ -1,5 +1,5 @@
 import { router, VisitOptions } from '@inertiajs/core'
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'hono/jsx'
 
 export default function usePrefetch(options: VisitOptions = {}): {
   lastUpdatedAt: number | null

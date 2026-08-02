@@ -20,8 +20,9 @@ import {
   ValidationConfig,
   Validator,
 } from 'laravel-precognition'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { RefObject, useCallback, useEffect, useRef, useState } from 'hono/jsx'
 import { config } from '.'
+import { Dispatch, SetStateAction } from './types'
 
 export type SetDataByObject<TForm> = (data: Partial<TForm>) => void
 export type SetDataByMethod<TForm> = (data: (previousData: TForm) => TForm) => void
@@ -91,23 +92,23 @@ export type FormStateWithPrecognition<TForm extends object> = FormStateProps<TFo
 export interface UseFormStateOptions<TForm extends object> {
   data: TForm | (() => TForm)
   precognitionEndpoint?: (() => UrlMethodPair) | null
-  useDataState?: () => [TForm, React.Dispatch<React.SetStateAction<TForm>>]
-  useErrorsState?: () => [FormDataErrors<TForm>, React.Dispatch<React.SetStateAction<FormDataErrors<TForm>>>]
+  useDataState?: () => [TForm, Dispatch<SetStateAction<TForm>>]
+  useErrorsState?: () => [FormDataErrors<TForm>, Dispatch<SetStateAction<FormDataErrors<TForm>>>]
 }
 
 export interface UseFormStateReturn<TForm extends object> {
   form: FormState<TForm>
-  setDefaultsState: React.Dispatch<React.SetStateAction<TForm>>
-  transformRef: React.MutableRefObject<UseFormTransformCallback<TForm>>
-  precognitionEndpointRef: React.MutableRefObject<(() => UrlMethodPair) | null>
-  dataRef: React.MutableRefObject<TForm>
-  isMounted: React.MutableRefObject<boolean>
-  setProcessing: React.Dispatch<React.SetStateAction<boolean>>
-  setProgress: React.Dispatch<React.SetStateAction<Progress | null>>
+  setDefaultsState: Dispatch<SetStateAction<TForm>>
+  transformRef: RefObject<UseFormTransformCallback<TForm>>
+  precognitionEndpointRef: RefObject<(() => UrlMethodPair) | null>
+  dataRef: RefObject<TForm>
+  isMounted: RefObject<boolean>
+  setProcessing: Dispatch<SetStateAction<boolean>>
+  setProgress: Dispatch<SetStateAction<Progress | null>>
   markAsSuccessful: () => void
   clearErrors: (...fields: string[]) => void
   setError: (fieldOrFields: FormDataKeys<TForm> | FormDataErrors<TForm>, maybeValue?: ErrorValue) => void
-  defaultsCalledInOnSuccessRef: React.MutableRefObject<boolean>
+  defaultsCalledInOnSuccessRef: RefObject<boolean>
   resetBeforeSubmit: () => void
   finishProcessing: () => void
   withAllErrors: { enabled: () => boolean; enable: () => void }
@@ -135,7 +136,7 @@ export default function useFormState<TForm extends object>(
   const [wasSuccessful, setWasSuccessful] = useState(false)
   const [recentlySuccessful, setRecentlySuccessful] = useState(false)
 
-  const recentlySuccessfulTimeoutId = useRef<number>(undefined)
+  const recentlySuccessfulTimeoutId = useRef<number>(null)
   const transformRef = useRef<UseFormTransformCallback<TForm>>((data) => data)
   const defaultsCalledInOnSuccessRef = useRef(false)
 
@@ -170,9 +171,9 @@ export default function useFormState<TForm extends object>(
   const setDataFunction = useCallback(
     (keyOrData: FormDataKeys<TForm> | Function | Partial<TForm>, maybeValue?: any) => {
       if (typeof keyOrData === 'string') {
-        commitData(set(cloneDeep(dataRef.current), keyOrData, maybeValue))
+        commitData(set(cloneDeep(dataRef.current!), keyOrData, maybeValue))
       } else if (typeof keyOrData === 'function') {
-        commitData(keyOrData(dataRef.current))
+        commitData(keyOrData(dataRef.current!))
       } else {
         commitData(keyOrData as TForm)
       }
@@ -191,8 +192,8 @@ export default function useFormState<TForm extends object>(
       let newDefaults = {} as TForm
 
       if (typeof fieldOrFields === 'undefined') {
-        newDefaults = { ...dataRef.current }
-        setDefaultsState(dataRef.current)
+        newDefaults = { ...dataRef.current! }
+        setDefaultsState(dataRef.current!)
       } else {
         setDefaultsState((defaults) => {
           newDefaults =
@@ -238,7 +239,7 @@ export default function useFormState<TForm extends object>(
             (carry, key) => {
               return set(carry, key, get(clonedData, key))
             },
-            { ...dataRef.current } as TForm,
+            { ...dataRef.current! } as TForm,
           )
         commitData(next)
       }
@@ -312,7 +313,7 @@ export default function useFormState<TForm extends object>(
   const resetBeforeSubmit = useCallback(() => {
     setWasSuccessful(false)
     setRecentlySuccessful(false)
-    clearTimeout(recentlySuccessfulTimeoutId.current)
+    clearTimeout(recentlySuccessfulTimeoutId.current!)
   }, [setWasSuccessful, setRecentlySuccessful])
 
   const finishProcessing = useCallback(() => {
@@ -370,7 +371,7 @@ export default function useFormState<TForm extends object>(
       validatorRef.current!.validate(config)
     } else {
       const fieldName = resolveName(field)
-      const transformedData = transformRef.current(dataRef.current) as Record<string, unknown>
+      const transformedData = transformRef.current!(dataRef.current!) as Record<string, unknown>
       validatorRef.current!.validate(fieldName, get(transformedData, fieldName), config)
     }
 
@@ -384,8 +385,8 @@ export default function useFormState<TForm extends object>(
       const validator = createValidator(
         (client) => {
           const { method, url } = precognitionEndpointRef.current!()
-          const currentData = dataRef.current
-          const transformedData = transformRef.current(currentData) as Record<string, unknown>
+          const currentData = dataRef.current!
+          const transformedData = transformRef.current!(currentData) as Record<string, unknown>
           return client[method](url, transformedData)
         },
         cloneDeep(defaults as Record<string, unknown>),
