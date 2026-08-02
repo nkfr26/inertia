@@ -308,26 +308,30 @@ const Link = ({
       return {}
     }, [_as, url])
 
-    return createElement(
-      _as,
-      {
-        ...props,
-        ...elProps,
-        ref,
-        ...(() => {
-          if (prefetchModes.includes('hover')) {
-            return prefetchHoverEvents
-          }
+    return (
+      <>
+        {createElement(
+          _as,
+          {
+            ...props,
+            ...elProps,
+            ref,
+            ...(() => {
+              if (prefetchModes.includes('hover')) {
+                return prefetchHoverEvents
+              }
 
-          if (prefetchModes.includes('click')) {
-            return prefetchClickEvents
-          }
+              if (prefetchModes.includes('click')) {
+                return prefetchClickEvents
+              }
 
-          return regularEvents
-        })(),
-        'data-loading': inFlightCount > 0 ? '' : undefined,
-      },
-      children,
+              return regularEvents
+            })(),
+            'data-loading': inFlightCount > 0 ? '' : undefined,
+          },
+          children,
+        )}
+      </>
     )
 }
 Link.displayName = 'InertiaLink'

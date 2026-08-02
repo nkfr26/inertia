@@ -19,7 +19,7 @@ import { NamedInputEvent, ValidationConfig } from 'laravel-precognition'
 import {
   Child,
   createContext,
-  createElement,
+  FC,
   RefObject,
   startTransition,
   useContext,
@@ -296,23 +296,23 @@ const Form = ({
       useImperativeHandle(ref, () => exposed, [form, isDirty, submit])
     }
 
-    const formNode = createElement(
-      'form',
-      {
-        ...props,
-        ref: formElement,
-        action: isUrlMethodPair(action) ? action.url : action,
-        method: resolvedMethod,
-        onSubmit: (event: SubmitEvent) => {
+    const formNode = (
+      <form
+        {...props}
+        ref={formElement}
+        action={isUrlMethodPair(action) ? action.url : action}
+        method={resolvedMethod as 'get' | 'post' | 'dialog'}
+        onSubmit={(event) => {
           event.preventDefault()
-          submit(event.submitter)
-        },
-        inert: disableWhileProcessing && form.processing,
-      },
-      typeof children === 'function' ? children(exposed) : children,
+          submit((event as SubmitEvent).submitter)
+        }}
+        inert={disableWhileProcessing && form.processing}
+      >
+        {typeof children === 'function' ? children(exposed) : children}
+      </form>
     )
 
-    return createElement(FormContext.Provider, { value: exposed }, formNode)
+    return <FormContext.Provider value={exposed}>{formNode}</FormContext.Provider>
 }
 
 Form.displayName = 'InertiaForm'
@@ -321,9 +321,7 @@ export function useFormContext<TForm extends object = Record<string, any>>(): Fo
   return useContext(FormContext) as FormComponentRef<TForm> | undefined
 }
 
-export default Form as {
-  <TForm extends object = Record<string, any>>(
-    props: FormProps<TForm>
-  ): Child
+export default Form as unknown as {
+  <TForm extends object = Record<string, any>>(props: FormProps<TForm>): ReturnType<FC<{}>>
   displayName: string
 }

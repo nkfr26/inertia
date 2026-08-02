@@ -66,17 +66,17 @@ const Deferred = ({ children, data, rescue, fallback }: DeferredProps) => {
 
   if (propsAreDefined && !hasRescuedProps) {
     if (typeof children === 'function') {
-      return children({ reloading })
+      return <>{children({ reloading })}</>
     }
 
-    return children
+    return <>{children}</>
   }
 
   if (hasRescuedProps && rescue) {
-    return typeof rescue === 'function' ? rescue({ reloading }) : rescue
+    return <>{typeof rescue === 'function' ? rescue({ reloading }) : rescue}</>
   }
 
-  return typeof fallback === 'function' ? fallback() : fallback
+  return <>{typeof fallback === 'function' ? fallback() : fallback}</>
 }
 
 Deferred.displayName = 'InertiaDeferred'

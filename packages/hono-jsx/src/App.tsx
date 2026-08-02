@@ -13,8 +13,8 @@ import {
   type ServerHeadOption,
 } from '@inertiajs/core'
 import {
-  createElement,
   Child,
+  FC,
   isValidElement,
   useEffect,
   useMemo,
@@ -78,8 +78,7 @@ export interface InertiaAppProps<SharedProps extends PageProps = PageProps> {
   serverHead?: ServerHeadOption
 }
 
-// TODO: Child -> JSXNode ?
-export type InertiaApp = (props: InertiaAppProps) => Child
+export type InertiaApp = FC<InertiaAppProps>
 
 const emptySnapshot = {
   shared: {} as Record<string, unknown>,
@@ -174,17 +173,17 @@ export default function App<SharedProps extends PageProps = PageProps>({
   }, [])
 
   if (!current.component) {
-    return createElement(
-      HeadContext.Provider,
-      { value: headManager },
-      createElement(PageContext.Provider, { value: current.page }, null),
+    return (
+      <HeadContext.Provider value={headManager}>
+        <PageContext.Provider value={current.page} />
+      </HeadContext.Provider>
     )
   }
 
   const renderChildren =
     children ||
     (({ Component, props, key }) => {
-      const child = createElement(Component, { key, ...props })
+      const child = <Component key={key} {...props} />
 
       let effectiveLayout: unknown
       let callbackProps: Record<string, unknown> | null = null
@@ -221,35 +220,34 @@ export default function App<SharedProps extends PageProps = PageProps>({
       }
 
       if (layouts.length > 0) {
-        return layouts.reduceRight((childNode, layout) => {
-          return createElement(
-            layout.component,
-            {
-              ...props,
-              ...layout.props,
-              ...dynamicLayoutProps.shared,
-              ...(layout.name ? dynamicLayoutProps.named[layout.name] || {} : {}),
-            },
-            childNode,
-          )
-        }, child)
+        return layouts.reduceRight(
+          (childNode, layout) => (
+            <layout.component
+              {...props}
+              {...layout.props}
+              {...dynamicLayoutProps.shared}
+              {...(layout.name ? dynamicLayoutProps.named[layout.name] || {} : {})}
+            >
+              {childNode}
+            </layout.component>
+          ),
+          child,
+        )
       }
 
       return child
     })
 
-  return createElement(
-    HeadContext.Provider,
-    { value: headManager },
-    createElement(
-      PageContext.Provider,
-      { value: current.page },
-      renderChildren({
-        Component: current.component,
-        key: current.key,
-        props: current.page.props,
-      }),
-    ),
+  return (
+    <HeadContext.Provider value={headManager}>
+      <PageContext.Provider value={current.page}>
+        {renderChildren({
+          Component: current.component,
+          key: current.key,
+          props: current.page.props,
+        })}
+      </PageContext.Provider>
+    </HeadContext.Provider>
   )
 }
 
