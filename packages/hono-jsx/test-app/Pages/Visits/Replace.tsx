@@ -1,22 +1,23 @@
-import { router } from '@inertiajs/react'
+import type { MouseEvent } from 'hono/jsx'
+import { router } from '@inertiajs/hono-jsx'
 
 export default () => {
-  const replace = (e: React.MouseEvent) => {
+  const replace = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/dump/get', { replace: true })
   }
 
-  const replaceFalse = (e: React.MouseEvent) => {
+  const replaceFalse = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/dump/get', { replace: false })
   }
 
-  const replaceGet = (e: React.MouseEvent) => {
+  const replaceGet = (e: MouseEvent) => {
     e.preventDefault()
     router.get('/dump/get', {}, { replace: true })
   }
 
-  const replaceGetFalse = (e: React.MouseEvent) => {
+  const replaceGetFalse = (e: MouseEvent) => {
     e.preventDefault()
     router.get('/dump/get', {}, { replace: false })
   }

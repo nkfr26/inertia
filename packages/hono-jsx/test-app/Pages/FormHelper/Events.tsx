@@ -1,6 +1,6 @@
 import type { CancelToken, Errors, HttpProgressEvent, Page, PendingVisit } from '@inertiajs/core'
-import { useForm, usePage } from '@inertiajs/react'
-import { useEffect } from 'react'
+import { useForm, usePage } from '@inertiajs/hono-jsx'
+import { useLayoutEffect } from 'hono/jsx'
 
 declare global {
   interface Window {
@@ -43,20 +43,24 @@ export default () => {
 
   const page = usePage()
 
-  useEffect(() => {
-    pushData('processing', form.processing)
+  const record = (type: string, data: unknown) => {
+    setTimeout(() => pushData(type, data), 0)
+  }
+
+  useLayoutEffect(() => {
+    record('processing', form.processing)
   }, [form.processing])
 
-  useEffect(() => {
-    pushData('progress', form.progress)
+  useLayoutEffect(() => {
+    record('progress', form.progress)
   }, [form.progress])
 
-  useEffect(() => {
-    pushData('errors', form.errors)
+  useLayoutEffect(() => {
+    record('errors', form.errors)
   }, [form.errors])
 
-  useEffect(() => {
-    pushData('hasErrors', form.hasErrors)
+  useLayoutEffect(() => {
+    record('hasErrors', form.hasErrors)
   }, [form.hasErrors])
 
   const submit = () => {
@@ -353,13 +357,13 @@ export default () => {
         type="text"
         className="name-input"
         value={form.data.name}
-        onChange={(e) => form.setData('name', e.target.value)}
+        onChange={(e) => form.setData('name', (e.target as HTMLInputElement).value)}
       />
       <input
         type="checkbox"
         className="remember-input"
         checked={form.data.remember}
-        onChange={(e) => form.setData('remember', e.target.checked)}
+        onChange={(e) => form.setData('remember', (e.target as HTMLInputElement).checked)}
       />
     </div>
   )

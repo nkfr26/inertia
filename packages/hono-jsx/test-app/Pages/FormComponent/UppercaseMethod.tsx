@@ -1,4 +1,4 @@
-import { Form } from '@inertiajs/react'
+import { Form } from '@inertiajs/hono-jsx'
 
 export default () => {
   return (
@@ -8,7 +8,7 @@ export default () => {
       {/* Test with uppercase POST */}
       <Form action="/dump/post" method="POST">
         <div>
-          <input type="text" name="name" placeholder="Name" defaultValue="Test POST" />
+          <input type="text" name="name" placeholder="Name" value="Test POST" />
         </div>
         <button type="submit">Submit POST</button>
       </Form>
@@ -16,7 +16,7 @@ export default () => {
       {/* Test with uppercase GET */}
       <Form action="/dump/get" method="GET">
         <div>
-          <input type="text" name="query" placeholder="Query" defaultValue="Test GET" />
+          <input type="text" name="query" placeholder="Query" value="Test GET" />
         </div>
         <button type="submit">Submit GET</button>
       </Form>
@@ -24,7 +24,7 @@ export default () => {
       {/* Test with uppercase PUT */}
       <Form action="/dump/put" method="PUT">
         <div>
-          <input type="text" name="data" placeholder="Data" defaultValue="Test PUT" />
+          <input type="text" name="data" placeholder="Data" value="Test PUT" />
         </div>
         <button type="submit">Submit PUT</button>
       </Form>

@@ -1,5 +1,5 @@
-import { useRemember } from '@inertiajs/react'
-import { useState } from 'react'
+import { useRemember } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 export default ({ ...props }) => {
   const [untracked, setUntracked] = useState('')
@@ -16,7 +16,7 @@ export default ({ ...props }) => {
           className="b-name"
           name="full_name"
           value={data.name}
-          onChange={(e) => setData({ ...data, name: e.target.value })}
+          onChange={(e) => setData({ ...data, name: (e.target as HTMLInputElement).value })}
         />
       </label>
       <label>
@@ -26,7 +26,7 @@ export default ({ ...props }) => {
           className="b-remember"
           name="remember"
           checked={data.remember}
-          onChange={(e) => setData({ ...data, remember: e.target.checked })}
+          onChange={(e) => setData({ ...data, remember: (e.target as HTMLInputElement).checked })}
         />
       </label>
       <label>
@@ -36,7 +36,7 @@ export default ({ ...props }) => {
           className="b-untracked"
           name="untracked"
           value={untracked}
-          onChange={(e) => setUntracked(e.target.value)}
+          onChange={(e) => setUntracked((e.target as HTMLInputElement).value)}
         />
       </label>
     </div>

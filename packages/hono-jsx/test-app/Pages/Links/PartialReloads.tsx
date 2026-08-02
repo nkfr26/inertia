@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react'
+import { Link } from '@inertiajs/hono-jsx'
 export default ({
   foo = 0,
   bar,

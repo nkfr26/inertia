@@ -1,4 +1,4 @@
-import { router, usePage } from '@inertiajs/react'
+import { router, usePage } from '@inertiajs/hono-jsx'
 
 export default () => {
   const page = usePage()

@@ -1,5 +1,5 @@
-import { createInertiaApp, type ResolvedComponent } from '@inertiajs/react'
-import { createElement } from 'react'
+import { createInertiaApp, type ResolvedComponent } from '@inertiajs/hono-jsx'
+import { createElement } from 'hono/jsx'
 import { WithAppContext } from './Pages/SSR/WithApp'
 
 // This file uses createInertiaApp as a standalone expression (not exported)

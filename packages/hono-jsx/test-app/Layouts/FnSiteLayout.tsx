@@ -1,7 +1,8 @@
-import { usePage } from '@inertiajs/react'
-import { useId, useState } from 'react'
+import type { Child } from 'hono/jsx'
+import { usePage } from '@inertiajs/hono-jsx'
+import { useId, useState } from 'hono/jsx'
 
-export default function FnSiteLayout({ children }: { children: React.ReactNode }) {
+export default function FnSiteLayout({ children }: { children: Child }) {
   const [createdAt] = useState(Date.now())
 
   window._inertia_layout_id = useId()

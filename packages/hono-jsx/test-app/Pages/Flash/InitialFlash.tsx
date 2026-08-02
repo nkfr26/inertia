@@ -1,5 +1,5 @@
-import { router, usePage } from '@inertiajs/react'
-import { useRef, useState } from 'react'
+import { router, usePage } from '@inertiajs/hono-jsx'
+import { useRef, useState } from 'hono/jsx'
 
 export default () => {
   const page = usePage()
@@ -10,7 +10,7 @@ export default () => {
   if (!listenerSetup.current) {
     listenerSetup.current = true
     router.on('flash', (e) => {
-      flashEvents.current.push(e.detail.flash)
+      flashEvents.current!.push(e.detail.flash)
       forceUpdate((n) => n + 1)
     })
   }

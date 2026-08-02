@@ -1,5 +1,5 @@
-import { useForm } from '@inertiajs/react'
-import { useEffect, useState } from 'react'
+import { useForm } from '@inertiajs/hono-jsx'
+import { useEffect, useState } from 'hono/jsx'
 
 export default () => {
   const form = useForm<{
@@ -22,8 +22,8 @@ export default () => {
     }
   }, [form, validateFiles])
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null
+  const handleFileChange = (e: Event) => {
+    const file = (e.target as HTMLInputElement).files?.[0] || null
     form.setData('avatar', file)
   }
 
@@ -34,7 +34,7 @@ export default () => {
           value={form.data.name}
           name="name"
           placeholder="Name"
-          onChange={(e) => form.setData('name', e.target.value)}
+          onChange={(e) => form.setData('name', (e.target as HTMLInputElement).value)}
           onBlur={() => form.validate('name')}
         />
         {form.invalid('name') && <p>{form.errors.name}</p>}

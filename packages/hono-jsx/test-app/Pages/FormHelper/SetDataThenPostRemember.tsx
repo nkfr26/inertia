@@ -1,4 +1,4 @@
-import { useForm } from '@inertiajs/react'
+import { useForm } from '@inertiajs/hono-jsx'
 
 export default () => {
   const form = useForm('set-data-then-post-remember', { code: 'initial', name: 'initial-name' })

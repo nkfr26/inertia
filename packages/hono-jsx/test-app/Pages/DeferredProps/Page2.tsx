@@ -1,21 +1,21 @@
-import { Deferred, Link, usePage } from '@inertiajs/react'
+import { Deferred, Link, usePage } from '@inertiajs/hono-jsx'
 
 const Baz = () => {
   const { baz } = usePage<{ baz?: string }>().props
 
-  return baz
+  return <>{baz}</>
 }
 
 const Qux = () => {
   const { qux } = usePage<{ qux?: string }>().props
 
-  return qux
+  return <>{qux}</>
 }
 
 const Both = () => {
   const { baz, qux } = usePage<{ baz?: string; qux?: string }>().props
 
-  return `both ${baz} and ${qux}`
+  return <>{`both ${baz} and ${qux}`}</>
 }
 export default () => {
   return (

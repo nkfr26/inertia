@@ -1,5 +1,5 @@
-import { Form } from '@inertiajs/react'
-import { useEffect, useRef, useState } from 'react'
+import { Form } from '@inertiajs/hono-jsx'
+import { useEffect, useRef, useState } from 'hono/jsx'
 
 export default () => {
   const [showProgress, setShowProgress] = useState<boolean | undefined>(undefined)

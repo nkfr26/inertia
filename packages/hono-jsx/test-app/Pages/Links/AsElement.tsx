@@ -1,5 +1,5 @@
-import { Link } from '@inertiajs/react'
-import { useRef } from 'react'
+import { Link } from '@inertiajs/hono-jsx'
+import { useRef } from 'hono/jsx'
 
 declare global {
   interface Window {

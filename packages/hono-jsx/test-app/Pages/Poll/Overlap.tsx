@@ -1,4 +1,4 @@
-import { usePoll } from '@inertiajs/react'
+import { usePoll } from '@inertiajs/hono-jsx'
 
 export default ({ mode, time }: { mode: string; time: number }) => {
   const params = new URLSearchParams(window.location.search)

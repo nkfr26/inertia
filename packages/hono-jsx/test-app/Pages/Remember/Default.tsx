@@ -1,5 +1,5 @@
-import { Link } from '@inertiajs/react'
-import { useState } from 'react'
+import { Link } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 export default () => {
   const [name, setName] = useState('')
@@ -10,7 +10,7 @@ export default () => {
     <div>
       <label>
         Full Name
-        <input type="text" id="name" name="full_name" value={name} onChange={(e) => setName(e.target.value)} />
+        <input type="text" id="name" name="full_name" value={name} onChange={(e) => setName((e.target as HTMLInputElement).value)} />
       </label>
       <label>
         Remember Me
@@ -19,7 +19,7 @@ export default () => {
           id="remember"
           name="remember"
           checked={remember}
-          onChange={(e) => setRemember(e.target.checked)}
+          onChange={(e) => setRemember((e.target as HTMLInputElement).checked)}
         />
       </label>
       <label>
@@ -29,7 +29,7 @@ export default () => {
           id="untracked"
           name="untracked"
           value={untracked}
-          onChange={(e) => setUntracked(e.target.value)}
+          onChange={(e) => setUntracked((e.target as HTMLInputElement).value)}
         />
       </label>
 

@@ -1,5 +1,4 @@
 import inertia from '@inertiajs/vite'
-import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
@@ -12,12 +11,15 @@ export default defineConfig({
       '@': __dirname,
     },
   },
+  esbuild: {
+    jsx: 'automatic',
+    jsxImportSource: 'hono/jsx',
+  },
   plugins: [
     inertia({
       ssr: {
         port: 13719,
       },
     }),
-    react(),
   ],
 })

@@ -1,4 +1,4 @@
-import { createInertiaApp, router } from '@inertiajs/react'
+import { createInertiaApp, router } from '@inertiajs/hono-jsx'
 
 window.testing = { Inertia: router }
 

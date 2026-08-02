@@ -1,5 +1,5 @@
 import { QueryStringArrayFormatOption } from '@inertiajs/core'
-import { config, Form } from '@inertiajs/react'
+import { config, Form } from '@inertiajs/hono-jsx'
 
 export default ({
   queryStringArrayFormat,
@@ -30,17 +30,19 @@ export default ({
 
           {/* Select with default selected option */}
           <div>
-            <select name="country" id="country" defaultValue="uk">
+            <select name="country" id="country">
               <option value="us">United States</option>
               <option value="ca">Canada</option>
-              <option value="uk">United Kingdom</option>
+              <option value="uk" selected>
+                United Kingdom
+              </option>
             </select>
           </div>
 
           {/* Select with default disabled option */}
           <div>
-            <select name="role" id="role" defaultValue="">
-              <option value="" disabled>
+            <select name="role" id="role">
+              <option value="" disabled selected>
                 Role
               </option>
               <option value="User">User</option>
@@ -83,7 +85,7 @@ export default ({
 
           {/* Multiple select */}
           <div>
-            <select name="skills[]" id="skills" multiple defaultValue="">
+            <select name="skills[]" id="skills" multiple>
               <option disabled value="">
                 Skills
               </option>
@@ -126,8 +128,8 @@ export default ({
 
           {/* Indexed array of objects */}
           <div>
-            <input type="text" name="items[0][name]" defaultValue="Item A" id="item_a" />
-            <input type="text" name="items[1][name]" defaultValue="Item B" id="item_b" />
+            <input type="text" name="items[0][name]" value="Item A" id="item_a" />
+            <input type="text" name="items[1][name]" value="Item B" id="item_b" />
           </div>
 
           {/* Disabled input (should be ignored) */}

@@ -1,7 +1,7 @@
 // This component is used for checking the TypeScript implementation; there is no Playwright test depending on it.
 import { FormComponentRef } from '@inertiajs/core'
-import { Form } from '@inertiajs/react'
-import { useRef } from 'react'
+import { Form } from '@inertiajs/hono-jsx'
+import { useRef } from 'hono/jsx'
 
 interface UserForm {
   name: string

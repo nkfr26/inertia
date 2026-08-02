@@ -1,9 +1,9 @@
-import { Form } from '@inertiajs/react'
+import { Form } from '@inertiajs/hono-jsx'
 
 export default () => {
   return (
     <Form action="/non-inertia/download" method="get">
-      <input type="text" name="search" id="search" defaultValue="test-query" />
+      <input type="text" name="search" id="search" value="test-query" />
 
       <button type="submit" formTarget="_blank" name="format" value="csv" id="button-blank">
         Button with formTarget blank

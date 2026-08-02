@@ -1,18 +1,19 @@
-import { router } from '@inertiajs/react'
+import type { Child, MouseEvent } from 'hono/jsx'
+import { router } from '@inertiajs/hono-jsx'
 import WithoutScrollRegion from '@/Layouts/WithoutScrollRegion.jsx'
 
 const PreserveScrollFalse = ({ foo = 'default' }) => {
-  const preserve = (e: React.MouseEvent) => {
+  const preserve = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/visits/preserve-scroll-false-page-two', { data: { foo: 'foo' }, preserveScroll: true })
   }
 
-  const preserveFalse = (e: React.MouseEvent) => {
+  const preserveFalse = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/visits/preserve-scroll-false-page-two', { data: { foo: 'bar' } })
   }
 
-  const preserveCallback = (e: React.MouseEvent) => {
+  const preserveCallback = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/visits/preserve-scroll-false-page-two', {
       data: {
@@ -25,7 +26,7 @@ const PreserveScrollFalse = ({ foo = 'default' }) => {
     })
   }
 
-  const preserveCallbackFalse = (e: React.MouseEvent) => {
+  const preserveCallbackFalse = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/visits/preserve-scroll-false-page-two', {
       data: { foo: 'foo' },
@@ -36,12 +37,12 @@ const PreserveScrollFalse = ({ foo = 'default' }) => {
     })
   }
 
-  const preserveGet = (e: React.MouseEvent) => {
+  const preserveGet = (e: MouseEvent) => {
     e.preventDefault()
     router.get('/visits/preserve-scroll-false-page-two', { foo: 'bar' }, { preserveScroll: true })
   }
 
-  const preserveGetFalse = (e: React.MouseEvent) => {
+  const preserveGetFalse = (e: MouseEvent) => {
     e.preventDefault()
     router.get('/visits/preserve-scroll-false-page-two', {
       foo: 'baz',
@@ -87,6 +88,6 @@ const PreserveScrollFalse = ({ foo = 'default' }) => {
   )
 }
 
-PreserveScrollFalse.layout = (page: React.ReactNode) => <WithoutScrollRegion children={page} />
+PreserveScrollFalse.layout = (page: Child) => <WithoutScrollRegion children={page} />
 
 export default PreserveScrollFalse

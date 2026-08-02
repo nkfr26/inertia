@@ -1,5 +1,5 @@
-import { Link, useForm } from '@inertiajs/react'
-import { useState } from 'react'
+import { Link, useForm } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 export default () => {
   const form = useForm('form', { name: 'foo', handle: 'example', remember: false })
@@ -23,7 +23,7 @@ export default () => {
           id="name"
           name="name"
           value={form.data.name}
-          onChange={(e) => form.setData('name', e.target.value)}
+          onChange={(e) => form.setData('name', (e.target as HTMLInputElement).value)}
         />
       </label>
       {form.errors.name && <span className="name_error">{form.errors.name}</span>}
@@ -34,7 +34,7 @@ export default () => {
           id="handle"
           name="handle"
           value={form.data.handle}
-          onChange={(e) => form.setData('handle', e.target.value)}
+          onChange={(e) => form.setData('handle', (e.target as HTMLInputElement).value)}
         />
       </label>
       {form.errors.handle && <span className="handle_error">{form.errors.handle}</span>}
@@ -45,7 +45,7 @@ export default () => {
           id="remember"
           name="remember"
           checked={form.data.remember}
-          onChange={(e) => form.setData('remember', e.target.checked)}
+          onChange={(e) => form.setData('remember', (e.target as HTMLInputElement).checked)}
         />
       </label>
       {form.errors.remember && <span className="remember_error">{form.errors.remember}</span>}
@@ -56,7 +56,7 @@ export default () => {
           id="untracked"
           name="untracked"
           value={untracked}
-          onChange={(e) => setUntracked(e.target.value)}
+          onChange={(e) => setUntracked((e.target as HTMLInputElement).value)}
         />
       </label>
 

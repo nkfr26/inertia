@@ -1,5 +1,5 @@
-import { Form } from '@inertiajs/react'
-import { useCallback, useMemo, useState } from 'react'
+import { Form } from '@inertiajs/hono-jsx'
+import { useCallback, useMemo, useState } from 'hono/jsx'
 
 export default () => {
   const [events, setEvents] = useState<string[]>([])

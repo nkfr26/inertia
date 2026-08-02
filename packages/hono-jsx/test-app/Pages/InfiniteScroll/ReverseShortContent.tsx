@@ -1,5 +1,5 @@
-import { InfiniteScroll } from '@inertiajs/react'
-import { useMemo } from 'react'
+import { InfiniteScroll } from '@inertiajs/hono-jsx'
+import { useMemo } from 'hono/jsx'
 
 export default ({ users }: { users: { data: { id: number; name: string }[] } }) => {
   const reversedUsers = useMemo(() => [...users.data].reverse(), [users.data])

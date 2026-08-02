@@ -1,4 +1,5 @@
-import { http } from '@inertiajs/react'
+import type { MouseEvent } from 'hono/jsx'
+import { http } from '@inertiajs/hono-jsx'
 
 declare global {
   interface Window {
@@ -18,7 +19,7 @@ export default () => {
     window._raw_body_response = JSON.parse(response.data)
   }
 
-  const urlSearchParamsMethod = async (e: React.MouseEvent) => {
+  const urlSearchParamsMethod = async (e: MouseEvent) => {
     e.preventDefault()
     const params = new URLSearchParams()
     params.append('foo', 'bar')
@@ -26,27 +27,27 @@ export default () => {
     await send(params)
   }
 
-  const stringMethod = async (e: React.MouseEvent) => {
+  const stringMethod = async (e: MouseEvent) => {
     e.preventDefault()
 
     await send('raw string contents', { 'Content-Type': 'text/plain' })
   }
 
-  const blobMethod = async (e: React.MouseEvent) => {
+  const blobMethod = async (e: MouseEvent) => {
     e.preventDefault()
     const blob = new Blob(['raw blob contents'], { type: 'text/plain' })
 
     await send(blob)
   }
 
-  const arrayBufferMethod = async (e: React.MouseEvent) => {
+  const arrayBufferMethod = async (e: MouseEvent) => {
     e.preventDefault()
     const buffer = new TextEncoder().encode('raw array buffer contents').buffer
 
     await send(buffer)
   }
 
-  const arrayBufferViewMethod = async (e: React.MouseEvent) => {
+  const arrayBufferViewMethod = async (e: MouseEvent) => {
     e.preventDefault()
     const bytes = new TextEncoder().encode('raw array buffer view contents')
 

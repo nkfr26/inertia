@@ -1,4 +1,4 @@
-import { Link, WhenVisible } from '@inertiajs/react'
+import { Link, WhenVisible } from '@inertiajs/hono-jsx'
 
 export default ({
   lazyData,

@@ -1,47 +1,48 @@
-import { router } from '@inertiajs/react'
+import type { MouseEvent } from 'hono/jsx'
+import { router } from '@inertiajs/hono-jsx'
 
 export default () => {
-  const visitMethod = (e: React.MouseEvent) => {
+  const visitMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/dump/get', { data: { foo: 'visit' } })
   }
 
-  const getMethod = (e: React.MouseEvent) => {
+  const getMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.get('/dump/get', { bar: 'get' })
   }
 
-  const postMethod = (e: React.MouseEvent) => {
+  const postMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.post('/dump/post', { baz: 'post' })
   }
 
-  const putMethod = (e: React.MouseEvent) => {
+  const putMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.put('/dump/put', { foo: 'put' })
   }
 
-  const patchMethod = (e: React.MouseEvent) => {
+  const patchMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.patch('/dump/patch', { bar: 'patch' })
   }
 
-  const deleteMethod = (e: React.MouseEvent) => {
+  const deleteMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.delete('/dump/delete', { data: { baz: 'delete' } })
   }
 
-  const qsafDefault = (e: React.MouseEvent) => {
+  const qsafDefault = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/dump/get', { data: { a: ['b', 'c'] } })
   }
 
-  const qsafIndices = (e: React.MouseEvent) => {
+  const qsafIndices = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/dump/get', { data: { a: ['b', 'c'] }, queryStringArrayFormat: 'indices' })
   }
 
-  const qsafBrackets = (e: React.MouseEvent) => {
+  const qsafBrackets = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/dump/get', {
       data: { a: ['b', 'c'] },
@@ -49,7 +50,7 @@ export default () => {
     })
   }
 
-  const deleteQueryParam = (e: React.MouseEvent) => {
+  const deleteQueryParam = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/dump/get', {
       data: { a: undefined },

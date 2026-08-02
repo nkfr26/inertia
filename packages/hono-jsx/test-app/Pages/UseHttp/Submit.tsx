@@ -1,5 +1,5 @@
-import { useHttp } from '@inertiajs/react'
-import { useState } from 'react'
+import { useHttp } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 interface UserResponse {
   success: boolean
@@ -57,7 +57,7 @@ export default () => {
           type="text"
           id="submit-name"
           value={form.data.name}
-          onChange={(e) => form.setData('name', e.target.value)}
+          onChange={(e) => form.setData('name', (e.target as HTMLInputElement).value)}
         />
       </label>
       <label>
@@ -66,7 +66,7 @@ export default () => {
           type="email"
           id="submit-email"
           value={form.data.email}
-          onChange={(e) => form.setData('email', e.target.value)}
+          onChange={(e) => form.setData('email', (e.target as HTMLInputElement).value)}
         />
       </label>
 

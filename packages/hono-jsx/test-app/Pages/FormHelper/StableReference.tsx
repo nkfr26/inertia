@@ -1,11 +1,11 @@
-import { useForm } from '@inertiajs/react'
-import { useCallback, useEffect, useRef } from 'react'
+import { useForm } from '@inertiajs/hono-jsx'
+import { useCallback, useEffect, useRef } from 'hono/jsx'
 
 export default () => {
   const form = useForm({ name: '' })
   const renderCount = useRef(0)
 
-  renderCount.current++
+  renderCount.current!++
 
   const { post } = form
 

@@ -1,18 +1,19 @@
-import { router } from '@inertiajs/react'
+import type { Child, MouseEvent } from 'hono/jsx'
+import { router } from '@inertiajs/hono-jsx'
 import WithScrollRegion from '@/Layouts/WithScrollRegion.jsx'
 
 const PreserveScroll = ({ foo = 'default' }) => {
-  const preserve = (e: React.MouseEvent) => {
+  const preserve = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/visits/preserve-scroll-page-two', { data: { foo: 'foo' }, preserveScroll: true })
   }
 
-  const preserveFalse = (e: React.MouseEvent) => {
+  const preserveFalse = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/visits/preserve-scroll-page-two', { data: { foo: 'bar' } })
   }
 
-  const preserveCallback = (e: React.MouseEvent) => {
+  const preserveCallback = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/visits/preserve-scroll-page-two', {
       data: { foo: 'baz' },
@@ -23,7 +24,7 @@ const PreserveScroll = ({ foo = 'default' }) => {
     })
   }
 
-  const preserveCallbackFalse = (e: React.MouseEvent) => {
+  const preserveCallbackFalse = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/visits/preserve-scroll-page-two', {
       data: { foo: 'foo' },
@@ -34,7 +35,7 @@ const PreserveScroll = ({ foo = 'default' }) => {
     })
   }
 
-  const preserveGet = (e: React.MouseEvent) => {
+  const preserveGet = (e: MouseEvent) => {
     e.preventDefault()
     router.get(
       '/visits/preserve-scroll-page-two',
@@ -45,7 +46,7 @@ const PreserveScroll = ({ foo = 'default' }) => {
     )
   }
 
-  const preserveGetFalse = (e: React.MouseEvent) => {
+  const preserveGetFalse = (e: MouseEvent) => {
     e.preventDefault()
     router.get('/visits/preserve-scroll-page-two', { foo: 'baz' })
   }
@@ -84,6 +85,6 @@ const PreserveScroll = ({ foo = 'default' }) => {
   )
 }
 
-PreserveScroll.layout = (page: React.ReactNode) => <WithScrollRegion children={page} />
+PreserveScroll.layout = (page: Child) => <WithScrollRegion children={page} />
 
 export default PreserveScroll

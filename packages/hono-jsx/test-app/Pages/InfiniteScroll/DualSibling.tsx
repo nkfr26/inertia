@@ -1,4 +1,4 @@
-import { InfiniteScroll } from '@inertiajs/react'
+import { InfiniteScroll } from '@inertiajs/hono-jsx'
 import UserCard, { User } from './UserCard'
 
 interface Props {

@@ -1,6 +1,5 @@
 import { resolve } from 'path'
 import inertia from '@inertiajs/vite'
-import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
 const isSSR = process.argv.includes('--ssr')
@@ -22,5 +21,9 @@ export default defineConfig({
       '@': __dirname,
     },
   },
-  plugins: [inertia(), react()],
+  esbuild: {
+    jsx: 'automatic',
+    jsxImportSource: 'hono/jsx',
+  },
+  plugins: [inertia()],
 })

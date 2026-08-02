@@ -1,4 +1,5 @@
-import { Link, usePage } from '@inertiajs/react'
+import type { Child } from 'hono/jsx'
+import { Link, usePage } from '@inertiajs/hono-jsx'
 import NestedLayout from '@/Layouts/NestedLayout.jsx'
 import SiteLayout from '@/Layouts/SiteLayout.jsx'
 
@@ -13,7 +14,7 @@ const PageA = () => {
   )
 }
 
-PageA.layout = (page: React.ReactNode) => {
+PageA.layout = (page: Child) => {
   return (
     <SiteLayout>
       <NestedLayout children={page} />

@@ -1,5 +1,5 @@
-import { useHttp } from '@inertiajs/react'
-import { useState } from 'react'
+import { useHttp } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 interface UploadResponse {
   success: boolean
@@ -23,15 +23,15 @@ export default () => {
   const [lastUploadResponse, setLastUploadResponse] = useState<UploadResponse | null>(null)
   const [uploadProgress, setUploadProgress] = useState<number | null>(null)
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      fileUpload.setData('file', e.target.files[0])
+  const handleFileChange = (e: Event) => {
+    if ((e.target as HTMLInputElement).files && (e.target as HTMLInputElement).files![0]) {
+      fileUpload.setData('file', (e.target as HTMLInputElement).files![0])
     }
   }
 
-  const handleMultipleFilesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      fileUpload.setData('files', Array.from(e.target.files))
+  const handleMultipleFilesChange = (e: Event) => {
+    if ((e.target as HTMLInputElement).files) {
+      fileUpload.setData('files', Array.from((e.target as HTMLInputElement).files!))
     }
   }
 
@@ -62,7 +62,7 @@ export default () => {
             type="text"
             id="upload-description"
             value={fileUpload.data.description}
-            onChange={(e) => fileUpload.setData('description', e.target.value)}
+            onChange={(e) => fileUpload.setData('description', (e.target as HTMLInputElement).value)}
           />
         </label>
         <label>

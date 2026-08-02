@@ -1,4 +1,5 @@
-import { Form, Link } from '@inertiajs/react'
+import { Link } from '@inertiajs/hono-jsx'
+import { Form } from '@inertiajs/hono-jsx'
 
 export default ({ lastLoaded, propType }: { lastLoaded: number; propType: string }) => {
   return (
@@ -15,7 +16,7 @@ export default ({ lastLoaded, propType }: { lastLoaded: number; propType: string
       <div id="form-section">
         <h3>Form Component with invalidateCacheTags</h3>
         <Form action="/dump/post" method="post" invalidateCacheTags={propType === 'string' ? 'user' : ['user']}>
-          <input id="form-name" name="name" type="text" placeholder="Enter name" defaultValue="" />
+          <input id="form-name" name="name" type="text" placeholder="Enter name" value="" />
           <button id="submit-invalidate-user" type="submit">
             Submit (Invalidate User Tags)
           </button>

@@ -1,4 +1,4 @@
-import { Form } from '@inertiajs/react'
+import { Form } from '@inertiajs/hono-jsx'
 
 export default ({ disable }: { disable: boolean }) => {
   return (
@@ -13,7 +13,7 @@ export default ({ disable }: { disable: boolean }) => {
         {({ errors }) => (
           <>
             <div>
-              <input type="text" name="name" placeholder="Name" defaultValue="John Doe" />
+              <input type="text" name="name" placeholder="Name" value="John Doe" />
               {errors.name && <p id="error_name">{errors.name}</p>}
             </div>
 

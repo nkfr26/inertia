@@ -1,7 +1,8 @@
+import type { Child } from 'hono/jsx'
 import type { HttpClient, HttpClientOptions, Page } from '@inertiajs/core'
 import { axiosAdapter, type VisitOptions } from '@inertiajs/core'
-import { createInertiaApp, router, type ResolvedComponent } from '@inertiajs/react'
-import { createRoot } from 'react-dom/client'
+import { createInertiaApp, router, type ResolvedComponent } from '@inertiajs/hono-jsx'
+import { createRoot } from 'hono/jsx/dom/client'
 import AppLayout from './Layouts/AppLayout'
 import DefaultLayout from './Layouts/DefaultLayout'
 
@@ -62,7 +63,7 @@ createInertiaApp({
   ...(params.has('withAnonymousDefaultLayout') && {
     layout:
       () =>
-      ({ children }: { children: React.ReactNode }) => (
+      ({ children }: { children: Child }) => (
         <div id="default-layout">
           <span>Default Layout</span>
           {children}

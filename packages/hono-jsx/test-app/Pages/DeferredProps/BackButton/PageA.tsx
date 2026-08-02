@@ -1,15 +1,15 @@
-import { Deferred, Link, usePage } from '@inertiajs/react'
+import { Deferred, Link, usePage } from '@inertiajs/hono-jsx'
 
 const FastProp = () => {
   const { fastProp } = usePage<{ fastProp?: string }>().props
 
-  return fastProp
+  return <>{fastProp}</>
 }
 
 const SlowProp = () => {
   const { slowProp } = usePage<{ slowProp?: string }>().props
 
-  return slowProp
+  return <>{slowProp}</>
 }
 
 export default () => {

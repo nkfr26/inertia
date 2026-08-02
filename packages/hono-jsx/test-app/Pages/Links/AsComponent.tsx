@@ -1,5 +1,6 @@
-import { Link } from '@inertiajs/react'
-import { useRef } from 'react'
+import type { Child } from 'hono/jsx'
+import { Link } from '@inertiajs/hono-jsx'
+import { useRef } from 'hono/jsx'
 
 declare global {
   interface Window {
@@ -9,7 +10,7 @@ declare global {
 
 window.componentEvents = []
 
-const CustomButton = ({ children, ...props }: { children: React.ReactNode; [key: string]: unknown }) => (
+const CustomButton = ({ children, ...props }: { children: Child; [key: string]: unknown }) => (
   <button
     {...props}
     style={{

@@ -1,4 +1,4 @@
-import { useForm } from '@inertiajs/react'
+import { useForm } from '@inertiajs/hono-jsx'
 
 export default () => {
   const form = useForm({
@@ -28,7 +28,7 @@ export default () => {
           <input
             value={item.name}
             name={`items.${idx}.name`}
-            onChange={(e) => updateItem(idx, e.target.value)}
+            onChange={(e) => updateItem(idx, (e.target as HTMLInputElement).value)}
             onBlur={() => form.validate(`items.${idx}.name`)}
           />
           {form.invalid(`items.${idx}.name`) && (

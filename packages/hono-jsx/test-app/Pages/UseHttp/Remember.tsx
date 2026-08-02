@@ -1,4 +1,4 @@
-import { Link, useHttp } from '@inertiajs/react'
+import { Link, useHttp } from '@inertiajs/hono-jsx'
 
 export default () => {
   const form = useHttp('useHttpRemember', {
@@ -12,12 +12,12 @@ export default () => {
 
       <label>
         Name
-        <input type="text" id="name" value={form.data.name} onChange={(e) => form.setData('name', e.target.value)} />
+        <input type="text" id="name" value={form.data.name} onChange={(e) => form.setData('name', (e.target as HTMLInputElement).value)} />
       </label>
 
       <label>
         Email
-        <input type="text" id="email" value={form.data.email} onChange={(e) => form.setData('email', e.target.value)} />
+        <input type="text" id="email" value={form.data.email} onChange={(e) => form.setData('email', (e.target as HTMLInputElement).value)} />
       </label>
 
       <div id="current-values">

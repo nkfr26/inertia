@@ -1,5 +1,5 @@
-import { useHttp } from '@inertiajs/react'
-import { useState } from 'react'
+import { useHttp } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 interface LifecycleResponse {
   success: boolean
@@ -113,7 +113,7 @@ export default () => {
             type="text"
             id="lifecycle-value"
             value={lifecycleTest.data.value}
-            onChange={(e) => lifecycleTest.setData('value', e.target.value)}
+            onChange={(e) => lifecycleTest.setData('value', (e.target as HTMLInputElement).value)}
           />
         </label>
         <button onClick={performLifecycleTest} id="lifecycle-button">

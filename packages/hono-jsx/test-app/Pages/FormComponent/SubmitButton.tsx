@@ -1,11 +1,11 @@
-import { Form } from '@inertiajs/react'
+import { Form } from '@inertiajs/hono-jsx'
 
 export default () => {
   return (
     <Form action="/dump/post" method="post">
       <h1>Submit Button Test</h1>
 
-      <input type="text" name="name" id="name" defaultValue="John Doe" />
+      <input type="text" name="name" id="name" value="John Doe" />
 
       <button type="submit" name="action" value="save" id="save-button">
         Save

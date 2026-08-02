@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode } from 'hono/jsx'
 
 export default function SSRLayout({ title = 'Default Title', children }: { title?: string; children: ReactNode }) {
   return (

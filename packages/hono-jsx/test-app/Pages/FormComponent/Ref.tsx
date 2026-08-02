@@ -1,6 +1,6 @@
 import { FormComponentRef } from '@inertiajs/core'
-import { Form } from '@inertiajs/react'
-import { useRef } from 'react'
+import { Form } from '@inertiajs/hono-jsx'
+import { useRef } from 'hono/jsx'
 
 export default function Ref() {
   const formRef = useRef<FormComponentRef>(null)
@@ -50,11 +50,11 @@ export default function Ref() {
             {errors.name && <div id="error_name">{errors.name}</div>}
 
             <div>
-              <input type="text" name="name" placeholder="Name" defaultValue="John Doe" />
+              <input type="text" name="name" placeholder="Name" value="John Doe" />
             </div>
 
             <div>
-              <input type="email" name="email" placeholder="Email" defaultValue="john@example.com" />
+              <input type="email" name="email" placeholder="Email" value="john@example.com" />
             </div>
 
             <div>

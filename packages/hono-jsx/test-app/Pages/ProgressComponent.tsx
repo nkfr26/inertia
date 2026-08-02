@@ -1,5 +1,5 @@
-import { progress } from '@inertiajs/react'
-import { useState } from 'react'
+import { progress } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 declare global {
   interface Window {

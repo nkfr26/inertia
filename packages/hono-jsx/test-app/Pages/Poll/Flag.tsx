@@ -1,5 +1,5 @@
-import { router, usePoll } from '@inertiajs/react'
-import { useState } from 'react'
+import { router, usePoll } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 export default () => {
   const [pollFlag, setPollFlag] = useState('pending')

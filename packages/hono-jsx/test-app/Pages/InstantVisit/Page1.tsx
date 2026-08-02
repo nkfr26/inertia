@@ -1,4 +1,4 @@
-import { Link, router } from '@inertiajs/react'
+import { Link, router } from '@inertiajs/hono-jsx'
 
 export default ({ foo, auth, errors }: { foo: string; auth?: { user: string }; errors?: Record<string, string> }) => {
   const visitWithComponent = () => {

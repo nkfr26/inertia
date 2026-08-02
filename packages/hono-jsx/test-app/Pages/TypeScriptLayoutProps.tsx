@@ -1,5 +1,5 @@
 // This component is used for checking the TypeScript implementation; there is no Playwright test depending on it.
-import { resetLayoutProps, setLayoutProps } from '@inertiajs/react'
+import { resetLayoutProps, setLayoutProps } from '@inertiajs/hono-jsx'
 
 declare module '@inertiajs/core' {
   export interface InertiaConfig {

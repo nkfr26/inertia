@@ -1,6 +1,6 @@
 import type { FormDataConvertible } from '@inertiajs/core'
-import { Form } from '@inertiajs/react'
-import { useState } from 'react'
+import { Form } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 export default () => {
   const [transformType, setTransformType] = useState('none')
@@ -36,15 +36,15 @@ export default () => {
 
       <Form action="/dump/post" method="post" transform={getTransform()}>
         <div>
-          <input type="text" name="name" placeholder="Name" defaultValue="John Doe" />
+          <input type="text" name="name" placeholder="Name" value="John Doe" />
         </div>
 
         <div>
-          <input type="text" name="firstName" placeholder="First Name" defaultValue="John" />
+          <input type="text" name="firstName" placeholder="First Name" value="John" />
         </div>
 
         <div>
-          <input type="text" name="lastName" placeholder="Last Name" defaultValue="Doe" />
+          <input type="text" name="lastName" placeholder="Last Name" value="Doe" />
         </div>
 
         <div>

@@ -1,4 +1,4 @@
-import { useForm } from '@inertiajs/react'
+import { useForm } from '@inertiajs/hono-jsx'
 
 export default () => {
   const form = useForm({
@@ -15,7 +15,7 @@ export default () => {
           name="name"
           value={form.data.name}
           placeholder="Name"
-          onChange={(e) => form.setData('name', e.target.value)}
+          onChange={(e) => form.setData('name', (e.target as HTMLInputElement).value)}
           onBlur={() => form.touch('name')}
         />
         {form.invalid('name') && <p>{form.errors.name}</p>}
@@ -26,7 +26,7 @@ export default () => {
           name="email"
           value={form.data.email}
           placeholder="Email"
-          onChange={(e) => form.setData('email', e.target.value)}
+          onChange={(e) => form.setData('email', (e.target as HTMLInputElement).value)}
           onBlur={() => form.touch('email')}
         />
         {form.invalid('email') && <p>{form.errors.email}</p>}

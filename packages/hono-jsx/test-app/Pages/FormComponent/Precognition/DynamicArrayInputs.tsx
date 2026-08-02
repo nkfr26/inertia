@@ -1,5 +1,5 @@
-import { Form } from '@inertiajs/react'
-import { useState } from 'react'
+import { Form } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 export default () => {
   const [items, setItems] = useState<Array<{ name: string }>>([])
@@ -28,7 +28,7 @@ export default () => {
                 <input
                   value={item.name}
                   name={`items.${idx}.name`}
-                  onChange={(e) => updateItem(idx, e.target.value)}
+                  onChange={(e) => updateItem(idx, (e.target as HTMLInputElement).value)}
                   onBlur={() => validate(`items.${idx}.name`)}
                 />
                 {invalid(`items.${idx}.name`) && <p id={`items.${idx}.name-error`}>{errors[`items.${idx}.name`]}</p>}

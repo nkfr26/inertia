@@ -1,4 +1,4 @@
-import { useForm } from '@inertiajs/react'
+import { useForm } from '@inertiajs/hono-jsx'
 
 export default () => {
   const form = useForm({
@@ -8,7 +8,7 @@ export default () => {
     .withPrecognition('post', '/precognition/error-sync')
     .setValidationTimeout(100)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: Event) => {
     e.preventDefault()
     form.submit()
   }
@@ -23,7 +23,7 @@ export default () => {
             value={form.data.name}
             name="name"
             placeholder="Name"
-            onChange={(e) => form.setData('name', e.target.value)}
+            onChange={(e) => form.setData('name', (e.target as HTMLInputElement).value)}
             onBlur={() => form.validate('name')}
           />
           {form.invalid('name') && <p id="name-error">{form.errors.name}</p>}
@@ -34,7 +34,7 @@ export default () => {
             value={form.data.email}
             name="email"
             placeholder="Email"
-            onChange={(e) => form.setData('email', e.target.value)}
+            onChange={(e) => form.setData('email', (e.target as HTMLInputElement).value)}
             onBlur={() => form.validate('email')}
           />
           {form.invalid('email') && <p id="email-error">{form.errors.email}</p>}

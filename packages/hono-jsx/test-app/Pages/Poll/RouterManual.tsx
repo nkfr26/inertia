@@ -1,5 +1,5 @@
-import { router } from '@inertiajs/react'
-import { useRef } from 'react'
+import { router } from '@inertiajs/hono-jsx'
+import { useRef } from 'hono/jsx'
 
 export default () => {
   const pollRef = useRef(
@@ -19,8 +19,8 @@ export default () => {
 
   return (
     <>
-      <button onClick={pollRef.current.start}>Start</button>
-      <button onClick={pollRef.current.stop}>Stop</button>
+      <button onClick={pollRef.current!.start}>Start</button>
+      <button onClick={pollRef.current!.stop}>Stop</button>
     </>
   )
 }

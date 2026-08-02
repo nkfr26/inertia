@@ -1,4 +1,4 @@
-import { Link, useForm } from '@inertiajs/react'
+import { Link, useForm } from '@inertiajs/hono-jsx'
 
 export default ({ randomValue }: { randomValue: number }) => {
   const { post } = useForm({})

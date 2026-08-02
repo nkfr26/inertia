@@ -1,5 +1,5 @@
-import { useHttp } from '@inertiajs/react'
-import { useState } from 'react'
+import { useHttp } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 interface MixedContentResponse {
   success: boolean
@@ -37,9 +37,9 @@ export default () => {
 
   const [lastMixedResponse, setLastMixedResponse] = useState<MixedContentResponse | null>(null)
 
-  const handleMixedFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      mixedContent.setData('document', e.target.files[0])
+  const handleMixedFileChange = (e: Event) => {
+    if ((e.target as HTMLInputElement).files && (e.target as HTMLInputElement).files![0]) {
+      mixedContent.setData('document', (e.target as HTMLInputElement).files![0])
     }
   }
 
@@ -65,7 +65,7 @@ export default () => {
             type="text"
             id="mixed-title"
             value={mixedContent.data.title}
-            onChange={(e) => mixedContent.setData('title', e.target.value)}
+            onChange={(e) => mixedContent.setData('title', (e.target as HTMLInputElement).value)}
           />
         </label>
         <label>
@@ -74,7 +74,7 @@ export default () => {
             type="text"
             id="mixed-user-name"
             value={mixedContent.data.user.name}
-            onChange={(e) => mixedContent.setData('user', { ...mixedContent.data.user, name: e.target.value })}
+            onChange={(e) => mixedContent.setData('user', { ...mixedContent.data.user, name: (e.target as HTMLInputElement).value })}
           />
         </label>
         <label>
@@ -83,7 +83,7 @@ export default () => {
             type="email"
             id="mixed-user-email"
             value={mixedContent.data.user.email}
-            onChange={(e) => mixedContent.setData('user', { ...mixedContent.data.user, email: e.target.value })}
+            onChange={(e) => mixedContent.setData('user', { ...mixedContent.data.user, email: (e.target as HTMLInputElement).value })}
           />
         </label>
         <label>
@@ -94,7 +94,7 @@ export default () => {
             onChange={(e) =>
               mixedContent.setData(
                 'tags',
-                e.target.value.split(',').map((t) => t.trim()),
+                (e.target as HTMLInputElement).value.split(',').map((t) => t.trim()),
               )
             }
           />

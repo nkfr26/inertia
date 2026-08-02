@@ -1,37 +1,38 @@
-import { router } from '@inertiajs/react'
+import type { MouseEvent } from 'hono/jsx'
+import { router } from '@inertiajs/hono-jsx'
 
 export default () => {
-  const standardVisitMethod = (e: React.MouseEvent) => {
+  const standardVisitMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/dump/get')
   }
 
-  const specificVisitMethod = (e: React.MouseEvent) => {
+  const specificVisitMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/dump/patch', { method: 'patch' })
   }
 
-  const getMethod = (e: React.MouseEvent) => {
+  const getMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.get('/dump/get')
   }
 
-  const postMethod = (e: React.MouseEvent) => {
+  const postMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.post('/dump/post')
   }
 
-  const putMethod = (e: React.MouseEvent) => {
+  const putMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.put('/dump/put')
   }
 
-  const patchMethod = (e: React.MouseEvent) => {
+  const patchMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.patch('/dump/patch')
   }
 
-  const deleteMethod = (e: React.MouseEvent) => {
+  const deleteMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.delete('/dump/delete')
   }

@@ -1,5 +1,5 @@
-import { useHttp } from '@inertiajs/react'
-import { useState } from 'react'
+import { useHttp } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 interface SearchResponse {
   items: string[]
@@ -173,7 +173,7 @@ export default () => {
             type="text"
             id="search-query"
             value={search.data.query}
-            onChange={(e) => search.setData('query', e.target.value)}
+            onChange={(e) => search.setData('query', (e.target as HTMLInputElement).value)}
           />
         </label>
         <button onClick={performSearch} id="search-button">
@@ -201,7 +201,7 @@ export default () => {
             type="text"
             id="create-name"
             value={createUser.data.name}
-            onChange={(e) => createUser.setData('name', e.target.value)}
+            onChange={(e) => createUser.setData('name', (e.target as HTMLInputElement).value)}
           />
         </label>
         <label>
@@ -210,7 +210,7 @@ export default () => {
             type="email"
             id="create-email"
             value={createUser.data.email}
-            onChange={(e) => createUser.setData('email', e.target.value)}
+            onChange={(e) => createUser.setData('email', (e.target as HTMLInputElement).value)}
           />
         </label>
         <button onClick={performCreate} id="create-button">
@@ -240,7 +240,7 @@ export default () => {
             type="text"
             id="validate-name"
             value={validateUser.data.name}
-            onChange={(e) => validateUser.setData('name', e.target.value)}
+            onChange={(e) => validateUser.setData('name', (e.target as HTMLInputElement).value)}
           />
         </label>
         {validateUser.errors.name && <span id="validate-name-error">{validateUser.errors.name}</span>}
@@ -250,7 +250,7 @@ export default () => {
             type="email"
             id="validate-email"
             value={validateUser.data.email}
-            onChange={(e) => validateUser.setData('email', e.target.value)}
+            onChange={(e) => validateUser.setData('email', (e.target as HTMLInputElement).value)}
           />
         </label>
         {validateUser.errors.email && <span id="validate-email-error">{validateUser.errors.email}</span>}
@@ -286,7 +286,7 @@ export default () => {
             type="number"
             id="delete-user-id"
             value={deleteUser.data.userId}
-            onChange={(e) => deleteUser.setData('userId', parseInt(e.target.value) || 0)}
+            onChange={(e) => deleteUser.setData('userId', parseInt((e.target as HTMLInputElement).value) || 0)}
           />
         </label>
         <button onClick={performDelete} id="delete-button">

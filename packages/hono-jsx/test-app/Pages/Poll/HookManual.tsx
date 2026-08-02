@@ -1,4 +1,4 @@
-import { usePoll } from '@inertiajs/react'
+import { usePoll } from '@inertiajs/hono-jsx'
 
 export default () => {
   const { start, stop } = usePoll(

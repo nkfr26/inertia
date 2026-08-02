@@ -1,4 +1,5 @@
-import { Link, usePage } from '@inertiajs/react'
+import type { Child } from 'hono/jsx'
+import { Link, usePage } from '@inertiajs/hono-jsx'
 import SiteLayout from '@/Layouts/SiteLayout.jsx'
 
 const PageB = () => {
@@ -12,6 +13,6 @@ const PageB = () => {
   )
 }
 
-PageB.layout = (page: React.ReactNode) => <SiteLayout children={page} />
+PageB.layout = (page: Child) => <SiteLayout children={page} />
 
 export default PageB

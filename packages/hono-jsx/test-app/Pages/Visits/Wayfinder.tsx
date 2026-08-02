@@ -1,12 +1,13 @@
-import { router } from '@inertiajs/react'
+import type { MouseEvent } from 'hono/jsx'
+import { router } from '@inertiajs/hono-jsx'
 
 export default function Wayfinder() {
-  const wayfinderObjectVisit = (e: React.MouseEvent) => {
+  const wayfinderObjectVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.visit({ url: '/dump/post', method: 'post' })
   }
 
-  const wayfinderObjectMethodOverride = (e: React.MouseEvent) => {
+  const wayfinderObjectMethodOverride = (e: MouseEvent) => {
     e.preventDefault()
     router.visit({ url: '/dump/patch', method: 'get' }, { method: 'patch' })
   }

@@ -1,5 +1,5 @@
-import { router } from '@inertiajs/react'
-import { useCallback, useEffect, useState } from 'react'
+import { router } from '@inertiajs/hono-jsx'
+import { useCallback, useEffect, useState } from 'hono/jsx'
 
 export default function Wayfinder() {
   const [isPrefetched, setIsPrefetched] = useState(false)

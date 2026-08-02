@@ -1,5 +1,5 @@
-import { useHttp } from '@inertiajs/react'
-import { useState } from 'react'
+import { useHttp } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 interface NestedResponse {
   success: boolean
@@ -54,7 +54,7 @@ export default () => {
             type="text"
             id="nested-user-name"
             value={nestedData.data.user.name}
-            onChange={(e) => nestedData.setData('user', { ...nestedData.data.user, name: e.target.value })}
+            onChange={(e) => nestedData.setData('user', { ...nestedData.data.user, name: (e.target as HTMLInputElement).value })}
           />
         </label>
         <label>
@@ -66,7 +66,7 @@ export default () => {
             onChange={(e) =>
               nestedData.setData('user', {
                 ...nestedData.data.user,
-                address: { ...nestedData.data.user.address, city: e.target.value },
+                address: { ...nestedData.data.user.address, city: (e.target as HTMLInputElement).value },
               })
             }
           />
@@ -80,7 +80,7 @@ export default () => {
             onChange={(e) =>
               nestedData.setData('user', {
                 ...nestedData.data.user,
-                address: { ...nestedData.data.user.address, zip: e.target.value },
+                address: { ...nestedData.data.user.address, zip: (e.target as HTMLInputElement).value },
               })
             }
           />
@@ -93,7 +93,7 @@ export default () => {
             onChange={(e) =>
               nestedData.setData(
                 'tags',
-                e.target.value.split(',').map((t) => t.trim()),
+                (e.target as HTMLInputElement).value.split(',').map((t) => t.trim()),
               )
             }
           />

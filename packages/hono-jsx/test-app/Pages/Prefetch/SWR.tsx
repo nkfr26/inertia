@@ -1,3 +1,4 @@
+import type { Child } from 'hono/jsx'
 import SWRLayout from '@/Layouts/SWR'
 
 const SWR = ({ pageNumber, lastLoaded }: { pageNumber: string; lastLoaded: number }) => {
@@ -11,6 +12,6 @@ const SWR = ({ pageNumber, lastLoaded }: { pageNumber: string; lastLoaded: numbe
   )
 }
 
-SWR.layout = (page: React.ReactNode) => <SWRLayout children={page} />
+SWR.layout = (page: Child) => <SWRLayout children={page} />
 
 export default SWR

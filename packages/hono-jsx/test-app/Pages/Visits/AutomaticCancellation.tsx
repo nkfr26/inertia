@@ -1,7 +1,8 @@
-import { router } from '@inertiajs/react'
+import type { MouseEvent } from 'hono/jsx'
+import { router } from '@inertiajs/hono-jsx'
 
 export default () => {
-  const visit = (e: React.MouseEvent) => {
+  const visit = (e: MouseEvent) => {
     e.preventDefault()
     router.get(
       '/sleep',

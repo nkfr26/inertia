@@ -1,9 +1,9 @@
-import { Deferred, Link, usePage } from '@inertiajs/react'
+import { Deferred, Link, usePage } from '@inertiajs/hono-jsx'
 
 const Data = () => {
   const { data } = usePage<{ data?: string }>().props
 
-  return data
+  return <>{data}</>
 }
 
 export default () => {

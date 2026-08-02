@@ -1,5 +1,5 @@
-import { router } from '@inertiajs/react'
-import { useState } from 'react'
+import { router } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 type PageProps = {
   bar: number[]

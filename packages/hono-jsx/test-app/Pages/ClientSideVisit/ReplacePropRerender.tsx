@@ -1,10 +1,10 @@
-import { router } from '@inertiajs/react'
-import { memo, useRef } from 'react'
+import { router } from '@inertiajs/hono-jsx'
+import { memo, useRef } from 'hono/jsx'
 
 const MemoChild = memo(({ prefix, item }: { prefix: string; item: { label: string } }) => {
   const renderCount = useRef(0)
 
-  renderCount.current++
+  renderCount.current!++
 
   return (
     <div>

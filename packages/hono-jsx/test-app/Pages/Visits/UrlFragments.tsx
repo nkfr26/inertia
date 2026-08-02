@@ -1,5 +1,6 @@
-import { router } from '@inertiajs/react'
-import { useEffect, useState } from 'react'
+import type { MouseEvent } from 'hono/jsx'
+import { router } from '@inertiajs/hono-jsx'
+import { useEffect, useState } from 'hono/jsx'
 
 export default () => {
   const [documentScrollTop, setDocumentScrollTop] = useState(0)
@@ -18,32 +19,32 @@ export default () => {
     }
   })
 
-  const basicVisit = (e: React.MouseEvent) => {
+  const basicVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/visits/url-fragments#target')
   }
 
-  const fragmentVisit = (e: React.MouseEvent) => {
+  const fragmentVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('#target')
   }
 
-  const nonExistentFragmentVisit = (e: React.MouseEvent) => {
+  const nonExistentFragmentVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/visits/url-fragments#non-existent-fragment')
   }
 
-  const basicGetVisit = (e: React.MouseEvent) => {
+  const basicGetVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.get('/visits/url-fragments#target')
   }
 
-  const fragmentGetVisit = (e: React.MouseEvent) => {
+  const fragmentGetVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.get('#target')
   }
 
-  const nonExistentFragmentGetVisit = (e: React.MouseEvent) => {
+  const nonExistentFragmentGetVisit = (e: MouseEvent) => {
     e.preventDefault()
     router.get('/visits/url-fragments#non-existent-fragment')
   }

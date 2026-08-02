@@ -1,5 +1,5 @@
-import { Link } from '@inertiajs/react'
-import { useEffect, useState } from 'react'
+import { Link } from '@inertiajs/hono-jsx'
+import { useEffect, useState } from 'hono/jsx'
 
 export default () => {
   const enableSmoothScroll = () => {

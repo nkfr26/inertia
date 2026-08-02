@@ -1,5 +1,6 @@
+import type { Child } from 'hono/jsx'
 import { VisitHelperOptions } from '@inertiajs/core'
-import { router } from '@inertiajs/react'
+import { router } from '@inertiajs/hono-jsx'
 import WithScrollRegion from '@/Layouts/WithScrollRegion.jsx'
 
 const ScrollRegionList = ({ user_id }: { user_id?: number }) => {
@@ -26,6 +27,6 @@ const ScrollRegionList = ({ user_id }: { user_id?: number }) => {
   )
 }
 
-ScrollRegionList.layout = (page: React.ReactNode) => <WithScrollRegion children={page} />
+ScrollRegionList.layout = (page: Child) => <WithScrollRegion children={page} />
 
 export default ScrollRegionList

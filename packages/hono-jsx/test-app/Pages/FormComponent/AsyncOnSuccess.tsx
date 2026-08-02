@@ -1,4 +1,4 @@
-import { Form } from '@inertiajs/react'
+import { Form } from '@inertiajs/hono-jsx'
 
 export default () => {
   return (
@@ -12,7 +12,7 @@ export default () => {
         onSuccess={() => new Promise<void>((resolve) => setTimeout(resolve, 1500))}
       >
         <div>
-          <input type="text" name="name" placeholder="Name" defaultValue="John Doe" />
+          <input type="text" name="name" placeholder="Name" value="John Doe" />
         </div>
 
         <div>

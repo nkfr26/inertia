@@ -1,4 +1,4 @@
-import { Link, usePage } from '@inertiajs/react'
+import { Link, usePage } from '@inertiajs/hono-jsx'
 
 export default ({ user, items, count }: { user: { name: string; email: string }; items: string[]; count: number }) => {
   const page = usePage()

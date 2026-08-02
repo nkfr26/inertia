@@ -1,4 +1,4 @@
-import { WhenVisible } from '@inertiajs/react'
+import { WhenVisible } from '@inertiajs/hono-jsx'
 
 export default ({
   dataOnlyProp,

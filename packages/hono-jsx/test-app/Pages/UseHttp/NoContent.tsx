@@ -1,5 +1,5 @@
-import { useHttp } from '@inertiajs/react'
-import { useState } from 'react'
+import { useHttp } from '@inertiajs/hono-jsx'
+import { useState } from 'hono/jsx'
 
 export default () => {
   const form = useHttp<{ name: string }>({
@@ -28,7 +28,7 @@ export default () => {
             type="text"
             id="no-content-name"
             value={form.data.name}
-            onChange={(e) => form.setData('name', e.target.value)}
+            onChange={(e) => form.setData('name', (e.target as HTMLInputElement).value)}
           />
         </label>
         <button onClick={performPost} id="no-content-button">

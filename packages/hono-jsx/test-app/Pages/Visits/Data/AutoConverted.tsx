@@ -1,29 +1,30 @@
-import { router } from '@inertiajs/react'
+import type { MouseEvent } from 'hono/jsx'
+import { router } from '@inertiajs/hono-jsx'
 
 export default () => {
   const formData = { file: new File([], 'example.jpg'), foo: 'bar' }
 
-  const visitMethod = (e: React.MouseEvent) => {
+  const visitMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.visit('/dump/post', { method: 'post', data: formData })
   }
 
-  const postMethod = (e: React.MouseEvent) => {
+  const postMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.post('/dump/post', formData)
   }
 
-  const putMethod = (e: React.MouseEvent) => {
+  const putMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.put('/dump/put', formData)
   }
 
-  const patchMethod = (e: React.MouseEvent) => {
+  const patchMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.patch('/dump/patch', formData)
   }
 
-  const deleteMethod = (e: React.MouseEvent) => {
+  const deleteMethod = (e: MouseEvent) => {
     e.preventDefault()
     router.delete('/dump/delete', { data: formData })
   }
