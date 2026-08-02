@@ -91,7 +91,7 @@ test.describe('persistent layouts', () => {
   })
 
   test.describe('React-only', () => {
-    test.skip(process.env.PACKAGE !== 'react', 'React-only test')
+    test.skip(process.env.PACKAGE !== 'react' && process.env.PACKAGE !== 'hono-jsx', 'React-only test')
 
     test('can have a persistent layout (array of components)', async ({ page }) => {
       await page.goto('/persistent-layouts/array-arrow/simple/page-a')

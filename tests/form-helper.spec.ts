@@ -66,7 +66,7 @@ test.describe('Form Helper', () => {
     })
 
     test.describe('React', () => {
-      test.skip(process.env.PACKAGE !== 'react', 'Only for React')
+      test.skip(process.env.PACKAGE !== 'react' && process.env.PACKAGE !== 'hono-jsx', 'Only for React')
 
       test('submits latest data when functional setData and post are called synchronously', async ({ page }) => {
         await page.goto('/form-helper/set-data-then-post')
@@ -1232,7 +1232,10 @@ test.describe('Vue Options API', () => {
 })
 
 test.describe('Reserved Keys', () => {
-  test.skip(process.env.PACKAGE === 'react', 'React uses separate data property, no conflicts possible')
+  test.skip(
+    process.env.PACKAGE === 'react' || process.env.PACKAGE === 'hono-jsx',
+    'React uses separate data property, no conflicts possible',
+  )
 
   test('it logs a console error when using reserved form keys', async ({ page }) => {
     consoleMessages.listen(page)

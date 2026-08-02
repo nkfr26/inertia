@@ -37,7 +37,7 @@ test('it applies the default layout after navigating to a page without its own l
 })
 
 test('it supports anonymous arrow functions as layout components', async ({ page }) => {
-  test.skip(process.env.PACKAGE !== 'react', 'React-only test')
+  test.skip(process.env.PACKAGE !== 'react' && process.env.PACKAGE !== 'hono-jsx', 'React-only test')
 
   await page.goto('/default-layout?withAnonymousDefaultLayout')
 
