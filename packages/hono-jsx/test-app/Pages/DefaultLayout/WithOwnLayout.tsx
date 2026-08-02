@@ -1,5 +1,5 @@
+import { Link } from '@nkfr26/inertia-hono-jsx'
 import type { Child } from 'hono/jsx'
-import { Link } from '@inertiajs/hono-jsx'
 import PageLayout from '@/Layouts/PageLayout'
 
 const WithOwnLayout = () => {

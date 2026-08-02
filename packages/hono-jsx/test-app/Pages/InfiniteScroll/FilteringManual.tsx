@@ -1,4 +1,4 @@
-import { InfiniteScroll, useForm } from '@inertiajs/hono-jsx'
+import { InfiniteScroll, useForm } from '@nkfr26/inertia-hono-jsx'
 import { debounce } from 'es-toolkit'
 import { useEffect, useMemo } from 'hono/jsx'
 import UserCard, { User } from './UserCard'

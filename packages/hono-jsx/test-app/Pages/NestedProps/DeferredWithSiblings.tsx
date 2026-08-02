@@ -1,4 +1,4 @@
-import { Deferred, usePage } from '@inertiajs/hono-jsx'
+import { Deferred, usePage } from '@nkfr26/inertia-hono-jsx'
 
 const DeferredContent = () => {
   const { auth } = usePage<{

@@ -1,4 +1,4 @@
-import { useForm } from '@inertiajs/hono-jsx'
+import { useForm } from '@nkfr26/inertia-hono-jsx'
 
 export default () => {
   const form = useForm({

@@ -1,4 +1,4 @@
-import { Link, router, usePoll } from '@inertiajs/hono-jsx'
+import { Link, router, usePoll } from '@nkfr26/inertia-hono-jsx'
 
 export default ({ counter, last_received }: { counter: number; last_received: number | null }) => {
   usePoll(300, () => ({

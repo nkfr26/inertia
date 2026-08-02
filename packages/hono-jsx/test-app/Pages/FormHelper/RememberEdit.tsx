@@ -1,4 +1,4 @@
-import { useForm } from '@inertiajs/hono-jsx'
+import { useForm } from '@nkfr26/inertia-hono-jsx'
 
 interface User {
   id: number
@@ -18,11 +18,19 @@ export default ({ user }: { user: User }) => {
       <form>
         <div>
           <label>Name:</label>
-          <input type="text" value={form.data.name} onChange={(e) => form.setData('name', (e.target as HTMLInputElement).value)} />
+          <input
+            type="text"
+            value={form.data.name}
+            onChange={(e) => form.setData('name', (e.target as HTMLInputElement).value)}
+          />
         </div>
         <div>
           <label>Email:</label>
-          <input type="email" value={form.data.email} onChange={(e) => form.setData('email', (e.target as HTMLInputElement).value)} />
+          <input
+            type="email"
+            value={form.data.email}
+            onChange={(e) => form.setData('email', (e.target as HTMLInputElement).value)}
+          />
         </div>
       </form>
     </div>

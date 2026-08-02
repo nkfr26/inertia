@@ -1,5 +1,5 @@
+import { router } from '@nkfr26/inertia-hono-jsx'
 import type { Child, MouseEvent } from 'hono/jsx'
-import { router } from '@inertiajs/hono-jsx'
 import WithoutScrollRegion from '@/Layouts/WithoutScrollRegion.jsx'
 
 const PreserveScrollFalse = ({ foo = 'default' }) => {

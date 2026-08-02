@@ -1,5 +1,5 @@
 import type { VisitOptions } from '@inertiajs/core'
-import { config, Link, useForm, usePage } from '@inertiajs/hono-jsx'
+import { config, Link, useForm, usePage } from '@nkfr26/inertia-hono-jsx'
 
 export default () => {
   const page = usePage()

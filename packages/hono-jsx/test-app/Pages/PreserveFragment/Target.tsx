@@ -1,4 +1,4 @@
-import { usePage } from '@inertiajs/hono-jsx'
+import { usePage } from '@nkfr26/inertia-hono-jsx'
 
 export default () => {
   const page = usePage()

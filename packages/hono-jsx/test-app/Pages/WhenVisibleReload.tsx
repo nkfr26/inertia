@@ -1,4 +1,4 @@
-import { router, WhenVisible } from '@inertiajs/hono-jsx'
+import { router, WhenVisible } from '@nkfr26/inertia-hono-jsx'
 
 interface Props {
   lazyData?: {

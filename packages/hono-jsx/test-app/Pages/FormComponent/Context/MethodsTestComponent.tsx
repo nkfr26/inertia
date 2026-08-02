@@ -1,4 +1,4 @@
-import { useFormContext } from '@inertiajs/hono-jsx'
+import { useFormContext } from '@nkfr26/inertia-hono-jsx'
 import { useState } from 'hono/jsx'
 
 export default () => {

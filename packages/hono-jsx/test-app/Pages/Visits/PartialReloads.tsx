@@ -1,5 +1,5 @@
+import { router, usePage } from '@nkfr26/inertia-hono-jsx'
 import type { MouseEvent } from 'hono/jsx'
-import { router, usePage } from '@inertiajs/hono-jsx'
 import { useEffect } from 'hono/jsx'
 
 export default ({

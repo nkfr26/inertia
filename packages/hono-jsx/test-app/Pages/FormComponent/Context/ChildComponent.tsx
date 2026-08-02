@@ -1,5 +1,4 @@
-import type { Child } from 'hono/jsx'
-import { useFormContext } from '@inertiajs/hono-jsx'
+import { useFormContext } from '@nkfr26/inertia-hono-jsx'
 
 export default ({ formId }: { formId?: string }) => {
   const form = useFormContext()

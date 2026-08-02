@@ -1,4 +1,4 @@
-import { Form } from '@inertiajs/hono-jsx'
+import { Form } from '@nkfr26/inertia-hono-jsx'
 import ChildComponent from './ChildComponent'
 import NestedComponent from './NestedComponent'
 import OutsideFormComponent from './OutsideFormComponent'

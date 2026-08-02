@@ -15,11 +15,11 @@ import {
   VisitOptions,
 } from '@inertiajs/core'
 import { isEqual } from 'es-toolkit'
-import { NamedInputEvent, ValidationConfig } from 'laravel-precognition'
 import {
   Child,
   createContext,
   FC,
+  JSX,
   RefObject,
   startTransition,
   useContext,
@@ -29,11 +29,11 @@ import {
   useRef,
   useState,
 } from 'hono/jsx'
-import type { JSX as HonoJSX } from 'hono/jsx'
+import { NamedInputEvent, ValidationConfig } from 'laravel-precognition'
 import useForm from './useForm'
 
 type FormProps<TForm extends object = Record<string, any>> = FormComponentProps<TForm> &
-  Omit<HonoJSX.HTMLAttributes, keyof FormComponentProps | 'children'> & {
+  Omit<JSX.HTMLAttributes, keyof FormComponentProps | 'children'> & {
     children: Child | ((props: FormComponentSlotProps<TForm>) => Child)
     ref?: RefObject<FormComponentRef<TForm>>
   }
@@ -78,247 +78,247 @@ const Form = ({
   ref,
   ...props
 }: FormProps) => {
-    const getTransformedData = (): Record<string, FormDataConvertible> => {
-      const [_url, data] = getUrlAndData()
-      return transform(data)
+  const getTransformedData = (): Record<string, FormDataConvertible> => {
+    const [_url, data] = getUrlAndData()
+    return transform(data)
+  }
+
+  const form = useForm<Record<string, any>>({})
+    .withPrecognition(
+      () => resolvedMethod,
+      () => getUrlAndData()[0],
+    )
+    .setValidationTimeout(validationTimeout)
+
+  if (validateFiles) {
+    form.validateFiles()
+  }
+
+  if (withAllErrors ?? config.get('form.withAllErrors')) {
+    form.withAllErrors()
+  }
+
+  form.transform(getTransformedData)
+
+  const formElement = useRef<HTMLFormElement>(null)
+
+  const resolvedMethod = useMemo(() => {
+    return isUrlMethodPair(action) ? action.method : (method.toLowerCase() as Method)
+  }, [action, method])
+
+  const resolvedComponent = useMemo(() => {
+    if (component) {
+      return component
     }
 
-    const form = useForm<Record<string, any>>({})
-      .withPrecognition(
-        () => resolvedMethod,
-        () => getUrlAndData()[0],
-      )
-      .setValidationTimeout(validationTimeout)
+    if (instant && isUrlMethodPair(action)) {
+      return resolveUrlMethodPairComponent(action)
+    }
 
+    return null
+  }, [component, instant, action])
+
+  const [isDirty, setIsDirty] = useState(false)
+  const defaultData = useRef<FormData>(new FormData())
+
+  const getFormData = (submitter?: FormSubmitter): FormData =>
+    formElement.current ? new FormData(formElement.current, submitter) : new FormData()
+
+  // Convert the FormData to an object because we can't compare two FormData
+  // instances directly (which is needed for isDirty), mergeDataIntoQueryString()
+  // expects an object, and submitting a FormData instance directly causes problems with nested objects.
+  const getData = (submitter?: FormSubmitter): Record<string, FormDataConvertible> =>
+    formDataToObject(getFormData(submitter))
+
+  const getUrlAndData = (submitter?: FormSubmitter): [string, Record<string, FormDataConvertible>] => {
+    return mergeDataIntoQueryString(
+      resolvedMethod,
+      isUrlMethodPair(action) ? action.url : action,
+      getData(submitter),
+      queryStringArrayFormat,
+    )
+  }
+
+  const updateDirtyState = (event: Event) => {
+    if (event.type === 'reset' && (event as CustomEvent).detail?.[FormComponentResetSymbol]) {
+      // When the form is reset programmatically, prevent native reset behavior
+      event.preventDefault()
+    }
+
+    startTransition(() =>
+      setIsDirty(event.type === 'reset' ? false : !isEqual(getData(), formDataToObject(defaultData.current!))),
+    )
+  }
+
+  const clearErrors = (...names: string[]) => {
+    form.clearErrors(...names)
+
+    return form
+  }
+
+  useEffect(() => {
+    defaultData.current = getFormData()
+
+    form.setDefaults(getData())
+
+    const formEvents: Array<keyof HTMLElementEventMap> = ['input', 'change', 'reset']
+
+    formEvents.forEach((e) => formElement.current!.addEventListener(e, updateDirtyState))
+
+    return () => {
+      formEvents.forEach((e) => formElement.current?.removeEventListener(e, updateDirtyState))
+    }
+  }, [])
+
+  useEffect(() => {
+    form.setValidationTimeout(validationTimeout)
+  }, [validationTimeout])
+
+  useEffect(() => {
     if (validateFiles) {
       form.validateFiles()
+    } else {
+      form.withoutFileValidation()
+    }
+  }, [validateFiles])
+
+  const reset = (...fields: string[]) => {
+    if (formElement.current) {
+      resetFormFields(formElement.current, defaultData.current!, fields)
     }
 
-    if (withAllErrors ?? config.get('form.withAllErrors')) {
-      form.withAllErrors()
+    form.reset(...fields)
+  }
+
+  const resetAndClearErrors = (...fields: string[]) => {
+    clearErrors(...fields)
+    reset(...fields)
+  }
+
+  const maybeReset = (resetOption: boolean | string[]) => {
+    if (!resetOption) {
+      return
     }
 
+    if (resetOption === true) {
+      reset()
+    } else if (resetOption.length > 0) {
+      reset(...resetOption)
+    }
+  }
+
+  const submit = (submitter?: FormSubmitter) => {
+    const [url, data] = getUrlAndData(submitter)
+    const formTarget = (submitter as HTMLButtonElement | HTMLInputElement | null)?.getAttribute('formtarget')
+
+    if (formTarget === '_blank' && resolvedMethod === 'get') {
+      window.open(url, '_blank')
+      return
+    }
+
+    const submitOptions: FormSubmitOptions = {
+      headers,
+      queryStringArrayFormat,
+      errorBag,
+      showProgress,
+      invalidateCacheTags,
+      component: resolvedComponent,
+      optimistic: optimistic ? (pageProps) => optimistic(pageProps, data) : undefined,
+      onCancelToken,
+      onBefore,
+      onStart,
+      onProgress,
+      onFinish,
+      onCancel,
+      onSuccess: async (...args) => {
+        const result = await onSuccess(...args)
+        onSubmitComplete({
+          reset,
+          defaults,
+        })
+        maybeReset(resetOnSuccess)
+
+        if (setDefaultsOnSuccess === true) {
+          defaults()
+        }
+
+        return result
+      },
+      onError(...args) {
+        onError(...args)
+        maybeReset(resetOnError)
+      },
+      ...options,
+    }
+
+    // We need transform because we can't override the default data with different keys (by design)
+    form.transform(() => transform(data))
+    form.submit(resolvedMethod, url, submitOptions)
+
+    // Reset the transformer back so the submitter is not used for future submissions
     form.transform(getTransformedData)
+  }
 
-    const formElement = useRef<HTMLFormElement>(null)
+  const defaults = () => {
+    defaultData.current = getFormData()
+    setIsDirty(false)
+  }
 
-    const resolvedMethod = useMemo(() => {
-      return isUrlMethodPair(action) ? action.method : (method.toLowerCase() as Method)
-    }, [action, method])
+  const exposed: FormComponentSlotProps = {
+    errors: form.errors,
+    hasErrors: form.hasErrors,
+    processing: form.processing,
+    progress: form.progress,
+    wasSuccessful: form.wasSuccessful,
+    recentlySuccessful: form.recentlySuccessful,
+    isDirty,
+    clearErrors,
+    resetAndClearErrors,
+    setError: form.setError,
+    reset,
+    submit,
+    defaults,
+    getData,
+    getFormData,
 
-    const resolvedComponent = useMemo(() => {
-      if (component) {
-        return component
-      }
+    // Precognition
+    validator: () => form.validator(),
+    validating: form.validating,
+    valid: form.valid,
+    invalid: form.invalid,
+    validate: (field?: string | NamedInputEvent | ValidationConfig, config?: ValidationConfig) =>
+      form.validate(...UseFormUtils.mergeHeadersForValidation(field, config, headers)),
+    touch: form.touch,
+    touched: form.touched,
+  }
 
-      if (instant && isUrlMethodPair(action)) {
-        return resolveUrlMethodPairComponent(action)
-      }
-
-      return null
-    }, [component, instant, action])
-
-    const [isDirty, setIsDirty] = useState(false)
-    const defaultData = useRef<FormData>(new FormData())
-
-    const getFormData = (submitter?: FormSubmitter): FormData =>
-      formElement.current ? new FormData(formElement.current, submitter) : new FormData()
-
-    // Convert the FormData to an object because we can't compare two FormData
-    // instances directly (which is needed for isDirty), mergeDataIntoQueryString()
-    // expects an object, and submitting a FormData instance directly causes problems with nested objects.
-    const getData = (submitter?: FormSubmitter): Record<string, FormDataConvertible> =>
-      formDataToObject(getFormData(submitter))
-
-    const getUrlAndData = (submitter?: FormSubmitter): [string, Record<string, FormDataConvertible>] => {
-      return mergeDataIntoQueryString(
-        resolvedMethod,
-        isUrlMethodPair(action) ? action.url : action,
-        getData(submitter),
-        queryStringArrayFormat,
-      )
-    }
-
-    const updateDirtyState = (event: Event) => {
-      if (event.type === 'reset' && (event as CustomEvent).detail?.[FormComponentResetSymbol]) {
-        // When the form is reset programmatically, prevent native reset behavior
-        event.preventDefault()
-      }
-
-      startTransition(() =>
-        setIsDirty(event.type === 'reset' ? false : !isEqual(getData(), formDataToObject(defaultData.current!))),
-      )
-    }
-
-    const clearErrors = (...names: string[]) => {
-      form.clearErrors(...names)
-
-      return form
-    }
-
-    useEffect(() => {
-      defaultData.current = getFormData()
-
-      form.setDefaults(getData())
-
-      const formEvents: Array<keyof HTMLElementEventMap> = ['input', 'change', 'reset']
-
-      formEvents.forEach((e) => formElement.current!.addEventListener(e, updateDirtyState))
+  if (ref) {
+    useLayoutEffect(() => {
+      ref.current = exposed
 
       return () => {
-        formEvents.forEach((e) => formElement.current?.removeEventListener(e, updateDirtyState))
+        ref.current = null
       }
-    }, [])
+    }, [form, isDirty, submit])
+  }
 
-    useEffect(() => {
-      form.setValidationTimeout(validationTimeout)
-    }, [validationTimeout])
+  const formNode = (
+    <form
+      {...props}
+      ref={formElement}
+      action={isUrlMethodPair(action) ? action.url : action}
+      method={resolvedMethod as 'get' | 'post' | 'dialog'}
+      onSubmit={(event) => {
+        event.preventDefault()
+        submit((event as SubmitEvent).submitter)
+      }}
+      inert={disableWhileProcessing && form.processing}
+    >
+      {typeof children === 'function' ? children(exposed) : children}
+    </form>
+  )
 
-    useEffect(() => {
-      if (validateFiles) {
-        form.validateFiles()
-      } else {
-        form.withoutFileValidation()
-      }
-    }, [validateFiles])
-
-    const reset = (...fields: string[]) => {
-      if (formElement.current) {
-        resetFormFields(formElement.current, defaultData.current!, fields)
-      }
-
-      form.reset(...fields)
-    }
-
-    const resetAndClearErrors = (...fields: string[]) => {
-      clearErrors(...fields)
-      reset(...fields)
-    }
-
-    const maybeReset = (resetOption: boolean | string[]) => {
-      if (!resetOption) {
-        return
-      }
-
-      if (resetOption === true) {
-        reset()
-      } else if (resetOption.length > 0) {
-        reset(...resetOption)
-      }
-    }
-
-    const submit = (submitter?: FormSubmitter) => {
-      const [url, data] = getUrlAndData(submitter)
-      const formTarget = (submitter as HTMLButtonElement | HTMLInputElement | null)?.getAttribute('formtarget')
-
-      if (formTarget === '_blank' && resolvedMethod === 'get') {
-        window.open(url, '_blank')
-        return
-      }
-
-      const submitOptions: FormSubmitOptions = {
-        headers,
-        queryStringArrayFormat,
-        errorBag,
-        showProgress,
-        invalidateCacheTags,
-        component: resolvedComponent,
-        optimistic: optimistic ? (pageProps) => optimistic(pageProps, data) : undefined,
-        onCancelToken,
-        onBefore,
-        onStart,
-        onProgress,
-        onFinish,
-        onCancel,
-        onSuccess: async (...args) => {
-          const result = await onSuccess(...args)
-          onSubmitComplete({
-            reset,
-            defaults,
-          })
-          maybeReset(resetOnSuccess)
-
-          if (setDefaultsOnSuccess === true) {
-            defaults()
-          }
-
-          return result
-        },
-        onError(...args) {
-          onError(...args)
-          maybeReset(resetOnError)
-        },
-        ...options,
-      }
-
-      // We need transform because we can't override the default data with different keys (by design)
-      form.transform(() => transform(data))
-      form.submit(resolvedMethod, url, submitOptions)
-
-      // Reset the transformer back so the submitter is not used for future submissions
-      form.transform(getTransformedData)
-    }
-
-    const defaults = () => {
-      defaultData.current = getFormData()
-      setIsDirty(false)
-    }
-
-    const exposed: FormComponentSlotProps = {
-      errors: form.errors,
-      hasErrors: form.hasErrors,
-      processing: form.processing,
-      progress: form.progress,
-      wasSuccessful: form.wasSuccessful,
-      recentlySuccessful: form.recentlySuccessful,
-      isDirty,
-      clearErrors,
-      resetAndClearErrors,
-      setError: form.setError,
-      reset,
-      submit,
-      defaults,
-      getData,
-      getFormData,
-
-      // Precognition
-      validator: () => form.validator(),
-      validating: form.validating,
-      valid: form.valid,
-      invalid: form.invalid,
-      validate: (field?: string | NamedInputEvent | ValidationConfig, config?: ValidationConfig) =>
-        form.validate(...UseFormUtils.mergeHeadersForValidation(field, config, headers)),
-      touch: form.touch,
-      touched: form.touched,
-    }
-
-    if (ref) {
-      useLayoutEffect(() => {
-        ref.current = exposed
-
-        return () => {
-          ref.current = null
-        }
-      }, [form, isDirty, submit])
-    }
-
-    const formNode = (
-      <form
-        {...props}
-        ref={formElement}
-        action={isUrlMethodPair(action) ? action.url : action}
-        method={resolvedMethod as 'get' | 'post' | 'dialog'}
-        onSubmit={(event) => {
-          event.preventDefault()
-          submit((event as SubmitEvent).submitter)
-        }}
-        inert={disableWhileProcessing && form.processing}
-      >
-        {typeof children === 'function' ? children(exposed) : children}
-      </form>
-    )
-
-    return <FormContext.Provider value={exposed}>{formNode}</FormContext.Provider>
+  return <FormContext.Provider value={exposed}>{formNode}</FormContext.Provider>
 }
 
 Form.displayName = 'InertiaForm'

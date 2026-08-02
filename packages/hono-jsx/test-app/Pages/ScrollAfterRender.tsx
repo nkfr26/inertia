@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/hono-jsx'
+import { Link } from '@nkfr26/inertia-hono-jsx'
 
 let originalScrollTo: typeof window.scrollTo | null = null
 

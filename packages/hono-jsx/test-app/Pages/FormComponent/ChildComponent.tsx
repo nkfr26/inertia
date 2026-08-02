@@ -1,4 +1,4 @@
-import { Form } from '@inertiajs/hono-jsx'
+import { Form } from '@nkfr26/inertia-hono-jsx'
 import { useMemo, useState } from 'hono/jsx'
 
 const ChildElement = ({ name }: { name: string }) => {
@@ -8,7 +8,12 @@ const ChildElement = ({ name }: { name: string }) => {
   return (
     <div>
       <label htmlFor={name}>Child Input</label>
-      <input id={name} name={name} value={transformedState} onChange={(e) => setInternalState((e.target as HTMLInputElement).value)} />
+      <input
+        id={name}
+        name={name}
+        value={transformedState}
+        onChange={(e) => setInternalState((e.target as HTMLInputElement).value)}
+      />
     </div>
   )
 }

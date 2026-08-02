@@ -1,4 +1,4 @@
-import { router, usePage } from '@inertiajs/hono-jsx'
+import { router, usePage } from '@nkfr26/inertia-hono-jsx'
 import { useRef, useState } from 'hono/jsx'
 
 export default ({ count }: { count: number }) => {

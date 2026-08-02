@@ -1,5 +1,5 @@
 import type { Method, QueryStringArrayFormatOption } from '@inertiajs/core'
-import { Form } from '@inertiajs/hono-jsx'
+import { Form } from '@nkfr26/inertia-hono-jsx'
 import { useMemo, useState } from 'hono/jsx'
 import Article from './../Article'
 

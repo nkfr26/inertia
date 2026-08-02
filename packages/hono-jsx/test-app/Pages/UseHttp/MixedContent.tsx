@@ -1,4 +1,4 @@
-import { useHttp } from '@inertiajs/hono-jsx'
+import { useHttp } from '@nkfr26/inertia-hono-jsx'
 import { useState } from 'hono/jsx'
 
 interface MixedContentResponse {
@@ -74,7 +74,9 @@ export default () => {
             type="text"
             id="mixed-user-name"
             value={mixedContent.data.user.name}
-            onChange={(e) => mixedContent.setData('user', { ...mixedContent.data.user, name: (e.target as HTMLInputElement).value })}
+            onChange={(e) =>
+              mixedContent.setData('user', { ...mixedContent.data.user, name: (e.target as HTMLInputElement).value })
+            }
           />
         </label>
         <label>
@@ -83,7 +85,9 @@ export default () => {
             type="email"
             id="mixed-user-email"
             value={mixedContent.data.user.email}
-            onChange={(e) => mixedContent.setData('user', { ...mixedContent.data.user, email: (e.target as HTMLInputElement).value })}
+            onChange={(e) =>
+              mixedContent.setData('user', { ...mixedContent.data.user, email: (e.target as HTMLInputElement).value })
+            }
           />
         </label>
         <label>

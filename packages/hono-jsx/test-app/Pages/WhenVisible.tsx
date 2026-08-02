@@ -1,4 +1,4 @@
-import { WhenVisible } from '@inertiajs/hono-jsx'
+import { WhenVisible } from '@nkfr26/inertia-hono-jsx'
 import { useState } from 'hono/jsx'
 
 const Foo = ({ label }: { label: string }) => {

@@ -1,5 +1,5 @@
 import type { CancelToken, Errors, HttpProgressEvent, Page, PendingVisit } from '@inertiajs/core'
-import { useForm, usePage } from '@inertiajs/hono-jsx'
+import { useForm, usePage } from '@nkfr26/inertia-hono-jsx'
 import { useLayoutEffect } from 'hono/jsx'
 
 declare global {

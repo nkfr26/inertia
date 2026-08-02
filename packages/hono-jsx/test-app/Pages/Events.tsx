@@ -1,5 +1,5 @@
+import { Link, router, usePage } from '@nkfr26/inertia-hono-jsx'
 import type { MouseEvent } from 'hono/jsx'
-import { Link, router, usePage } from '@inertiajs/hono-jsx'
 
 declare global {
   interface Window {

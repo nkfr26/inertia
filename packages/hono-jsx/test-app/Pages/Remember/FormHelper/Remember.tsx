@@ -1,4 +1,4 @@
-import { Link, useForm } from '@inertiajs/hono-jsx'
+import { Link, useForm } from '@nkfr26/inertia-hono-jsx'
 import { useState } from 'hono/jsx'
 
 export default () => {

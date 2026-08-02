@@ -1,5 +1,5 @@
 import type { Method } from '@inertiajs/core'
-import { usePage } from '@inertiajs/hono-jsx'
+import { usePage } from '@nkfr26/inertia-hono-jsx'
 import { useEffect, useMemo } from 'hono/jsx'
 import type { MulterFile } from '../types'
 

@@ -1,5 +1,5 @@
 // This file is used for checking the TypeScript implementation; there is no Playwright test depending on it.
-import { type ResolvedComponent, createInertiaApp } from '@inertiajs/hono-jsx'
+import { type ResolvedComponent, createInertiaApp } from '@nkfr26/inertia-hono-jsx'
 
 declare module '@inertiajs/core' {
   export interface InertiaConfig {

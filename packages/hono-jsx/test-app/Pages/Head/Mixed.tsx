@@ -1,4 +1,4 @@
-import { Head, Link } from '@inertiajs/hono-jsx'
+import { Head, Link } from '@nkfr26/inertia-hono-jsx'
 
 export default () => {
   return (

@@ -1,5 +1,5 @@
 {
-  "name": "@inertiajs/hono-jsx",
+  "name": "@nkfr26/inertia-hono-jsx",
   "version": "3.6.1",
   "license": "MIT",
   "description": "The Hono JSX adapter for Inertia.js",

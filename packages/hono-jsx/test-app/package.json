@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@inertiajs/core": "workspace:*",
-    "@inertiajs/hono-jsx": "workspace:*",
+    "@nkfr26/inertia-hono-jsx": "workspace:*",
     "@inertiajs/vite": "workspace:*"
   }
 }

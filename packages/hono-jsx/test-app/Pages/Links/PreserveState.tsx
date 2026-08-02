@@ -1,6 +1,6 @@
-import type { Child } from 'hono/jsx'
 import type { Page } from '@inertiajs/core'
-import { Link } from '@inertiajs/hono-jsx'
+import { Link } from '@nkfr26/inertia-hono-jsx'
+import type { Child } from 'hono/jsx'
 import { useId } from 'hono/jsx'
 import WithoutScrollRegion from '@/Layouts/WithoutScrollRegion.jsx'
 

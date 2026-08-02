@@ -1,5 +1,5 @@
 import { FormComponentRef } from '@inertiajs/core'
-import { Form } from '@inertiajs/hono-jsx'
+import { Form } from '@nkfr26/inertia-hono-jsx'
 import { useRef } from 'hono/jsx'
 
 declare global {

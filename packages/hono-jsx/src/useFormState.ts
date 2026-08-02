@@ -12,6 +12,7 @@ import {
 } from '@inertiajs/core'
 import { cloneDeep, isEqual } from 'es-toolkit'
 import { get, has, set } from 'es-toolkit/compat'
+import { RefObject, useCallback, useEffect, useRef, useState } from 'hono/jsx'
 import {
   createValidator,
   NamedInputEvent,
@@ -20,7 +21,6 @@ import {
   ValidationConfig,
   Validator,
 } from 'laravel-precognition'
-import { RefObject, useCallback, useEffect, useRef, useState } from 'hono/jsx'
 import { config } from '.'
 import { Dispatch, SetStateAction } from './types'
 

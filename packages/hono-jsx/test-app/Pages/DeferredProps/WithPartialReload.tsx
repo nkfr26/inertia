@@ -1,4 +1,4 @@
-import { Deferred, Link, router, usePage } from '@inertiajs/hono-jsx'
+import { Deferred, Link, router, usePage } from '@nkfr26/inertia-hono-jsx'
 
 const WithPartialReload = ({ withOnly, withExcept }: { withOnly?: string[]; withExcept?: string[] }) => {
   const handleTriggerPartialReload = () => {

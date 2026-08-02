@@ -1,5 +1,5 @@
 import type { VisitOptions } from '@inertiajs/core'
-import { createInertiaApp, type ResolvedComponent, router } from '@inertiajs/hono-jsx'
+import { createInertiaApp, type ResolvedComponent, router } from '@nkfr26/inertia-hono-jsx'
 import { createElement } from 'hono/jsx'
 import { WithAppContext } from './Pages/SSR/WithApp'
 

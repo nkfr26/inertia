@@ -1,4 +1,4 @@
-import { Link, usePage } from '@inertiajs/hono-jsx'
+import { Link, usePage } from '@nkfr26/inertia-hono-jsx'
 import SiteLayout from '@/Layouts/SiteLayout'
 
 const PageB = () => {

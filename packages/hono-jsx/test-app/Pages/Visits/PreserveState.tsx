@@ -1,5 +1,5 @@
+import { router } from '@nkfr26/inertia-hono-jsx'
 import type { MouseEvent } from 'hono/jsx'
-import { router } from '@inertiajs/hono-jsx'
 import { useId } from 'hono/jsx'
 
 export default ({ foo = 'default' }) => {

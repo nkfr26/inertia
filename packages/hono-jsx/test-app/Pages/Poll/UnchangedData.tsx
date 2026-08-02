@@ -1,4 +1,4 @@
-import { usePoll } from '@inertiajs/hono-jsx'
+import { usePoll } from '@nkfr26/inertia-hono-jsx'
 import { useLayoutEffect, useState } from 'hono/jsx'
 
 export default () => {

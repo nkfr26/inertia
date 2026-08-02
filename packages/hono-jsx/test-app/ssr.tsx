@@ -1,5 +1,5 @@
-import { createInertiaApp, type ResolvedComponent } from '@inertiajs/hono-jsx'
-import createServer from '@inertiajs/hono-jsx/server'
+import { createInertiaApp, type ResolvedComponent } from '@nkfr26/inertia-hono-jsx'
+import createServer from '@nkfr26/inertia-hono-jsx/server'
 import HonoJsxDOMServer from 'hono/jsx/dom/server'
 
 createServer((page) =>

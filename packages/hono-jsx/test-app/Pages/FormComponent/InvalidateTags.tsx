@@ -1,5 +1,5 @@
-import { Link } from '@inertiajs/hono-jsx'
-import { Form } from '@inertiajs/hono-jsx'
+import { Link } from '@nkfr26/inertia-hono-jsx'
+import { Form } from '@nkfr26/inertia-hono-jsx'
 
 export default ({ lastLoaded, propType }: { lastLoaded: number; propType: string }) => {
   return (

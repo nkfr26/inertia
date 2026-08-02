@@ -14,5 +14,5 @@ export type HonoJsxInertiaAppConfig = {
   strictMode?: boolean
 }
 
+export type SetStateAction<S> = S | ((prevState: S) => S)
 export type Dispatch<A> = (value: A) => void
-export type SetStateAction<T> = T | ((prevState: T) => T)

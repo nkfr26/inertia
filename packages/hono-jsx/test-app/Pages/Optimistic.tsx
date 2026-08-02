@@ -1,4 +1,4 @@
-import { router, useForm } from '@inertiajs/hono-jsx'
+import { router, useForm } from '@nkfr26/inertia-hono-jsx'
 import { useState } from 'hono/jsx'
 
 interface Todo {

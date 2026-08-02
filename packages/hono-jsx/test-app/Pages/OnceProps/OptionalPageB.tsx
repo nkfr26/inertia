@@ -1,4 +1,4 @@
-import { Link, router } from '@inertiajs/hono-jsx'
+import { Link, router } from '@nkfr26/inertia-hono-jsx'
 
 export default ({ foo, bar }: { foo?: string; bar: string }) => {
   return (

@@ -1,4 +1,4 @@
-import { config, useForm } from '@inertiajs/hono-jsx'
+import { config, useForm } from '@nkfr26/inertia-hono-jsx'
 
 export default () => {
   // Set global config for withAllErrors (no .withAllErrors() call on the form)

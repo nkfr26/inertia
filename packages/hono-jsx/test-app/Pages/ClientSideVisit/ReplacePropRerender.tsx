@@ -1,4 +1,4 @@
-import { router } from '@inertiajs/hono-jsx'
+import { router } from '@nkfr26/inertia-hono-jsx'
 import { memo, useRef } from 'hono/jsx'
 
 const MemoChild = memo(({ prefix, item }: { prefix: string; item: { label: string } }) => {

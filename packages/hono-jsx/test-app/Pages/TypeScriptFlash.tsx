@@ -1,5 +1,5 @@
 // This component is used for checking the TypeScript implementation; there is no Playwright test depending on it.
-import { router, usePage } from '@inertiajs/hono-jsx'
+import { router, usePage } from '@nkfr26/inertia-hono-jsx'
 
 declare module '@inertiajs/core' {
   export interface InertiaConfig {

@@ -1,11 +1,11 @@
-import { createInertiaApp, type ResolvedComponent } from '@inertiajs/hono-jsx'
+import { createInertiaApp, type ResolvedComponent } from '@nkfr26/inertia-hono-jsx'
 import { createElement } from 'hono/jsx'
 import { WithAppContext } from './Pages/SSR/WithApp'
 
 // This file uses createInertiaApp as a standalone expression (not exported)
 // The Vite plugin SSR transform will automatically:
 // 1. Wrap this with server bootstrap code
-// 2. Import and use the React server renderer
+// 2. Import and use the Hono JSX server renderer
 // 3. Export a default render function
 
 createInertiaApp<{ locale?: string }>({

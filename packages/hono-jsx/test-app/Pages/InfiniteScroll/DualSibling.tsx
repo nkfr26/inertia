@@ -1,4 +1,4 @@
-import { InfiniteScroll } from '@inertiajs/hono-jsx'
+import { InfiniteScroll } from '@nkfr26/inertia-hono-jsx'
 import UserCard, { User } from './UserCard'
 
 interface Props {

@@ -1,4 +1,4 @@
-import { InfiniteScroll } from '@inertiajs/hono-jsx'
+import { InfiniteScroll } from '@nkfr26/inertia-hono-jsx'
 import { useRef } from 'hono/jsx'
 import { User } from './UserCard'
 
@@ -9,7 +9,7 @@ export default ({ users }: { users: { data: User[] } }) => {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h1>Custom Triggers with React Ref Objects Test</h1>
+      <h1>Custom Triggers with Hono JSX Ref Objects Test</h1>
 
       <InfiniteScroll data="users" startElement={tableHeader} endElement={tableFooter} itemsElement={tableBody}>
         {({ loadingPrevious, loadingNext }) => (

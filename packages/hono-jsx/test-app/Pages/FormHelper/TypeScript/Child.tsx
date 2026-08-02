@@ -1,6 +1,5 @@
-import type { Child } from 'hono/jsx'
 // This component is used for checking the TypeScript implementation; there is no Playwright test depending on it.
-import type { InertiaFormProps } from '@inertiajs/hono-jsx'
+import type { InertiaFormProps } from '@nkfr26/inertia-hono-jsx'
 
 interface ChildProps {
   form: InertiaFormProps<{

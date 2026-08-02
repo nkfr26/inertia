@@ -1,4 +1,4 @@
-import { router } from '@inertiajs/hono-jsx'
+import { router } from '@nkfr26/inertia-hono-jsx'
 
 export default () => {
   const invalidVisit = () => {

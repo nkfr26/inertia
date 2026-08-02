@@ -1,4 +1,4 @@
-import { InfiniteScroll } from '@inertiajs/hono-jsx'
+import { InfiniteScroll } from '@nkfr26/inertia-hono-jsx'
 import { useLayoutEffect, useState } from 'hono/jsx'
 import { flushSync } from 'hono/jsx/dom'
 import UserCard, { User } from './UserCard'

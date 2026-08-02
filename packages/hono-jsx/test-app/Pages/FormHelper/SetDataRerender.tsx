@@ -1,4 +1,4 @@
-import { InertiaFormProps, useForm } from '@inertiajs/hono-jsx'
+import { InertiaFormProps, useForm } from '@nkfr26/inertia-hono-jsx'
 import { memo, useRef } from 'hono/jsx'
 
 const MemoizedDisplay = memo(({ form }: { form: InertiaFormProps<{ position: string }> }) => {

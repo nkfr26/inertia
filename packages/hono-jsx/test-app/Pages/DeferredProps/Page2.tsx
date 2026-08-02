@@ -1,4 +1,4 @@
-import { Deferred, Link, usePage } from '@inertiajs/hono-jsx'
+import { Deferred, Link, usePage } from '@nkfr26/inertia-hono-jsx'
 
 const Baz = () => {
   const { baz } = usePage<{ baz?: string }>().props

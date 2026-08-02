@@ -11,6 +11,7 @@ import {
 import {
   Child,
   createElement,
+  JSX,
   RefObject,
   useCallback,
   useEffect,
@@ -19,7 +20,6 @@ import {
   useRef,
   useState,
 } from 'hono/jsx'
-import type { JSX as HonoJSX } from 'hono/jsx'
 import usePage from './usePage'
 
 const resolveHTMLElement = (
@@ -61,7 +61,7 @@ type InfiniteScrollRefProp = RefObject<InfiniteScrollRef> | ((instance: Infinite
 interface ComponentProps
   extends
     InfiniteScrollComponentBaseProps,
-    Omit<HonoJSX.HTMLAttributes, keyof InfiniteScrollComponentBaseProps | 'children'> {
+    Omit<JSX.HTMLAttributes, keyof InfiniteScrollComponentBaseProps | 'children'> {
   children?: Child | ((props: InfiniteScrollSlotProps) => Child)
 
   // Element references for custom trigger detection (when you want different trigger elements)
@@ -353,10 +353,9 @@ const InfiniteScroll = ({
     )
   }
 
-  return <>{...(reverse ? [...renderElements].reverse() : renderElements)}</>
+  return <>{...reverse ? [...renderElements].reverse() : renderElements}</>
 }
 
 InfiniteScroll.displayName = 'InertiaInfiniteScroll'
 
 export default InfiniteScroll
-
