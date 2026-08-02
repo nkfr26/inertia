@@ -1,7 +1,7 @@
 /**
- * hono-jsx Framework Configuration
+ * Hono JSX Framework Configuration
  *
- * This file defines how the Vite plugin handles hono-jsx applications.
+ * This file defines how the Vite plugin handles Hono JSX applications.
  * It serves as a reference for creating custom framework configurations.
  *
  * The SSR template shows what the plugin generates. For a user's SSR entry:
@@ -34,14 +34,14 @@
 import type { FrameworkConfig } from '../types'
 
 export const config: FrameworkConfig = {
-  // Package name used to detect hono/jsx usage via import statements
+  // Package name used to detect Hono JSX usage via import statements
   package: '@inertiajs/hono-jsx',
 
-  // hono/jsx components can use either .tsx (TypeScript) or .jsx
+  // Hono JSX components can use either .tsx (TypeScript) or .jsx
   // The plugin tries .tsx first, then falls back to .jsx
   extensions: ['.tsx', '.jsx'],
 
-  // hono/jsx components are exported as `export default`, so we need to extract .default
+  // Hono JSX components are exported as `export default`, so we need to extract .default
   extractDefault: true,
 
   // SSR template that wraps the createInertiaApp call with server bootstrap code
