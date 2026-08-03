@@ -15,7 +15,7 @@ export default defineConfig({
   plugins: [
     inertia({
       ssr: {
-        port: 13718,
+        port: 13719,
       },
     }),
     vue({

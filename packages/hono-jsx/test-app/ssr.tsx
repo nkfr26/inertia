@@ -1,11 +1,11 @@
 import { createInertiaApp, type ResolvedComponent } from '@inertiajs/hono-jsx'
 import createServer from '@inertiajs/hono-jsx/server'
-import ReactDOMServer from 'hono/jsx/dom/server'
+import HonoJsxDOMServer from 'hono/jsx/dom/server'
 
 createServer((page) =>
   createInertiaApp({
     page,
-    render: ReactDOMServer.renderToString,
+    render: HonoJsxDOMServer.renderToString,
     serverHead: (page) => page.props.head as string[],
     resolve: (name) => {
       const pages = import.meta.glob<ResolvedComponent>('./Pages/SSR/**/*.tsx', { eager: true })

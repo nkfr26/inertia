@@ -17,7 +17,7 @@ export default defineConfig({
   plugins: [
     inertia({
       ssr: {
-        port: 13720,
+        port: 13721,
       },
     }),
     svelte({

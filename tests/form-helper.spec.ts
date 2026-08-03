@@ -1120,7 +1120,7 @@ test('it returns a stable reference that does not cause infinite re-renders in d
 })
 
 test.describe('React', () => {
-  test.skip(process.env.PACKAGE !== 'react', 'Only for React')
+  test.skip(process.env.PACKAGE !== 'react' && process.env.PACKAGE !== 'hono-jsx', 'Only for React')
 
   test('it re-renders the component when setData is called programmatically', async ({ page }) => {
     await page.goto('/form-helper/set-data-rerender')
