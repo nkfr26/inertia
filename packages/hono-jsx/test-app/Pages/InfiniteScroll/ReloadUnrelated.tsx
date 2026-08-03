@@ -1,4 +1,4 @@
-import { InfiniteScroll, router } from '@inertiajs/hono-jsx'
+import { InfiniteScroll, router } from '@nkfr26/inertia-hono-jsx'
 import UserCard, { User } from './UserCard'
 
 export default ({ users, time }: { users: { data: User[] }; time: number }) => {

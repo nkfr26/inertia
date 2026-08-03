@@ -1,4 +1,4 @@
-import { useHttp } from '@inertiajs/hono-jsx'
+import { useHttp } from '@nkfr26/inertia-hono-jsx'
 
 export default () => {
   const optimisticForm = useHttp<{ name: string }, { success: boolean; id: number; name: string }>({

@@ -1,5 +1,5 @@
+import { Head, Link, router } from '@nkfr26/inertia-hono-jsx'
 import type { MouseEvent } from 'hono/jsx'
-import { Head, Link, router } from '@inertiajs/hono-jsx'
 
 export default (props: { example: string }) => {
   const visitsMethod = (e: MouseEvent) => {

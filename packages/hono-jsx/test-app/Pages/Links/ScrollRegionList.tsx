@@ -1,6 +1,6 @@
-import type { Child } from 'hono/jsx'
 import { VisitHelperOptions } from '@inertiajs/core'
-import { router } from '@inertiajs/hono-jsx'
+import { router } from '@nkfr26/inertia-hono-jsx'
+import type { Child } from 'hono/jsx'
 import WithScrollRegion from '@/Layouts/WithScrollRegion.jsx'
 
 const ScrollRegionList = ({ user_id }: { user_id?: number }) => {

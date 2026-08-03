@@ -1,5 +1,5 @@
 import { QueryStringArrayFormatOption } from '@inertiajs/core'
-import { config, Form } from '@inertiajs/hono-jsx'
+import { config, Form } from '@nkfr26/inertia-hono-jsx'
 
 export default ({
   queryStringArrayFormat,

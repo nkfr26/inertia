@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/hono-jsx'
+import { Link } from '@nkfr26/inertia-hono-jsx'
 import { useEffect } from 'hono/jsx'
 
 export default ({ page }: { page: 'long' | 'short' }) => {

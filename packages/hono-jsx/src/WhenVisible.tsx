@@ -119,9 +119,7 @@ const WhenVisible = ({ children, data, params, buffer, as, always, fallback }: W
   const resolveFallback = () => (typeof fallback === 'function' ? fallback() : fallback)
 
   if (always || !loaded) {
-    return (
-      <>{createElement(as, { props: null, ref }, loaded ? resolveChildren() : resolveFallback())}</>
-    )
+    return <>{createElement(as, { props: null, ref }, loaded ? resolveChildren() : resolveFallback())}</>
   }
 
   return <>{loaded ? resolveChildren() : null}</>

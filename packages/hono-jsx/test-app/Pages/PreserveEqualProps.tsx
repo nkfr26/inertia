@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/hono-jsx'
+import { Link } from '@nkfr26/inertia-hono-jsx'
 import { useEffect, useState } from 'hono/jsx'
 
 export default ({ nestedA, nestedB }: { nestedA: { count: number }; nestedB: { date: number } }) => {

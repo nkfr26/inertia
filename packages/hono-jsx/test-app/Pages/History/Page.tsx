@@ -1,4 +1,4 @@
-import { Link, router } from '@inertiajs/hono-jsx'
+import { Link, router } from '@nkfr26/inertia-hono-jsx'
 
 export default ({ pageNumber, multiByte }: { pageNumber: string; multiByte: string }) => {
   const clearHistory = () => {

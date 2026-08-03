@@ -1,5 +1,5 @@
 // This component is used for checking the TypeScript implementation; there is no Playwright test depending on it.
-import type { LayoutCallback } from '@inertiajs/hono-jsx'
+import type { LayoutCallback } from '@nkfr26/inertia-hono-jsx'
 import AppLayout from '../Layouts/AppLayout'
 
 declare module '@inertiajs/core' {

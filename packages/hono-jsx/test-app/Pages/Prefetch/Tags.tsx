@@ -1,5 +1,5 @@
+import { Link, router, useForm } from '@nkfr26/inertia-hono-jsx'
 import type { MouseEvent } from 'hono/jsx'
-import { Link, router, useForm } from '@inertiajs/hono-jsx'
 
 export default ({ pageNumber, lastLoaded, propType }: { pageNumber: number; lastLoaded: number; propType: string }) => {
   const form = useForm({

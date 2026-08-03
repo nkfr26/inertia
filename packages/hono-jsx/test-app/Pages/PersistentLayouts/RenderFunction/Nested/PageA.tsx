@@ -1,5 +1,5 @@
+import { Link } from '@nkfr26/inertia-hono-jsx'
 import type { Child } from 'hono/jsx'
-import { Link } from '@inertiajs/hono-jsx'
 import NestedLayout from '@/Layouts/NestedLayout.jsx'
 import SiteLayout from '@/Layouts/SiteLayout.jsx'
 

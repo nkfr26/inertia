@@ -1,4 +1,4 @@
-import { setLayoutProps } from '@inertiajs/hono-jsx'
+import { setLayoutProps } from '@nkfr26/inertia-hono-jsx'
 import AppLayout from '../../Layouts/AppLayout'
 import ContentLayout from '../../Layouts/ContentLayout'
 

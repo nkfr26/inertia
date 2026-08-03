@@ -1,4 +1,4 @@
-import { Head, Link, router } from '@inertiajs/hono-jsx'
+import { Head, Link, router } from '@nkfr26/inertia-hono-jsx'
 
 export default ({ foo, next }: { foo: string; next: string }) => {
   const override = new URLSearchParams(window.location.search).has('override')

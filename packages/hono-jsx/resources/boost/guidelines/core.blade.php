@@ -1,3 +1,3 @@
-# Inertia + React
+# Inertia + Hono JSX
 
-- IMPORTANT: Activate `inertia-react-development` when working with Inertia React client-side patterns.
+- IMPORTANT: Activate `inertia-hono-jsx-development` when working with Inertia Hono JSX client-side patterns.

@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/hono-jsx'
+import { Link } from '@nkfr26/inertia-hono-jsx'
 import { useState } from 'hono/jsx'
 
 export default () => {
@@ -10,7 +10,13 @@ export default () => {
     <div>
       <label>
         Full Name
-        <input type="text" id="name" name="full_name" value={name} onChange={(e) => setName((e.target as HTMLInputElement).value)} />
+        <input
+          type="text"
+          id="name"
+          name="full_name"
+          value={name}
+          onChange={(e) => setName((e.target as HTMLInputElement).value)}
+        />
       </label>
       <label>
         Remember Me

@@ -1,4 +1,4 @@
-import { Deferred, router, usePage } from '@inertiajs/hono-jsx'
+import { Deferred, router, usePage } from '@nkfr26/inertia-hono-jsx'
 
 const Results = () => {
   const { results } = usePage<{ results?: { data: string[]; page: number } }>().props

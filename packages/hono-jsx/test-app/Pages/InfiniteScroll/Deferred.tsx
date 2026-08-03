@@ -1,4 +1,4 @@
-import { Deferred, InfiniteScroll, usePage } from '@inertiajs/hono-jsx'
+import { Deferred, InfiniteScroll, usePage } from '@nkfr26/inertia-hono-jsx'
 import UserCard, { User } from './UserCard'
 
 const Users = () => {

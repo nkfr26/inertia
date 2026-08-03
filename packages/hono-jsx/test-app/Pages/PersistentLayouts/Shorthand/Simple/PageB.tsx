@@ -1,5 +1,5 @@
+import { Link, usePage } from '@nkfr26/inertia-hono-jsx'
 import type { Child } from 'hono/jsx'
-import { Link, usePage } from '@inertiajs/hono-jsx'
 import SiteLayout from '@/Layouts/SiteLayout.jsx'
 
 const PageB = () => {

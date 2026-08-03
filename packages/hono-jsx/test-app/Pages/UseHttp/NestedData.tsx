@@ -1,4 +1,4 @@
-import { useHttp } from '@inertiajs/hono-jsx'
+import { useHttp } from '@nkfr26/inertia-hono-jsx'
 import { useState } from 'hono/jsx'
 
 interface NestedResponse {
@@ -54,7 +54,9 @@ export default () => {
             type="text"
             id="nested-user-name"
             value={nestedData.data.user.name}
-            onChange={(e) => nestedData.setData('user', { ...nestedData.data.user, name: (e.target as HTMLInputElement).value })}
+            onChange={(e) =>
+              nestedData.setData('user', { ...nestedData.data.user, name: (e.target as HTMLInputElement).value })
+            }
           />
         </label>
         <label>

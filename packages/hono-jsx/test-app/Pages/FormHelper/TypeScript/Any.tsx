@@ -1,5 +1,5 @@
 // This component is used for checking the TypeScript implementation; there is no Playwright test depending on it.
-import { useForm } from '@inertiajs/hono-jsx'
+import { useForm } from '@nkfr26/inertia-hono-jsx'
 
 export default function Any() {
   const form = useForm<{ name: any }>({ name: null }) // eslint-disable-line @typescript-eslint/no-explicit-any

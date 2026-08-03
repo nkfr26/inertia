@@ -1,5 +1,5 @@
 import { InfiniteScrollRef } from '@inertiajs/core'
-import { InfiniteScroll } from '@inertiajs/hono-jsx'
+import { InfiniteScroll } from '@nkfr26/inertia-hono-jsx'
 import { useCallback, useEffect, useState } from 'hono/jsx'
 import UserCard, { User } from './UserCard'
 

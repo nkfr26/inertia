@@ -1,5 +1,5 @@
+import { Link } from '@nkfr26/inertia-hono-jsx'
 import type { Child } from 'hono/jsx'
-import { Link } from '@inertiajs/hono-jsx'
 import { useRef } from 'hono/jsx'
 
 declare global {

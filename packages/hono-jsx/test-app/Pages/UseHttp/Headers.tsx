@@ -1,4 +1,4 @@
-import { useHttp } from '@inertiajs/hono-jsx'
+import { useHttp } from '@nkfr26/inertia-hono-jsx'
 import { useState } from 'hono/jsx'
 
 interface HeadersResponse {

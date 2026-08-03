@@ -1,4 +1,4 @@
-import { Deferred, router } from '@inertiajs/hono-jsx'
+import { Deferred, router } from '@nkfr26/inertia-hono-jsx'
 import { useEffect } from 'hono/jsx'
 
 export default ({ foo, bar }: { foo?: { text: string }; bar?: { text: string } }) => {

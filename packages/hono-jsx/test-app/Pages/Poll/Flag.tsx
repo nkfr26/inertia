@@ -1,4 +1,4 @@
-import { router, usePoll } from '@inertiajs/hono-jsx'
+import { router, usePoll } from '@nkfr26/inertia-hono-jsx'
 import { useState } from 'hono/jsx'
 
 export default () => {

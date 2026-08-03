@@ -1,4 +1,4 @@
-import { Head, Link, router } from '@inertiajs/hono-jsx'
+import { Head, Link, router } from '@nkfr26/inertia-hono-jsx'
 
 export default ({ titleSuffix }: { titleSuffix?: string }) => {
   return (

@@ -1,4 +1,4 @@
-import { Form } from '@inertiajs/hono-jsx'
+import { Form } from '@nkfr26/inertia-hono-jsx'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const transformData = (data: Record<string, any>) => {

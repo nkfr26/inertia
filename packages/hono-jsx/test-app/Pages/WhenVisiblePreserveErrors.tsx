@@ -1,4 +1,4 @@
-import { useForm, usePage, WhenVisible } from '@inertiajs/hono-jsx'
+import { useForm, usePage, WhenVisible } from '@nkfr26/inertia-hono-jsx'
 
 export default ({ foo }: { foo?: string }) => {
   const { errors } = usePage().props as { errors?: { name?: string } }

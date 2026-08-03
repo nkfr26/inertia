@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/hono-jsx'
+import { Head } from '@nkfr26/inertia-hono-jsx'
 import { useState } from 'hono/jsx'
 
 export default () => {

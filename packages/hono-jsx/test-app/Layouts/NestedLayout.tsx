@@ -1,5 +1,5 @@
+import { usePage } from '@nkfr26/inertia-hono-jsx'
 import type { Child } from 'hono/jsx'
-import { usePage } from '@inertiajs/hono-jsx'
 import { useId, useState } from 'hono/jsx'
 
 export default ({ children }: { children: Child }) => {

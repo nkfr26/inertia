@@ -64,7 +64,7 @@ test.describe('createInertiaApp', () => {
   })
 
   test('it does not wrap the app in StrictMode by default', async ({ page }) => {
-    test.skip(process.env.PACKAGE !== 'react','React-only tests')
+    test.skip(process.env.PACKAGE !== 'react', 'React-only tests')
 
     await page.goto('/unified/strict-mode')
 

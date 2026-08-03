@@ -1,6 +1,6 @@
-import type { Child } from 'hono/jsx'
 import type { Page } from '@inertiajs/core'
-import { Link } from '@inertiajs/hono-jsx'
+import { Link } from '@nkfr26/inertia-hono-jsx'
+import type { Child } from 'hono/jsx'
 import WithScrollRegion from '@/Layouts/WithScrollRegion.jsx'
 
 const PreserveScroll = ({ foo = 'default' }: { foo?: string }) => {

@@ -1,4 +1,4 @@
-import { Form } from '@inertiajs/hono-jsx'
+import { Form } from '@nkfr26/inertia-hono-jsx'
 
 interface Todo {
   id: number

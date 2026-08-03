@@ -1,5 +1,5 @@
 // This component is used for checking the TypeScript implementation; there is no Playwright test depending on it.
-import { Form } from '@inertiajs/hono-jsx'
+import { Form } from '@nkfr26/inertia-hono-jsx'
 
 interface UserForm {
   name: string

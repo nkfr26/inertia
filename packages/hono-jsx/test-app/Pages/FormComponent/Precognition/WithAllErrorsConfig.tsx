@@ -1,5 +1,5 @@
-import { config } from '@inertiajs/hono-jsx'
-import { Form } from '@inertiajs/hono-jsx'
+import { config } from '@nkfr26/inertia-hono-jsx'
+import { Form } from '@nkfr26/inertia-hono-jsx'
 
 export default () => {
   // Set global config for withAllErrors (no prop on the Form component)

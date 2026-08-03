@@ -1,4 +1,4 @@
-import { router, usePage } from '@inertiajs/hono-jsx'
+import { router, usePage } from '@nkfr26/inertia-hono-jsx'
 
 export default () => {
   const { config } = usePage<{

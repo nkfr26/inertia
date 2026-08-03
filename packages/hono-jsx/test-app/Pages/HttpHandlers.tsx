@@ -1,4 +1,4 @@
-import { http, router } from '@inertiajs/hono-jsx'
+import { http, router } from '@nkfr26/inertia-hono-jsx'
 import { useEffect } from 'hono/jsx'
 
 declare global {

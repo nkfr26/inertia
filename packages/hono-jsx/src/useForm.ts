@@ -20,8 +20,8 @@ import {
   VisitOptions,
 } from '@inertiajs/core'
 import { cloneDeep } from 'es-toolkit'
-import type { NamedInputEvent, PrecognitionPath, ValidationConfig, Validator } from 'laravel-precognition'
 import { useCallback, useMemo, useRef } from 'hono/jsx'
+import type { NamedInputEvent, PrecognitionPath, ValidationConfig, Validator } from 'laravel-precognition'
 import useFormState, { SetDataAction, SetDataByKeyValuePair, SetDataByMethod, SetDataByObject } from './useFormState'
 import useRemember from './useRemember'
 

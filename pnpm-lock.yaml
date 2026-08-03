@@ -95,12 +95,12 @@ importers:
       '@inertiajs/core':
         specifier: workspace:*
         version: link:../../core
-      '@inertiajs/hono-jsx':
-        specifier: workspace:*
-        version: link:..
       '@inertiajs/vite':
         specifier: workspace:*
         version: link:../../vite
+      '@nkfr26/inertia-hono-jsx':
+        specifier: workspace:*
+        version: link:..
     devDependencies:
       '@types/node':
         specifier: ^24.10.13

@@ -1,4 +1,4 @@
-import { Link, usePoll } from '@inertiajs/hono-jsx'
+import { Link, usePoll } from '@nkfr26/inertia-hono-jsx'
 
 export default () => {
   usePoll(500, {

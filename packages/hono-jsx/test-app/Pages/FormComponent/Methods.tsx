@@ -1,5 +1,5 @@
 import type { Method } from '@inertiajs/core'
-import { Form } from '@inertiajs/hono-jsx'
+import { Form } from '@nkfr26/inertia-hono-jsx'
 import { useState } from 'hono/jsx'
 
 export default () => {

@@ -1,4 +1,4 @@
-import { Form } from '@inertiajs/hono-jsx'
+import { Form } from '@nkfr26/inertia-hono-jsx'
 
 export default () => {
   return (
@@ -20,12 +20,7 @@ export default () => {
         </div>
 
         <div>
-          <input
-            type="text"
-            name="fields[entries][new:1][name]"
-            placeholder="Name for new entry"
-            value="Jane Smith"
-          />
+          <input type="text" name="fields[entries][new:1][name]" placeholder="Name for new entry" value="Jane Smith" />
         </div>
 
         <div>

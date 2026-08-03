@@ -1,6 +1,6 @@
 ---
-name: inertia-react-development
-description: "Develops Inertia.js v3 React client-side applications. Activates when creating React pages, forms, or navigation; using <Link>, <Form>, useForm, useHttp, setLayoutProps, or router; working with deferred props, prefetching, optimistic updates, instant visits, or polling; or when user mentions React with Inertia, React pages, React forms, or React navigation."
+name: inertia-hono-jsx-development
+description: "Develops Inertia.js v3 Hono JSX client-side applications. Activates when creating Hono JSX pages, forms, or navigation; using <Link>, <Form>, useForm, useHttp, setLayoutProps, or router; working with deferred props, prefetching, optimistic updates, instant visits, or polling; or when user mentions Hono JSX with Inertia, Hono JSX pages, Hono JSX forms, or Hono JSX navigation."
 license: MIT
 metadata:
   author: laravel
@@ -8,31 +8,31 @@ metadata:
 @php
 /** @var \Laravel\Boost\Install\GuidelineAssist $assist */
 @endphp
-# Inertia React Development
+# Inertia Hono JSX Development
 
 ## When to Apply
 
 Activate this skill when:
 
-- Creating or modifying React page components for Inertia
-- Working with forms in React (using `<Form>`, `useForm`, or `useHttp`)
+- Creating or modifying Hono JSX page components for Inertia
+- Working with forms in Hono JSX (using `<Form>`, `useForm`, or `useHttp`)
 - Implementing client-side navigation with `<Link>` or `router`
 - Using v3 features: deferred props, prefetching, optimistic updates, instant visits, layout props, HTTP requests, WhenVisible, InfiniteScroll, once props, flash data, or polling
-- Building React-specific features with the Inertia protocol
+- Building Hono JSX-specific features with the Inertia protocol
 
 ## Documentation
 
-Use `search-docs` for detailed Inertia v3 React patterns and documentation.
+Use `search-docs` for detailed Inertia v3 Hono JSX patterns and documentation.
 
 ## Basic Usage
 
 ### Page Components Location
 
-React page components should be placed in the `{{ $assist->inertia()->pagesDirectory() }}` directory.
+Hono JSX page components should be placed in the `{{ $assist->inertia()->pagesDirectory() }}` directory.
 
 ### Page Component Structure
 
-@boostsnippet("Basic React Page Component", "react")
+@boostsnippet("Basic Hono JSX Page Component", "hono-jsx")
 export default function UsersIndex({ users }) {
     return (
         <div>
@@ -51,8 +51,8 @@ export default function UsersIndex({ users }) {
 
 Use `<Link>` for client-side navigation instead of traditional `<a>` tags:
 
-@boostsnippet("Inertia React Navigation", "react")
-import { Link, router } from '@inertiajs/react'
+@boostsnippet("Inertia Hono JSX Navigation", "hono-jsx")
+import { Link, router } from '@nkfr26/inertia-hono-jsx'
 
 <Link href="/">Home</Link>
 <Link href="/users">Users</Link>
@@ -61,8 +61,8 @@ import { Link, router } from '@inertiajs/react'
 
 ### Link with Method
 
-@boostsnippet("Link with POST Method", "react")
-import { Link } from '@inertiajs/react'
+@boostsnippet("Link with POST Method", "hono-jsx")
+import { Link } from '@nkfr26/inertia-hono-jsx'
 
 <Link href="/logout" method="post" as="button">
     Logout
@@ -73,8 +73,8 @@ import { Link } from '@inertiajs/react'
 
 Prefetch pages to improve perceived performance:
 
-@boostsnippet("Prefetch on Hover", "react")
-import { Link } from '@inertiajs/react'
+@boostsnippet("Prefetch on Hover", "hono-jsx")
+import { Link } from '@nkfr26/inertia-hono-jsx'
 
 <Link href="/users" prefetch>
     Users
@@ -83,8 +83,8 @@ import { Link } from '@inertiajs/react'
 
 ### Programmatic Navigation
 
-@boostsnippet("Router Visit", "react")
-import { router } from '@inertiajs/react'
+@boostsnippet("Router Visit", "hono-jsx")
+import { router } from '@nkfr26/inertia-hono-jsx'
 
 function handleClick() {
     router.visit('/users')
@@ -105,8 +105,8 @@ router.visit('/users', {
 
 The recommended way to build forms is with the `<Form>` component:
 
-@boostsnippet("Form Component Example", "react")
-import { Form } from '@inertiajs/react'
+@boostsnippet("Form Component Example", "hono-jsx")
+import { Form } from '@nkfr26/inertia-hono-jsx'
 
 export default function CreateUser() {
     return (
@@ -133,8 +133,8 @@ export default function CreateUser() {
 
 ### Form Component With All Props
 
-@boostsnippet("Form Component Full Example", "react")
-import { Form } from '@inertiajs/react'
+@boostsnippet("Form Component Full Example", "hono-jsx")
+import { Form } from '@nkfr26/inertia-hono-jsx'
 
 <Form action="/users" method="post">
     {({
@@ -182,8 +182,8 @@ The `<Form>` component supports automatic resetting:
 
 Use the `search-docs` tool with a query of `form component resetting` for detailed guidance.
 
-@boostsnippet("Form with Reset Props", "react")
-import { Form } from '@inertiajs/react'
+@boostsnippet("Form with Reset Props", "hono-jsx")
+import { Form } from '@nkfr26/inertia-hono-jsx'
 
 <Form
     action="/users"
@@ -219,8 +219,8 @@ For Inertia v2.0.x: Build forms using the `useForm` helper as the `<Form>` compo
 For more programmatic control or to follow existing conventions, use the `useForm` hook:
 @endif
 
-@boostsnippet("useForm Hook Example", "react")
-import { useForm } from '@inertiajs/react'
+@boostsnippet("useForm Hook Example", "hono-jsx")
+import { useForm } from '@nkfr26/inertia-hono-jsx'
 
 export default function CreateUser() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -273,8 +273,8 @@ export default function CreateUser() {
 
 Use the `useHttp` hook for standalone HTTP requests that do not trigger Inertia page visits. It provides the same developer experience as `useForm`, but for plain JSON endpoints.
 
-@boostsnippet("useHttp Example", "react")
-import { useHttp } from '@inertiajs/react'
+@boostsnippet("useHttp Example", "hono-jsx")
+import { useHttp } from '@nkfr26/inertia-hono-jsx'
 
 export default function Search() {
     const { data, setData, get, processing } = useHttp({
@@ -303,8 +303,8 @@ export default function Search() {
 
 Apply data changes instantly before the server responds, with automatic rollback on failure:
 
-@boostsnippet("Optimistic Update with Router", "react")
-import { router } from '@inertiajs/react'
+@boostsnippet("Optimistic Update with Router", "hono-jsx")
+import { router } from '@nkfr26/inertia-hono-jsx'
 
 function like(post) {
     router.optimistic((props) => ({
@@ -318,8 +318,8 @@ function like(post) {
 
 Optimistic updates also work with `useForm` and the `<Form>` component:
 
-@boostsnippet("Optimistic Update with Form Component", "react")
-import { Form } from '@inertiajs/react'
+@boostsnippet("Optimistic Update with Form Component", "hono-jsx")
+import { Form } from '@nkfr26/inertia-hono-jsx'
 
 <Form
     action="/todos"
@@ -338,8 +338,8 @@ import { Form } from '@inertiajs/react'
 Navigate to a new page immediately without waiting for the server response. The target component renders right away with shared props, while page-specific props load in the background.
 
 @verbatim
-@boostsnippet("Instant Visit with Link", "react")
-import { Link } from '@inertiajs/react'
+@boostsnippet("Instant Visit with Link", "hono-jsx")
+import { Link } from '@nkfr26/inertia-hono-jsx'
 
 <Link href="/dashboard" component="Dashboard">Dashboard</Link>
 
@@ -357,7 +357,7 @@ import { Link } from '@inertiajs/react'
 
 Share dynamic data between pages and persistent layouts:
 
-@boostsnippet("Layout Props in Layout", "react")
+@boostsnippet("Layout Props in Layout", "hono-jsx")
 export default function Layout({ title = 'My App', showSidebar = true, children }) {
     return (
         <>
@@ -369,8 +369,8 @@ export default function Layout({ title = 'My App', showSidebar = true, children 
 }
 @endboostsnippet
 
-@boostsnippet("Setting Layout Props from Page", "react")
-import { setLayoutProps } from '@inertiajs/react'
+@boostsnippet("Setting Layout Props from Page", "hono-jsx")
+import { setLayoutProps } from '@nkfr26/inertia-hono-jsx'
 
 export default function Dashboard() {
     setLayoutProps({
@@ -386,7 +386,7 @@ export default function Dashboard() {
 
 Use deferred props to load data after initial page render:
 
-@boostsnippet("Deferred Props with Empty State", "react")
+@boostsnippet("Deferred Props with Empty State", "hono-jsx")
 export default function UsersIndex({ users }) {
     return (
         <div>
@@ -412,8 +412,8 @@ export default function UsersIndex({ users }) {
 
 Use the `usePoll` hook to automatically refresh data at intervals. It handles cleanup on unmount and throttles polling when the tab is inactive.
 
-@boostsnippet("Basic Polling", "react")
-import { usePoll } from '@inertiajs/react'
+@boostsnippet("Basic Polling", "hono-jsx")
+import { usePoll } from '@nkfr26/inertia-hono-jsx'
 
 export default function Dashboard({ stats }) {
     usePoll(5000)
@@ -427,8 +427,8 @@ export default function Dashboard({ stats }) {
 }
 @endboostsnippet
 
-@boostsnippet("Polling With Request Options and Manual Control", "react")
-import { usePoll } from '@inertiajs/react'
+@boostsnippet("Polling With Request Options and Manual Control", "hono-jsx")
+import { usePoll } from '@nkfr26/inertia-hono-jsx'
 
 export default function Dashboard({ stats }) {
     const { start, stop } = usePoll(5000, {
@@ -462,8 +462,8 @@ export default function Dashboard({ stats }) {
 
 Lazy-load a prop when an element scrolls into view. Useful for deferring expensive data that sits below the fold:
 
-@boostsnippet("WhenVisible Example", "react")
-import { WhenVisible } from '@inertiajs/react'
+@boostsnippet("WhenVisible Example", "hono-jsx")
+import { WhenVisible } from '@nkfr26/inertia-hono-jsx'
 
 export default function Dashboard({ stats }) {
     return (
@@ -488,8 +488,8 @@ export default function Dashboard({ stats }) {
 
 Automatically load additional pages of paginated data as users scroll:
 
-@boostsnippet("InfiniteScroll Example", "react")
-import { InfiniteScroll } from '@inertiajs/react'
+@boostsnippet("InfiniteScroll Example", "hono-jsx")
+import { InfiniteScroll } from '@nkfr26/inertia-hono-jsx'
 
 export default function Users({ users }) {
     return (

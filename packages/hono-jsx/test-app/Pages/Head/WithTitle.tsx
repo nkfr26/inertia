@@ -1,5 +1,4 @@
-import type { Child } from 'hono/jsx'
-import { Head } from '@inertiajs/hono-jsx'
+import { Head } from '@nkfr26/inertia-hono-jsx'
 
 export default () => {
   return (

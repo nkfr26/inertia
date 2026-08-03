@@ -1,4 +1,4 @@
-import { InfiniteScroll } from '@inertiajs/hono-jsx'
+import { InfiniteScroll } from '@nkfr26/inertia-hono-jsx'
 import { useState } from 'hono/jsx'
 import UserCard, { User } from './UserCard'
 
@@ -12,14 +12,22 @@ export default ({ users }: { users: { data: User[] } }) => {
       <div style={{ display: 'flex', gap: '10px' }}>
         <p>
           <label>
-            <input type="checkbox" checked={manual} onChange={(e) => setManual((e.target as HTMLInputElement).checked)} />
+            <input
+              type="checkbox"
+              checked={manual}
+              onChange={(e) => setManual((e.target as HTMLInputElement).checked)}
+            />
             Manual mode: {manual.toString()}
           </label>
         </p>
 
         <p>
           <label>
-            <input type="checkbox" checked={preserveUrl} onChange={(e) => setPreserveUrl((e.target as HTMLInputElement).checked)} />
+            <input
+              type="checkbox"
+              checked={preserveUrl}
+              onChange={(e) => setPreserveUrl((e.target as HTMLInputElement).checked)}
+            />
             Preserve URL: {preserveUrl.toString()}
           </label>
         </p>
@@ -29,7 +37,9 @@ export default ({ users }: { users: { data: User[] } }) => {
             Trigger mode: {triggerMode}
             <select
               value={triggerMode}
-              onChange={(e) => setTriggerMode((e.target as HTMLSelectElement).value as 'onlyPrevious' | 'onlyNext' | 'both')}
+              onChange={(e) =>
+                setTriggerMode((e.target as HTMLSelectElement).value as 'onlyPrevious' | 'onlyNext' | 'both')
+              }
             >
               <option value="onlyPrevious">onlyPrevious</option>
               <option value="onlyNext">onlyNext</option>
