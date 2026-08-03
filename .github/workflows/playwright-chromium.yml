@@ -24,8 +24,6 @@ jobs:
             http: 'axios'
             svelte-async: 'true'
           - adapter: 'hono-jsx'
-            http: 'axios'
-          - adapter: 'hono-jsx'
             svelte-async: 'true'
     steps:
       - name: Checkout
