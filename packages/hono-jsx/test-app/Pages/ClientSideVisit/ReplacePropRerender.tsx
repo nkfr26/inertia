@@ -4,7 +4,7 @@ import { memo, useRef } from 'hono/jsx'
 const MemoChild = memo(({ prefix, item }: { prefix: string; item: { label: string } }) => {
   const renderCount = useRef(0)
 
-  renderCount.current!++
+  renderCount.current++
 
   return (
     <div>

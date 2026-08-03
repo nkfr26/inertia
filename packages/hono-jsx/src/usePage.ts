@@ -9,5 +9,5 @@ export default function usePage<TPageProps extends PageProps = PageProps>(): Pag
     throw new Error('usePage must be used within the Inertia component')
   }
 
-  return pageRef.current! as Page<TPageProps & SharedPageProps>
+  return pageRef.current as Page<TPageProps & SharedPageProps>
 }

@@ -9,7 +9,7 @@ export default () => {
   const form = useForm({ position: 'initial' })
   const renderCount = useRef(0)
 
-  renderCount.current!++
+  renderCount.current++
 
   const options = ['initial', 'goalkeeper', 'defender', 'midfielder', 'forward']
 

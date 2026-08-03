@@ -104,7 +104,7 @@ export default function App<SharedProps extends PageProps = PageProps>({
   const headManager = useMemo(() => {
     return createHeadManager(
       typeof window === 'undefined',
-      (title: string) => (titleCallback ? titleCallback(title, pageRef.current!) : title),
+      (title: string) => (titleCallback ? titleCallback(title, pageRef.current) : title),
       onHeadUpdate || (() => {}),
       resolveServerHead(initialPage, serverHead),
     )

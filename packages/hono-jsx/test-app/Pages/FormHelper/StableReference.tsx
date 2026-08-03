@@ -5,7 +5,7 @@ export default () => {
   const form = useForm({ name: '' })
   const renderCount = useRef(0)
 
-  renderCount.current!++
+  renderCount.current++
 
   const { post } = form
 

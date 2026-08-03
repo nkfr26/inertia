@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction } from './types'
 export default function useRemember<State>(
   initialState: State,
   key?: string,
-  excludeKeysRef?: RefObject<string[]>,
+  excludeKeysRef?: RefObject<string[] | null>,
 ): [State, Dispatch<SetStateAction<State>>] {
   const [state, setState] = useState(() => {
     const restored = router.restore(key) as State

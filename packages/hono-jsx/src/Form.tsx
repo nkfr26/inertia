@@ -35,7 +35,7 @@ import useForm from './useForm'
 type FormProps<TForm extends object = Record<string, any>> = FormComponentProps<TForm> &
   Omit<JSX.HTMLAttributes, keyof FormComponentProps | 'children'> & {
     children: Child | ((props: FormComponentSlotProps<TForm>) => Child)
-    ref?: RefObject<FormComponentRef<TForm>>
+    ref?: RefObject<FormComponentRef<TForm> | null>
   }
 
 type FormSubmitOptions = Omit<VisitOptions, 'data' | 'onPrefetched' | 'onPrefetching'>
@@ -146,7 +146,7 @@ const Form = ({
     }
 
     startTransition(() =>
-      setIsDirty(event.type === 'reset' ? false : !isEqual(getData(), formDataToObject(defaultData.current!))),
+      setIsDirty(event.type === 'reset' ? false : !isEqual(getData(), formDataToObject(defaultData.current))),
     )
   }
 
@@ -184,7 +184,7 @@ const Form = ({
 
   const reset = (...fields: string[]) => {
     if (formElement.current) {
-      resetFormFields(formElement.current, defaultData.current!, fields)
+      resetFormFields(formElement.current, defaultData.current, fields)
     }
 
     form.reset(...fields)
