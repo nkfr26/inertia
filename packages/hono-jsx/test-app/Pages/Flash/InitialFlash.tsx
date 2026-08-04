@@ -10,7 +10,7 @@ export default () => {
   if (!listenerSetup.current) {
     listenerSetup.current = true
     router.on('flash', (e) => {
-      flashEvents.current!.push(e.detail.flash)
+      flashEvents.current.push(e.detail.flash)
       forceUpdate((n) => n + 1)
     })
   }

@@ -187,7 +187,7 @@ export default function useHttp<TForm extends FormDataType<TForm>, TResponse = u
       let snapshot: TForm | undefined
 
       if (options.optimistic) {
-        snapshot = cloneDeep(dataRef.current!)
+        snapshot = cloneDeep(dataRef.current)
         const optimisticData = options.optimistic(cloneDeep(snapshot))
 
         baseForm.setData((current: TForm) => ({ ...current, ...optimisticData }))
@@ -199,7 +199,7 @@ export default function useHttp<TForm extends FormDataType<TForm>, TResponse = u
 
       options.onStart?.()
 
-      const transformedData = transformRef.current!(dataRef.current!)
+      const transformedData = transformRef.current(dataRef.current)
       const useFormData = hasFiles(transformedData as Record<string, FormDataConvertible>)
 
       let requestUrl = url

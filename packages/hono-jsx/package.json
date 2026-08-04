@@ -56,11 +56,11 @@
     "es-check": "^9.6.1",
     "esbuild": "^0.28.1",
     "esbuild-node-externals": "^1.23.1",
-    "hono": "^4.12.33",
+    "hono": "^4.13.0",
     "typescript": "^6.0.3"
   },
   "peerDependencies": {
-    "hono": ">=4.12.33"
+    "hono": ">=4.13.0"
   },
   "dependencies": {
     "@inertiajs/core": "workspace:*",

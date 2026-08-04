@@ -221,7 +221,7 @@ export default function useForm<TForm extends FormDataType<TForm>>(
       _options.optimistic = _options.optimistic ?? pendingOptimisticRef.current ?? undefined
       pendingOptimisticRef.current = null
 
-      const transformedData = transformRef.current!(dataRef.current!) as RequestPayload
+      const transformedData = transformRef.current(dataRef.current) as RequestPayload
 
       if (method === 'delete') {
         router.delete(url, { ..._options, data: transformedData })

@@ -56,7 +56,7 @@ const renderSlot = (
   return typeof slotContent === 'function' ? slotContent(slotProps) : slotContent
 }
 
-type InfiniteScrollRefProp = RefObject<InfiniteScrollRef> | ((instance: InfiniteScrollRef | null) => void)
+type InfiniteScrollRefProp = RefObject<InfiniteScrollRef | null> | ((instance: InfiniteScrollRef | null) => void)
 
 interface ComponentProps
   extends
@@ -196,14 +196,14 @@ const InfiniteScroll = ({
     const infiniteScrollInstance = useInfiniteScroll({
       // Data
       getPropName: () => data,
-      inReverseMode: () => callbackPropsRef.current!.reverse,
-      shouldFetchNext: () => !callbackPropsRef.current!.onlyPrevious,
-      shouldFetchPrevious: () => !callbackPropsRef.current!.onlyNext,
-      shouldPreserveUrl: () => callbackPropsRef.current!.preserveUrl,
-      getReloadOptions: () => callbackPropsRef.current!.params,
+      inReverseMode: () => callbackPropsRef.current.reverse,
+      shouldFetchNext: () => !callbackPropsRef.current.onlyPrevious,
+      shouldFetchPrevious: () => !callbackPropsRef.current.onlyNext,
+      shouldPreserveUrl: () => callbackPropsRef.current.preserveUrl,
+      getReloadOptions: () => callbackPropsRef.current.params,
 
       // Elements
-      getTriggerMargin: () => callbackPropsRef.current!.buffer,
+      getTriggerMargin: () => callbackPropsRef.current.buffer,
       getStartElement: () => resolvedStartElement!,
       getEndElement: () => resolvedEndElement!,
       getItemsElement: () => resolvedItemsElement,

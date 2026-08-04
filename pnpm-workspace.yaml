@@ -7,9 +7,13 @@ packages:
 allowBuilds:
   esbuild: true
 
+minimumReleaseAgeExclude:
+  - hono@4.13.0
+
 onlyBuiltDependencies:
   - '@tailwindcss/oxide'
   - esbuild
 
 overrides:
   cookie: '>=0.7.0'
+  brace-expansion: ^5.0.9

@@ -47,7 +47,7 @@ const Head = ({ children, title }: InertiaHeadProps) => {
   }
 
   function renderNodes(nodes: Child) {
-    const elements = (Children.toArray(nodes) as Child[])
+    const elements = Children.toArray(nodes)
       .flatMap((node) => (Array.isArray(node) ? flattenChildren(node) : [node]))
       .filter((node) => node)
       .map((node) => renderNode(node as JSXNode))

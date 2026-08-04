@@ -171,9 +171,9 @@ export default function useFormState<TForm extends object>(
   const setDataFunction = useCallback(
     (keyOrData: FormDataKeys<TForm> | Function | Partial<TForm>, maybeValue?: any) => {
       if (typeof keyOrData === 'string') {
-        commitData(set(cloneDeep(dataRef.current!), keyOrData, maybeValue))
+        commitData(set(cloneDeep(dataRef.current), keyOrData, maybeValue))
       } else if (typeof keyOrData === 'function') {
-        commitData(keyOrData(dataRef.current!))
+        commitData(keyOrData(dataRef.current))
       } else {
         commitData(keyOrData as TForm)
       }
@@ -192,8 +192,8 @@ export default function useFormState<TForm extends object>(
       let newDefaults = {} as TForm
 
       if (typeof fieldOrFields === 'undefined') {
-        newDefaults = { ...dataRef.current! }
-        setDefaultsState(dataRef.current!)
+        newDefaults = { ...dataRef.current }
+        setDefaultsState(dataRef.current)
       } else {
         setDefaultsState((defaults) => {
           newDefaults =
@@ -239,7 +239,7 @@ export default function useFormState<TForm extends object>(
             (carry, key) => {
               return set(carry, key, get(clonedData, key))
             },
-            { ...dataRef.current! } as TForm,
+            { ...dataRef.current } as TForm,
           )
         commitData(next)
       }
@@ -371,7 +371,7 @@ export default function useFormState<TForm extends object>(
       validatorRef.current!.validate(config)
     } else {
       const fieldName = resolveName(field)
-      const transformedData = transformRef.current!(dataRef.current!) as Record<string, unknown>
+      const transformedData = transformRef.current(dataRef.current) as Record<string, unknown>
       validatorRef.current!.validate(fieldName, get(transformedData, fieldName), config)
     }
 
@@ -385,8 +385,8 @@ export default function useFormState<TForm extends object>(
       const validator = createValidator(
         (client) => {
           const { method, url } = precognitionEndpointRef.current!()
-          const currentData = dataRef.current!
-          const transformedData = transformRef.current!(currentData) as Record<string, unknown>
+          const currentData = dataRef.current
+          const transformedData = transformRef.current(currentData) as Record<string, unknown>
           return client[method](url, transformedData)
         },
         cloneDeep(defaults as Record<string, unknown>),

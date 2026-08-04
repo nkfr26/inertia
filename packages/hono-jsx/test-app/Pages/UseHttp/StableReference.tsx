@@ -12,7 +12,7 @@ export default () => {
   const renderCount = useRef(0)
   const [result, setResult] = useState<SearchResponse | null>(null)
 
-  renderCount.current!++
+  renderCount.current++
 
   const { get } = http
 

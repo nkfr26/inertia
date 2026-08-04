@@ -70,7 +70,7 @@ const WhenVisible = ({ children, data, params, buffer, as, always, fallback }: W
         fetching.current = true
         setIsFetching(true)
 
-        const reloadParams = getReloadParamsRef.current!()
+        const reloadParams = getReloadParamsRef.current()
 
         router.reload({
           ...reloadParams,
