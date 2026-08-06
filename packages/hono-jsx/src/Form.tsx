@@ -24,7 +24,6 @@ import {
   startTransition,
   useContext,
   useEffect,
-  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -293,13 +292,7 @@ const Form = ({
   }
 
   if (ref) {
-    useLayoutEffect(() => {
-      ref.current = exposed
-
-      return () => {
-        ref.current = null
-      }
-    }, [form, isDirty, submit])
+    ref.current = exposed
   }
 
   const formNode = (

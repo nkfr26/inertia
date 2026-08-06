@@ -56,8 +56,6 @@ const renderSlot = (
   return typeof slotContent === 'function' ? slotContent(slotProps) : slotContent
 }
 
-type InfiniteScrollRefProp = RefObject<InfiniteScrollRef | null> | ((instance: InfiniteScrollRef | null) => void)
-
 interface ComponentProps
   extends
     InfiniteScrollComponentBaseProps,
@@ -80,7 +78,7 @@ interface ComponentProps
   onlyNext?: boolean
   onlyPrevious?: boolean
 
-  ref?: InfiniteScrollRefProp
+  ref?: RefObject<InfiniteScrollRef | null> | ((instance: InfiniteScrollRef | null) => void)
 }
 
 const InfiniteScroll = ({

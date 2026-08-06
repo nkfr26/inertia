@@ -11,17 +11,20 @@
   "homepage": "https://inertiajs.com/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/inertiajs/inertia.git",
+    "url": "git+https://github.com/nkfr26/inertia.git",
     "directory": "packages/hono-jsx"
   },
   "bugs": {
-    "url": "https://github.com/inertiajs/inertia/issues"
+    "url": "https://github.com/nkfr26/inertia/issues"
   },
   "files": [
     "dist",
     "types",
     "resources"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
@@ -60,7 +63,7 @@
     "typescript": "^6.0.3"
   },
   "peerDependencies": {
-    "hono": ">=4.13.0"
+    "hono": "^4.13.0"
   },
   "dependencies": {
     "@inertiajs/core": "workspace:*",
